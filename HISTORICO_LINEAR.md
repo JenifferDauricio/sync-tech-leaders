@@ -9,6 +9,13 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-19 · ~22h UTC — squad HUB (lead + Solicitações DP) · ⏱ ~2 min
+
+- **Solicitações DP** movido do squad Cockpit para o squad **HUB** (marcos da Matriz realinhados para área Hub).
+- Lead do squad **HUB** padronizado como **Gabriel Bicalho Carvalho** (Solicitações DP + GDocs multi-CNPJ + GDocs acompanhamento). Squad HUB agora com 3 projetos.
+
+---
+
 ## 2026-06-19 · ~21h30 UTC — Offboarding adicionado + report do Cadastro Único · ⏱ ~4 min
 
 "Atualizar tudo": fechei os reports restantes de 19/06.
