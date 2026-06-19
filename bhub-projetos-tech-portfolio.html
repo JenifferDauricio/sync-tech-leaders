@@ -512,7 +512,7 @@ function projPct(p){
   let v;
   if(p.pctLinear!=null) v=p.pctLinear; // % do milestone no Linear (report semanal)
   else { const ts=(p.tarefas||[]).filter(ativa).filter(t=>!t.entrega); v = ts.length?Math.round(ts.reduce((s,t)=>s+(pctOf(t)||0),0)/ts.length):(p.pctManual!=null?p.pctManual:0); }
-  return v>=100?90:v; // REGRA: 100% nunca é exibido como concluído — limita a 90% (projeto segue em andamento)
+  return v; // % real do milestone do Linear (sem teto — 100% permitido)
 }
 function pctColor(p){ return p>=70?"var(--green)":p>=30?"var(--amber)":"var(--red)"; }
 function healthClass(h){ return h==="No prazo"?"h-ok":h==="Em risco"?"h-risco":"h-off"; }

@@ -4,7 +4,7 @@ Log cumulativo de tudo que é puxado do Linear a cada sincronização dos painé
 A cada execução (12h e 19h), uma nova seção é **acrescentada no topo** — nada é apagado. Trilha de auditoria da evolução dos projetos Tech.
 
 Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track) · % = milestone do Linear · data alvo da entrega = maior `dueDate` entre as sub-issues · "A definir" = sem `dueDate` no Linear.
-**Regra de %: projeto nunca é exibido como 100% concluído — quando o milestone bate 100%, o painel limita a 90% e mantém o projeto "em andamento".**
+**Regra de %: o painel exibe o % real do milestone do Linear, incluindo 100% quando o projeto está concluído. (O teto antigo de 90% foi removido em 19/06, confirmado com Gabriel Bicalho — GDocs estão realmente 100%.)**
 **Cada execução registra a ⏱ duração (início → fim) no cabeçalho do snapshot, para acompanhar o tempo de atualização ao longo do tempo.**
 
 ---
