@@ -9,6 +9,39 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-19 · 22h UTC — snapshot · ⏱ 5m 27s
+
+Re-execução no mesmo dia. Sem novos Project Updates no Linear desde a sincronização anterior (último update: Copiloto Samurai, 18:04 UTC) — portanto %, saúde e marcos permanecem os da última carga. Esta execução fez **higiene de dados**:
+
+- **REPORTS (Portfólio):** removidas **2 entradas duplicadas de 19/06** — `gdocs-multicnpj` e `gdocs-acompanhamento` apareciam duas vezes na mesma semana (double-add da execução anterior). Mantida a entrada mais recente de cada; histórico de semanas anteriores preservado (56 → 54 reports).
+- **Consolidado (Portfólio):** corrigida a `nota` da semana 19/06 — dizia incorretamente que *"Copiloto Samurai e BPO Financeiro: último report em 12/06"*, mas ambos reportaram em 19/06. Nota agora reflete que **PMI Digital e Hubcount** são os únicos sem report na semana (despriorizado / pré-spec).
+- Painel Autopilot (`v3`): sem mudanças de dados (motores inalterados, sem duplicatas).
+- Validação: `node --check` nos 4 scripts inline + smoke test (DOM stub) renderizando dashboard/exec/projetos/raid/reports + deal + abas de reports — **ambos os painéis OK**.
+
+**Snapshot dos 15 projetos (sem alteração vs. carga anterior):**
+
+| Projeto | Squad | OKR | Saúde | % milestone (Linear) |
+| -- | -- | -- | -- | -- |
+| Motor Fiscal SN | Fiscal | O4 | 🟡 Em risco | 24% — Construção Motor de Cálculo SN (Classificação SN 52%) |
+| RPA Fiscal | Fiscal | O4 | 🟢 No prazo | 80% — Construção de RPAs (Escrituração e guias) |
+| Motor Trabalhista (DP) | DP | O4 | 🟡 Em risco | 68% — Construção Pró-Labore SN (Folha s/ apont. 18%) |
+| Motor Contábil | Contábil | O4 | 🟡 Em risco | 26% — Construção Motor Contábil Entregue |
+| Solicitações DP | Hub | O4 | 🟡 Em risco | 85% — DP1.M1 V1 no ar + piloto (Carnevale/BLN) |
+| Triagem de Documentos (OCR) | Cockpit | O4 | 🟢 No prazo | 75% — M2 entregue · M3 em andamento |
+| Copiloto Samurai | Cockpit | O4 | 🟡 Em risco | 10% — M1 em andamento · BLOQUEADO (Daniel indisponível) |
+| BPO Financeiro | Cockpit | O5 | 🟡 Em risco | 10% — M1 Discovery (30/06) · BLOQUEADO |
+| GDocs multi-CNPJ | Hub | O2 | 🟢 No prazo | 100% — GD1.M1 no ar |
+| GDocs acompanhamento | Hub | O3 | 🟢 No prazo | 100% — GD2.M1 no ar |
+| PMI Digital | Cockpit | O1 | 🔴 Off track | 0% — bloqueado desde 01/06 (despriorizado) |
+| Cockpit 100% | Cockpit | O3 | 🟢 No prazo | 30% — M2 Top 200 grupos (1/4) |
+| Cadastro Único | Cockpit | O3 | 🟡 Em risco | 25% — M1 em andamento (1/4) |
+| Hubcount | Contábil | O5 | 🟢 No prazo | 0% — Pré-Spec · M1 (Spec) 15/07 |
+| Offboarding estruturado | Cockpit | O5 | 🔴 Off track | 0% — M1 não iniciado (sem PM/eng) |
+
+Dashboard: **6 No prazo · 7 Em risco · 2 Off track**. Consolidado 19/06: 13 projetos reportando; pausados: PMI Digital e Hubcount.
+
+---
+
 ## 2026-06-19 · ~22h UTC — squad HUB (lead + Solicitações DP) · ⏱ ~2 min
 
 - **Solicitações DP** movido do squad Cockpit para o squad **HUB** (marcos da Matriz realinhados para área Hub).
