@@ -553,7 +553,7 @@ function eInfo(p,e){
   return {ch,done,total:ch.length,pct,atras};
 }
 function execKPIs(){
-  const projs=DADOS.projetos.filter(p=>(p.tarefas||[]).some(t=>t.entrega));
+  const projs=DADOS.projetos;
   const pct=Math.round(projs.reduce((s,p)=>s+projPct(p),0)/projs.length);
   let atras=0; projs.forEach(p=>{(p.tarefas||[]).filter(ativa).filter(t=>!t.entrega).forEach(t=>{if(atrasada(t))atras++;});});
   const bloq=(DADOS.dependencias||[]).length;
@@ -564,7 +564,7 @@ function dot(c){ return `<span style="display:inline-block;width:8px;height:8px;
 function dateBR(d){ return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear(); }
 
 function execBoard(){
-  const projs=DADOS.projetos.filter(p=>(p.tarefas||[]).some(t=>t.entrega));
+  const projs=DADOS.projetos;
   const cards=projs.map((p,i)=>{
     const es=entregasOf(p); const pc=projPct(p);
     let atras=0; (p.tarefas||[]).filter(ativa).filter(t=>!t.entrega).forEach(t=>{if(atrasada(t))atras++;});
@@ -605,9 +605,10 @@ function eDates(p,e,info){
   return {start,end};
 }
 function execGantt(){
-  const projs=DADOS.projetos.filter(p=>(p.tarefas||[]).some(t=>t.entrega));
+  const projs=DADOS.projetos;
   let min=null,max=null;
   projs.forEach(p=>entregasOf(p).forEach(e=>{const info=eInfo(p,e);const d=eDates(p,e,info);if(d){if(!min||d.start<min)min=d.start;if(!max||d.end>max)max=d.end;}}));
+  projs.forEach(p=>{if(!entregasOf(p).length&&p.inicio&&p.alvo){const a=new Date(p.inicio),b=new Date(p.alvo);if(!min||a<min)min=a;if(!max||b>max)max=b;}});
   const today=new Date();
   if(!min)min=new Date(today); if(!max)max=new Date(today.getTime()+60*864e5);
   if(today<min)min=new Date(today); if(today>max)max=new Date(today);
@@ -639,7 +640,8 @@ function execGantt(){
   projs.forEach(p=>{
     L+=`<div style="height:24px;display:flex;align-items:flex-end;font-weight:700;font-size:.67rem;color:var(--muted);letter-spacing:.03em">${p.nome.split('—')[0].trim().toUpperCase()}</div>`;
     R+=`<div style="height:24px"></div>`;
-    entregasOf(p).forEach(e=>{const info=eInfo(p,e);const d=eDates(p,e,info);
+    const es=entregasOf(p);
+    if(es.length){ es.forEach(e=>{const info=eInfo(p,e);const d=eDates(p,e,info);
       const en=(e.nome.match(/^E\d+/)||[''])[0]; const nm=e.nome.replace(/^E\d+\s*·?\s*/,'');
       const eLate = info.atras;
       const doneLate = info.pct>=100 && e.venc && e.venc < hojeISO;
@@ -650,7 +652,16 @@ function execGantt(){
         bar=`<div style="position:absolute;left:${l}%;width:${w}%;top:4px;height:12px;border-radius:4px;background:${col};opacity:${info.pct>0?1:.5};${doneLate?'box-shadow:0 0 0 1.5px var(--red)':''}" title="${dateBR(d.start)} → ${dateBR(d.end)}${doneLate?' · concluída em atraso':''}"></div><div style="position:absolute;left:${l}%;margin-left:calc(${w}% + 5px);top:3px;font-size:.65rem;color:var(--muted);white-space:nowrap"><b style="color:var(--navy)">${info.pct}%</b> · ${info.done}/${info.total}</div>`;
       } else { bar=`<div style="position:absolute;left:${tp}%;top:3px;margin-left:5px;font-size:.65rem;color:var(--muted);font-style:italic">a definir</div>`; }
       R+=`<div style="position:relative;height:21px">${bar}</div>`;
-    });
+    }); }
+    else {
+      const pc=projPct(p); const hcol=p.health==='No prazo'?'var(--green)':p.health==='Off track'?'var(--red)':'var(--amber)';
+      L+=`<div style="height:21px;display:flex;align-items:center;font-size:.72rem;color:var(--muted);white-space:nowrap">projeto · sem entregas detalhadas</div>`;
+      let bar;
+      if(p.inicio&&p.alvo){const a=new Date(p.inicio),b=new Date(p.alvo);const l=pos(a),w=Math.max(2.5,pos(b)-pos(a));
+        bar=`<div style="position:absolute;left:${l}%;width:${w}%;top:4px;height:12px;border-radius:4px;background:${hcol};opacity:.85" title="${dateBR(a)} → ${dateBR(b)} · ${p.health}"></div><div style="position:absolute;left:${l}%;margin-left:calc(${w}% + 5px);top:3px;font-size:.65rem;color:var(--muted);white-space:nowrap"><b style="color:var(--navy)">${pc}%</b> · ${p.statusProjeto||''}</div>`;
+      } else { bar=`<div style="position:absolute;left:${tp}%;top:3px;margin-left:5px;font-size:.65rem;color:var(--muted);font-style:italic">sem datas</div>`; }
+      R+=`<div style="position:relative;height:21px">${bar}</div>`;
+    }
   });
   return `<div class="card" style="overflow-x:auto;padding:1rem 1.1rem">
     <div style="display:grid;grid-template-columns:185px 1fr;min-width:640px">
@@ -686,7 +697,7 @@ function renderExec(){
   else if(EXECV==='matriz') body=execMatriz();
   else body=execBoard();
   document.getElementById('view-exec').innerHTML = `
-    <div class="pghead"><div><h1>Visão Executiva — Entregas dos motores</h1><div class="st">${k.n} motores (Autopilot) · avanço médio ${k.pct}% · ${k.atras} atrasadas · ${k.bloq} bloqueios · Cockpit: ver Projetos e Report Semanal</div></div></div>
+    <div class="pghead"><div><h1>Visão Executiva — Portfólio</h1><div class="st">${k.n} projetos · avanço médio ${k.pct}% · ${k.atras} atrasadas · ${k.bloq} bloqueios · barra de projeto (Cockpit/Hub) colorida pela saúde</div></div></div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:1.1rem">
       ${kpiBox('Motores',k.n,'')}${kpiBox('Avanço geral',k.pct+'%','')}${kpiBox('Atrasadas',k.atras,k.atras?'var(--red)':'')}${kpiBox('Bloqueios',k.bloq,k.bloq?'#92400e':'')}
     </div>
