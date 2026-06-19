@@ -367,7 +367,7 @@ const REPORTS = [{"proj": "motor-fiscal-sn", "projNome": "Motor Fiscal SN", "dat
       <a data-v="exec"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> Visão Executiva</a>
       <a data-v="projetos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Projetos</a>
       <a data-v="raid"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Ação de Mitigação</a>
-      <a data-v="reports"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12l4 4v12a0 0 0 0 1 0 0H4z"/><path d="M8 11h8M8 15h8M8 7h5"/></svg> Report Semanal</a>
+      <a data-v="reports"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12l4 4v12a0 0 0 0 1 0 0H4z"/><path d="M8 11h8M8 15h8M8 7h5"/></svg> Reporte Semanal</a>
     </nav>
     <div class="sb-foot"><div class="av">JD</div><div><div class="nm">Jeni Dauricio</div><span class="badge">ADMIN · TECH</span></div></div>
   </aside>
@@ -402,7 +402,7 @@ const hojeISO = new Date().toISOString().slice(0,10);
 function atrasada(t){ return t.venc && t.status!=="Concluído" && t.venc < hojeISO; }
 function projPct(p){
   let v;
-  if(p.pctLinear!=null) v=p.pctLinear; // % do milestone no Linear (report semanal)
+  if(p.pctLinear!=null) v=p.pctLinear; // % do milestone no Linear (reporte semanal)
   else { const ts=(p.tarefas||[]).filter(ativa).filter(t=>!t.entrega); v = ts.length?Math.round(ts.reduce((s,t)=>s+(pctOf(t)||0),0)/ts.length):(p.pctManual!=null?p.pctManual:0); }
   return v>=100?90:v; // REGRA: 100% nunca é exibido como concluído — limita a 90% (projeto segue em andamento)
 }
@@ -446,7 +446,7 @@ function barLine(label,pc,extra){return `<div style="margin-bottom:.8rem"><div s
 function renderDashboard(){
   const m=portfolio();
   document.getElementById('view-dashboard').innerHTML = `
-    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo por squad • ${m.nProj} motores (Autopilot) • dados e reports do Linear · 19/06</div></div></div>
+    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo por squad • ${m.nProj} motores (Autopilot) • dados e reportes do Linear · 19/06</div></div></div>
     <div class="kpi-hero-sec">
       <div class="hero"><div class="lab">% Conclusão<br>média do portfólio</div>
         <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">${m.done} de ${m.total} tarefas detalhadas</div></div>
@@ -734,7 +734,7 @@ function renderDeal(){
       <div class="legend"><span><i style="background:var(--blue)"></i>On track</span><span><i style="background:var(--green)"></i>Done</span><span><i style="background:var(--red)"></i>Atrasado (passou da data alvo)</span><span><i style="background:#94a3b8"></i>Pendente</span></div></div>
     <div class="subview" id="sub-r"><div class="card"><div class="card-b">${raidHtml}</div></div></div>
     <div class="subview" id="sub-b">${depsHtml}</div>
-    <div class="subview" id="sub-h"><div class="card"><div class="card-b"><div style="display:flex;align-items:center;gap:.8rem"><span class="hbadge ${healthClass(p.health)}">${p.health}</span><span style="font-size:.85rem;color:var(--muted)">Farol do projeto (report semanal). Conclusão atual: ${pc}%.</span></div>${p.progresso?`<p style="font-size:.85rem;margin:.6rem 0 0">${p.progresso}</p>`:''}</div></div></div>`;
+    <div class="subview" id="sub-h"><div class="card"><div class="card-b"><div style="display:flex;align-items:center;gap:.8rem"><span class="hbadge ${healthClass(p.health)}">${p.health}</span><span style="font-size:.85rem;color:var(--muted)">Farol do projeto (reporte semanal). Conclusão atual: ${pc}%.</span></div>${p.progresso?`<p style="font-size:.85rem;margin:.6rem 0 0">${p.progresso}</p>`:''}</div></div></div>`;
   document.querySelectorAll('#view-deal .subtab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('#view-deal .subtab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
     document.querySelectorAll('#view-deal .subview').forEach(s=>s.classList.remove('active'));
@@ -795,7 +795,7 @@ function renderRaid(){
     <div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Título</th><th>Projeto afetado</th><th>Área</th><th>Severidade</th><th>Status</th><th>Owner</th><th>Issues</th><th style="text-align:center">Particip.</th><th style="width:110px">Prazo</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-/* ===== Report Semanal (Project Updates do Linear) ===== */
+/* ===== Reporte Semanal (Project Updates do Linear) ===== */
 function rEsc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function mdInline(t){
   t=rEsc(t);
@@ -839,7 +839,7 @@ function renderReports(){
     if(REPF!=='all'&&REPF!==p.id)return;
     const reps=all.filter(r=>r.proj===p.id).sort((a,b)=>b.data.localeCompare(a.data));
     if(!reps.length)return;
-    body+='<div style="margin:1.3rem 0 .5rem;display:flex;align-items:center;gap:.6rem"><span class="adot" style="background:'+(AREA_COLORS[p.grupo]||'#888')+'"></span><span style="font-family:Roboto;font-weight:700;font-size:1rem">'+p.nome.split('—')[0].trim()+'</span><span class="hbadge '+healthClass(p.health)+'">'+p.health+'</span><span style="font-size:.74rem;color:var(--muted)">'+reps.length+' report(s)</span></div>';
+    body+='<div style="margin:1.3rem 0 .5rem;display:flex;align-items:center;gap:.6rem"><span class="adot" style="background:'+(AREA_COLORS[p.grupo]||'#888')+'"></span><span onclick="openDealById(\''+p.id+'\')" style="font-family:Roboto;font-weight:700;font-size:1rem;cursor:pointer;color:var(--blue)" title="Abrir projeto">'+p.nome.split('—')[0].trim()+'</span><span class="hbadge '+healthClass(p.health)+'">'+p.health+'</span><span style="font-size:.74rem;color:var(--muted)">'+reps.length+' reporte(s)</span></div>';
     reps.forEach((r,idx)=>{ const open=idx===0;
       body+='<div class="card" style="margin-bottom:.7rem;padding:.85rem 1.1rem">'
         +'<div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="var b=this.nextElementSibling;b.style.display=b.style.display===\'none\'?\'block\':\'none\'">'
@@ -848,8 +848,8 @@ function renderReports(){
         +'<div style="display:'+(open?'block':'none')+';margin-top:.6rem;font-size:.85rem;line-height:1.55;border-top:1px solid var(--border);padding-top:.6rem">'+mdLite(r.body)+'</div></div>';
     });
   });
-  if(!body) body='<div class="empty"><div class="eic">📝</div><div style="font-family:Roboto;font-weight:600;color:var(--navy)">Sem reports cadastrados</div></div>';
-  document.getElementById('view-reports').innerHTML='<div class="pghead"><div><h1>Report Semanal</h1><div class="st">Project Updates do Linear · texto idêntico ao Linear · histórico por semana · clique na data para abrir/fechar</div></div></div>'+chips+body;
+  if(!body) body='<div class="empty"><div class="eic">📝</div><div style="font-family:Roboto;font-weight:600;color:var(--navy)">Sem reportes cadastrados</div></div>';
+  document.getElementById('view-reports').innerHTML='<div class="pghead"><div><h1>Reporte Semanal</h1><div class="st">Project Updates do Linear · texto idêntico ao Linear · histórico por semana · clique na data para abrir/fechar</div></div></div>'+chips+body;
 }
 
 function go(v){

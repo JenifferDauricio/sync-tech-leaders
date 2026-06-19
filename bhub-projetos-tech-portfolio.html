@@ -413,7 +413,7 @@ const CONSOLIDADO = {"semana": "2026-06-19", "nota": "Avanços, bloqueios e pend
       <a data-v="exec"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> Visão Executiva</a>
       <a data-v="projetos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Projetos</a>
       <a data-v="raid"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Ação de Mitigação</a>
-      <a data-v="reports"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12l4 4v12a0 0 0 0 1 0 0H4z"/><path d="M8 11h8M8 15h8M8 7h5"/></svg> Report Semanal</a>
+      <a data-v="reports"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12l4 4v12a0 0 0 0 1 0 0H4z"/><path d="M8 11h8M8 15h8M8 7h5"/></svg> Reporte Semanal</a>
     </nav>
     <div class="sb-foot"><div class="av">JD</div><div><div class="nm">Jeni Dauricio</div><span class="badge">ADMIN · TECH</span></div></div>
   </aside>
@@ -492,10 +492,10 @@ function barLine(label,pc,extra){return `<div style="margin-bottom:.8rem"><div s
 function renderDashboard(){
   const m=portfolio();
   document.getElementById('view-dashboard').innerHTML = `
-    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo do portfólio • ${m.nProj} projetos (Autopilot + Cockpit + Hub) • dados e reports do Linear · 19/06</div></div></div>
+    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo do portfólio • ${m.nProj} projetos (Autopilot + Cockpit + Hub) • dados e reportes do Linear · 19/06</div></div></div>
     <div class="kpi-hero-sec">
       <div class="hero"><div class="lab">% Conclusão<br>média do portfólio</div>
-        <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">média do % de avanço (milestone) dos ${m.nProj} projetos — report semanal</div></div>
+        <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">média do % de avanço (milestone) dos ${m.nProj} projetos — reporte semanal</div></div>
         <div class="mini"><div><div class="v" style="color:#86efac">${m.ok}</div><div class="l">No prazo</div></div><div><div class="v" style="color:#fcd34d">${m.risco}</div><div class="l">Risco</div></div><div><div class="v" style="color:#fca5a5">${m.off}</div><div class="l">Off</div></div></div>
       </div>
       <div class="kpi-grid">
@@ -791,7 +791,7 @@ function renderDeal(){
       <div class="legend"><span><i style="background:var(--blue)"></i>On track</span><span><i style="background:var(--green)"></i>Done</span><span><i style="background:var(--red)"></i>Atrasado (passou da data alvo)</span><span><i style="background:#94a3b8"></i>Pendente</span></div></div>
     <div class="subview" id="sub-r"><div class="card"><div class="card-b">${raidHtml}</div></div></div>
     <div class="subview" id="sub-b">${depsHtml}</div>
-    <div class="subview" id="sub-h"><div class="card"><div class="card-b"><div style="display:flex;align-items:center;gap:.8rem"><span class="hbadge ${healthClass(p.health)}">${p.health}</span><span style="font-size:.85rem;color:var(--muted)">Farol do projeto (report semanal). Conclusão atual: ${pc}%.</span></div>${p.progresso?`<p style="font-size:.85rem;margin:.6rem 0 0">${p.progresso}</p>`:''}</div></div></div>`;
+    <div class="subview" id="sub-h"><div class="card"><div class="card-b"><div style="display:flex;align-items:center;gap:.8rem"><span class="hbadge ${healthClass(p.health)}">${p.health}</span><span style="font-size:.85rem;color:var(--muted)">Farol do projeto (reporte semanal). Conclusão atual: ${pc}%.</span></div>${p.progresso?`<p style="font-size:.85rem;margin:.6rem 0 0">${p.progresso}</p>`:''}</div></div></div>`;
   document.querySelectorAll('#view-deal .subtab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('#view-deal .subtab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
     document.querySelectorAll('#view-deal .subview').forEach(s=>s.classList.remove('active'));
@@ -852,7 +852,7 @@ function renderRaid(){
     <div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Título</th><th>Projeto afetado</th><th>Área</th><th>Severidade</th><th>Status</th><th>Owner</th><th>Issues</th><th style="text-align:center">Particip.</th><th style="width:110px">Prazo</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-/* ===== Report Semanal (Project Updates do Linear) ===== */
+/* ===== Reporte Semanal (Project Updates do Linear) ===== */
 function rEsc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function mdInline(t){
   t=rEsc(t);
@@ -898,7 +898,7 @@ function reportsListInner(){
     if(REPF!=='all'&&REPF!==p.id)return;
     const reps=all.filter(r=>r.proj===p.id).sort((a,b)=>b.data.localeCompare(a.data));
     if(!reps.length)return;
-    body+='<div style="margin:1.3rem 0 .5rem;display:flex;align-items:center;gap:.6rem"><span class="adot" style="background:'+(AREA_COLORS[p.grupo]||'#888')+'"></span><span style="font-family:Roboto;font-weight:700;font-size:1rem">'+p.nome.split('—')[0].trim()+'</span><span class="hbadge '+healthClass(p.health)+'">'+p.health+'</span><span style="font-size:.74rem;color:var(--muted)">'+reps.length+' report(s)</span></div>';
+    body+='<div style="margin:1.3rem 0 .5rem;display:flex;align-items:center;gap:.6rem"><span class="adot" style="background:'+(AREA_COLORS[p.grupo]||'#888')+'"></span><span onclick="openDealById(\''+p.id+'\')" style="font-family:Roboto;font-weight:700;font-size:1rem;cursor:pointer;color:var(--blue)" title="Abrir projeto">'+p.nome.split('—')[0].trim()+'</span><span class="hbadge '+healthClass(p.health)+'">'+p.health+'</span><span style="font-size:.74rem;color:var(--muted)">'+reps.length+' reporte(s)</span></div>';
     reps.forEach((r,idx)=>{ const open=idx===0;
       body+='<div class="card" style="margin-bottom:.7rem;padding:.85rem 1.1rem">'
         +'<div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="var b=this.nextElementSibling;b.style.display=b.style.display===\'none\'?\'block\':\'none\'">'
@@ -907,7 +907,7 @@ function reportsListInner(){
         +'<div style="display:'+(open?'block':'none')+';margin-top:.6rem;font-size:.85rem;line-height:1.55;border-top:1px solid var(--border);padding-top:.6rem">'+mdLite(r.body)+'</div></div>';
     });
   });
-  if(!body) body='<div class="empty"><div class="eic">📝</div><div style="font-family:Roboto;font-weight:600;color:var(--navy)">Sem reports cadastrados</div></div>';
+  if(!body) body='<div class="empty"><div class="eic">📝</div><div style="font-family:Roboto;font-weight:600;color:var(--navy)">Sem reportes cadastrados</div></div>';
   return chips+body;
 }
 
@@ -950,7 +950,7 @@ function parseReport(body){
   return out;
 }
 function consolidadoInner(){
-  const wks=consolWeeks(); if(!wks.length) return '<div class="empty"><div class="eic">📝</div><div>Sem reports</div></div>';
+  const wks=consolWeeks(); if(!wks.length) return '<div class="empty"><div class="eic">📝</div><div>Sem reportes</div></div>';
   if(CWEEK>=wks.length)CWEEK=0; const W=wks[CWEEK];
   const cur=(typeof CONSOLIDADO!=='undefined')?CONSOLIDADO:null;
   const useCurated=cur&&isoWeekKey(cur.semana)===W.key;
@@ -972,11 +972,11 @@ function consolidadoInner(){
     var health=paused?'Off track':r.health;
     var head='<div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.7rem">'
       +'<span class="adot" style="background:'+(AREA_COLORS[p.grupo]||'#888')+'"></span>'
-      +'<span style="font-family:Roboto;font-weight:700;font-size:.96rem">'+p.nome.split('—')[0].trim()+'</span>'
+      +'<span onclick="openDealById(\''+p.id+'\')" style="font-family:Roboto;font-weight:700;font-size:.96rem;cursor:pointer;color:var(--blue)" title="Abrir projeto">'+p.nome.split('—')[0].trim()+'</span>'
       +okr+'<span style="font-size:.62rem;background:#eef2ff;color:#475569;padding:.08rem .45rem;border-radius:99px">'+p.grupo+'</span>'
       +'<span class="hbadge '+healthClass(health)+'">'+health+'</span>'
-      +'<span style="margin-left:auto;font-size:.7rem;color:var(--muted)">'+(paused?'sem report nesta semana':'report '+fmt(r.data))+'</span></div>';
-    if(paused) return '<div class="card" style="padding:.85rem 1.15rem;margin-bottom:.9rem;opacity:.7">'+head+'<div style="font-size:.8rem;color:var(--muted)">⏸ Sem atualização nesta semana — projeto considerado <b>pausado</b> (Off track).'+(o.last?' Último report em '+fmt(o.last)+'.':'')+'</div></div>';
+      +'<span style="margin-left:auto;font-size:.7rem;color:var(--muted)">'+(paused?'sem reporte nesta semana':'reporte '+fmt(r.data))+'</span></div>';
+    if(paused) return '<div class="card" style="padding:.85rem 1.15rem;margin-bottom:.9rem;opacity:.7">'+head+'<div style="font-size:.8rem;color:var(--muted)">⏸ Sem atualização nesta semana — projeto considerado <b>pausado</b> (Off track).'+(o.last?' Último reporte em '+fmt(o.last)+'.':'')+'</div></div>';
     return '<div class="card" style="padding:1rem 1.15rem;margin-bottom:.9rem">'+head
       +'<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem">'
       +'<div><div style="font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--green);margin-bottom:.25rem">✓ Avanços</div>'+li(sec.avancos,'var(--green)')+'</div>'
@@ -988,7 +988,7 @@ function consolidadoInner(){
 }
 
 function renderReports(){
-  const head='<div class="pghead"><div><h1>Report Semanal</h1><div class="st">Consolidado da semana + histórico de Project Updates por projeto (texto fiel ao Linear)</div></div></div>';
+  const head='<div class="pghead"><div><h1>Reporte Semanal</h1><div class="st">Consolidado da semana + histórico de Project Updates por projeto (texto fiel ao Linear)</div></div></div>';
   const tabs='<div class="subtabs"><div class="subtab '+(REPTAB==='consol'?'active':'')+'" onclick="setREPTAB(\'consol\')">Consolidado</div><div class="subtab '+(REPTAB==='hist'?'active':'')+'" onclick="setREPTAB(\'hist\')">Por projeto (histórico)</div></div>';
   const consol='<div style="display:'+(REPTAB==='consol'?'block':'none')+'">'+consolidadoInner()+'</div>';
   const hist='<div style="display:'+(REPTAB==='hist'?'block':'none')+'">'+reportsListInner()+'</div>';
