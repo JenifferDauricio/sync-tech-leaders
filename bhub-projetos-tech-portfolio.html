@@ -699,9 +699,9 @@ function renderExec(){
   document.getElementById('view-exec').innerHTML = `
     <div class="pghead"><div><h1>Visão Executiva — Portfólio</h1><div class="st">${k.n} projetos · avanço médio ${k.pct}% · ${k.atras} atrasadas · ${k.bloq} bloqueios · barra de projeto (Cockpit/Hub) colorida pela saúde</div></div></div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:1.1rem">
-      ${kpiBox('Motores',k.n,'')}${kpiBox('Avanço geral',k.pct+'%','')}${kpiBox('Atrasadas',k.atras,k.atras?'var(--red)':'')}${kpiBox('Bloqueios',k.bloq,k.bloq?'#92400e':'')}
+      ${kpiBox('Projetos',k.n,'')}${kpiBox('Avanço geral',k.pct+'%','')}${kpiBox('Atrasadas',k.atras,k.atras?'var(--red)':'')}${kpiBox('Bloqueios',k.bloq,k.bloq?'#92400e':'')}
     </div>
-    <div class="chips" style="margin-bottom:1rem">${seg('board','▦ Board por motor')}${seg('gantt','▭ Gantt de entregas')}${seg('matriz','▤ Matriz tarefa × projeto')}</div>
+    <div class="chips" style="margin-bottom:1rem">${seg('board','▦ Board por projeto')}${seg('gantt','▭ Gantt de entregas')}${seg('matriz','▤ Matriz tarefa × projeto')}</div>
     ${body}`;
 }
 
