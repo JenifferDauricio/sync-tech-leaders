@@ -21,7 +21,7 @@
 const DADOS = {
   empresa: "BHub",
   workspace: "Projetos Tech",
-  areas:  ["Fiscal","DP","Produto/Design","Cockpit","Hub"],
+  areas:  ["Fiscal","DP","Contábil","Produto/Design","Cockpit","Hub"],
   grupos: ["Fiscal","DP","Contábil","Cockpit","Hub"],
   temas: ["Autopilot"],   // temas agregadores (cross-squad). Autopilot = os 3 motores + fornecedores.
   okrs: [
@@ -228,42 +228,42 @@ const DADOS = {
       nome:"Solicitações DP — Hub do cliente + Cockpit do operador", lead:"Gabriel Carvalho", iniciativa:"Hub Cliente Protagonista", statusProjeto:"Construção", inicio:"2026-05-08", alvo:"2026-07-31",
       marco:"V1 fechada (sem pendências) — entra em produção esta semana · 85% do M1",
       progresso:"V1 pronta; piloto com Carnevale/BLN abre na próxima semana. Risco agora é a aplicação de regras de DP (~365 regras) e a confiabilidade do dado da Domínio.",
-      tarefas:[], raid:[], sinergias:[]
+      tarefas:[], marcos:[{ref:"DP1.M1", area:"Cockpit", nome:"V1 no ar + piloto validado (Carnevale + BLN)", status:"Em andamento"},{ref:"DP1.M2", area:"Cockpit", nome:"Formulário inteligente (núcleo) + base não-Onvio aberta", status:"Pendente"},{ref:"DP1.M3", area:"Cockpit", nome:"Formulário inteligente completo — bases do Autopilot (SN)", status:"Pendente"}], raid:[], sinergias:[]
     },
     {
       id:"triagem-ocr", grupo:"Cockpit", okr:"O4", health:"No prazo", pctLinear:75, marcoLinear:"M2 entregue · M3 (60% dos tipos) em andamento",
       nome:"Triagem automática de documentos — OCR + roteamento", lead:"Ana Caroline", iniciativa:"Coleta & Triagem", statusProjeto:"Construção", inicio:"2026-05-01", alvo:"2026-07-31",
       marco:"Top 5 tipos roteados (M2) entregue 17/06; M3 (60% dos tipos) até 30/06",
       progresso:"Camada antivírus (GuardDuty) entregue; exibição de categoria e racional do OCR ao operador. Sem bloqueios ativos.",
-      tarefas:[], raid:[], sinergias:[]
+      tarefas:[], marcos:[{ref:"OCR.M1", area:"Cockpit", nome:"Universo de documentos mapeado + regras de roteamento", status:"Em andamento"},{ref:"OCR.M2", area:"Cockpit", nome:"Top 5 tipos roteados + embarque no Hub ativo", status:"Pendente"},{ref:"OCR.M3", area:"Cockpit", nome:"60% dos tipos com roteamento automático", status:"Pendente"},{ref:"OCR.M4", area:"Cockpit", nome:"Regras de triagem documentadas e auditáveis", status:"Em andamento"},{ref:"OCR.M5", area:"Cockpit", nome:"100% dos tipos cobertos dentro da meta", status:"Pendente"}], raid:[], sinergias:[]
     },
     {
       id:"copiloto-samurai", grupo:"Cockpit", okr:"O4", health:"Em risco", pctLinear:10, marcoLinear:"M1 em andamento · projeto BLOQUEADO (responsável indisponível)",
       nome:"Copiloto Samurai — IA dentro do Cockpit", lead:"Ana Caroline", iniciativa:"Centro de Comando da Operação", statusProjeto:"Validação", inicio:"2026-05-01", alvo:"2026-07-31",
       marco:"M1 em andamento; M2/M3 a definir — projeto BLOQUEADO (Daniel indisponível)",
       progresso:"Projeto parado: execução depende só do Daniel, alocado em DP/Cockpit. Produto tecnicamente desenvolvido — falta população de dados e testes. Sem previsão de retomada.",
-      tarefas:[], raid:[], sinergias:[]
+      tarefas:[], marcos:[{ref:"SAM.M1", area:"Cockpit", nome:"Casos de uso definidos + governança publicada", status:"Pendente"},{ref:"SAM.M2", area:"Cockpit", nome:"50% dos operadores usando Samurai diariamente", status:"Pendente"},{ref:"SAM.M3", area:"Cockpit", nome:"80% dos operadores + KPI de onboarding medido", status:"Pendente"}], raid:[], sinergias:[]
     },
     {
       id:"bpo-financeiro", grupo:"Cockpit", okr:"O5", health:"Em risco", pctLinear:10, marcoLinear:"M1 · Discovery + Design (30/06) — BLOQUEADO",
       nome:"BPO Financeiro — pagamentos e recebimentos (Hub Financeiro)", lead:"Ana Caroline", iniciativa:"Expansão & BPO", statusProjeto:"Descoberta", inicio:"2026-06-01", alvo:"2026-07-31",
       marco:"Discovery M1 até 30/06; go/no-go jul — BLOQUEADO (faturamento não padronizado)",
       progresso:"Demanda do CFO (painel financeiro). Lucas analisando Excel de 78 abas; faturamento não padronizado (pagamentos fora do sistema) bloqueia o escopo. 1 de 4 issues do M1.",
-      tarefas:[], raid:[], sinergias:[]
+      tarefas:[], marcos:[{ref:"BPO.M1", area:"Cockpit", nome:"Discovery e Design validado", status:"Pendente"},{ref:"BPO.M2", area:"Cockpit", nome:"Decisão final Go/No-go", status:"Pendente"}], raid:[], sinergias:[]
     },
     {
       id:"gdocs-multicnpj", grupo:"Hub", okr:"O2", health:"No prazo", pctLinear:100, marcoLinear:"GD1.M1 · Pacote de envio multi-CNPJ no ar",
       nome:"GDocs multi-CNPJ — compartilhamento de arquivos", lead:"Gabriel Carvalho", iniciativa:"Ciclo de vida & Suporte", statusProjeto:"Avaliação de Outcome", inicio:"2026-05-25", alvo:"2026-06-30",
       marco:"Marco GD1.M1 concluído (100%) — liberação ampla em produção, à frente do previsto",
       progresso:"Experiência multi-CNPJ liberada para toda a operação (um envio consolidado por destinatário). Próximo: ler a taxa de substituição do envio anterior.",
-      tarefas:[], raid:[], sinergias:[]
+      tarefas:[], marcos:[{ref:"GD1.M1", area:"Hub", nome:"Pacote de envio multi-CNPJ no ar", status:"Concluído"}], raid:[], sinergias:[]
     },
     {
       id:"gdocs-acompanhamento", grupo:"Hub", okr:"O3", health:"No prazo", pctLinear:100, marcoLinear:"GD2.M1 · Acompanhamento de envio no ar",
       nome:"GDocs acompanhamento — envio de arquivos", lead:"Gabriel Carvalho", iniciativa:"Ciclo de vida & Suporte", statusProjeto:"Avaliação de Outcome", inicio:"2026-06-08", alvo:"2026-06-22",
       marco:"Marco GD2.M1 concluído (100%) — painel no ar, à frente do target (22/06)",
       progresso:"Operador vê no Cockpit a timeline de cada envio (entregue/aberto/clicado) por destinatário, sem depender de outras áreas. Fase de adoção.",
-      tarefas:[], raid:[], sinergias:[]
+      tarefas:[], marcos:[{ref:"GD2.M1", area:"Hub", nome:"Acompanhamento de envio no ar (timeline por destinatário)", status:"Concluído"}], raid:[], sinergias:[]
     },
   ],
 
@@ -436,7 +436,7 @@ const CONSOLIDADO = {"semana": "2026-06-19", "nota": "Avanços, bloqueios e pend
 <script>
 /* ===== LÓGICA ===== */
 const STATUS_PCT = {"Pendente":0,"Triage":0,"Refinado":10,"Em andamento":50,"Em revisão":80,"Concluído":100,"Cancelado":null};
-const AREA_COLORS = {"Fiscal":"#0171E4","Engenharia":"#16a34a","Produto/Design":"#5b21b6","DP":"#be123c","Cockpit":"#92400e","Hub":"#0891b2"};
+const AREA_COLORS = {"Fiscal":"#0171E4","Engenharia":"#16a34a","Produto/Design":"#5b21b6","DP":"#be123c","Contábil":"#0d9488","Cockpit":"#92400e","Hub":"#0891b2"};
 const ROTULO_SQUAD = "Squad";
 const squad = a => ROTULO_SQUAD + " " + a;
 const hoje = new Date();
@@ -495,7 +495,7 @@ function renderDashboard(){
     <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo do portfólio • ${m.nProj} projetos (Autopilot + Cockpit + Hub) • dados e reports do Linear · 19/06</div></div></div>
     <div class="kpi-hero-sec">
       <div class="hero"><div class="lab">% Conclusão<br>média do portfólio</div>
-        <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">${m.done} de ${m.total} issues dos motores</div></div>
+        <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">média do % de avanço (milestone) dos ${m.nProj} projetos — report semanal</div></div>
         <div class="mini"><div><div class="v" style="color:#86efac">${m.ok}</div><div class="l">No prazo</div></div><div><div class="v" style="color:#fcd34d">${m.risco}</div><div class="l">Risco</div></div><div><div class="v" style="color:#fca5a5">${m.off}</div><div class="l">Off</div></div></div>
       </div>
       <div class="kpi-grid">
@@ -637,7 +637,8 @@ function execGantt(){
   let L='', R='';
   L+=`<div style="height:46px"></div>`;
   R+=`<div style="position:relative;height:46px;border-bottom:1px solid var(--border)">${hdr}${cicLab}</div>`;
-  projs.forEach(p=>{
+  projs.forEach((p,pIdx)=>{
+    if(pIdx>0){const sep='<div style="height:11px;border-top:1px dashed #cbd5e1;margin-top:5px"></div>';L+=sep;R+=sep;}
     L+=`<div style="height:24px;display:flex;align-items:flex-end;font-weight:700;font-size:.67rem;color:var(--muted);letter-spacing:.03em">${p.nome.split('—')[0].trim().toUpperCase()}</div>`;
     R+=`<div style="height:24px"></div>`;
     const es=entregasOf(p);
@@ -673,11 +674,12 @@ function execGantt(){
 }
 
 function execMatriz(){
-  const projs=DADOS.projetos.filter(p=>(p.tarefas||[]).length);
+  const mtasks=p=>{const tt=(p.tarefas||[]).filter(ativa).filter(t=>!t.entrega);return tt.length?tt:(p.marcos||[]).filter(ativa);};
+  const projs=DADOS.projetos.filter(p=>mtasks(p).length);
   let n=0, rows='';
   DADOS.areas.forEach(area=>{
     const tasksArea=[];
-    projs.forEach((p,pi)=>p.tarefas.filter(ativa).filter(t=>t.area===area&&!t.entrega).forEach(t=>tasksArea.push({t,pi})));
+    projs.forEach((p,pi)=>mtasks(p).filter(t=>t.area===area&&!t.entrega).forEach(t=>tasksArea.push({t,pi})));
     if(!tasksArea.length)return;
     rows+=`<tr class="area-band"><td colspan="${2+projs.length}"><span class="adot" style="background:${AREA_COLORS[area]||'#888'}"></span>${squad(area)}</td></tr>`;
     tasksArea.forEach(({t,pi})=>{ n++;
@@ -686,9 +688,8 @@ function execMatriz(){
     });
   });
   return `<div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Tarefa</th>${projs.map(p=>`<th style="text-align:center;min-width:120px">${p.nome.split('—')[0].trim()}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
-    <div class="legend"><span><i style="background:var(--blue)"></i>On track</span><span><i style="background:var(--green)"></i>Done</span><span><i style="background:var(--red)"></i>Atrasado</span><span><i style="background:#94a3b8"></i>Pendente</span><span><i style="background:#efece2"></i>— sem a tarefa no projeto</span></div>`;
+    <div class="legend"><span><i style="background:var(--blue)"></i>On track</span><span><i style="background:var(--green)"></i>Done</span><span><i style="background:var(--red)"></i>Atrasado</span><span><i style="background:#94a3b8"></i>Pendente</span><span><i style="background:#efece2"></i>— sem a tarefa no projeto</span><span style="color:var(--muted)">Fiscal/DP/Contábil: tarefas do Linear · Cockpit/Hub: marcos do Linear</span></div>`;
 }
-
 function renderExec(){
   const k=execKPIs();
   const seg=(v,lab)=>`<span onclick="setExecV('${v}')" class="fchip ${EXECV===v?'on':''}">${lab}</span>`;
@@ -785,12 +786,11 @@ function renderDeal(){
       <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap"><span class="okr">${p.okr} · ${okrNome(p.okr)}</span><span class="hbadge ${healthClass(p.health)}">${p.health}</span></div></div>
     ${p.marco?`<div class="mstone"><div class="mp">${pc}%</div><div style="flex:1"><div style="font-family:'Roboto';font-weight:600">${p.marco}</div><div style="font-size:.78rem;color:var(--muted)">Alvo ${fmt(p.alvo)}</div><div class="pct-bar" style="margin-top:.4rem"><i style="width:${pc}%;background:${pctColor(pc)}"></i></div></div></div>`:''}
     ${p.progresso?`<div class="note"><b>Status da semana:</b> ${p.progresso}</div>`:''}
-    <div class="subtabs"><div class="subtab active" data-s="t">Tarefas</div><div class="subtab" data-s="b">Bloqueios</div><div class="subtab" data-s="r">Ações de Mitigação</div><div class="subtab" data-s="s">Sinergias</div><div class="subtab" data-s="h">Health</div></div>
+    <div class="subtabs"><div class="subtab active" data-s="t">Tarefas</div><div class="subtab" data-s="b">Bloqueios</div><div class="subtab" data-s="r">Ações de Mitigação</div><div class="subtab" data-s="h">Health</div></div>
     <div class="subview active" id="sub-t">${chipsBar}<div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Tarefa (passo)</th><th>Responsável</th><th style="width:120px">Data alvo</th><th style="width:120px">Situação</th><th style="width:150px">% Conclusão</th></tr></thead><tbody>${trows}</tbody></table></div>
       <div class="legend"><span><i style="background:var(--blue)"></i>On track</span><span><i style="background:var(--green)"></i>Done</span><span><i style="background:var(--red)"></i>Atrasado (passou da data alvo)</span><span><i style="background:#94a3b8"></i>Pendente</span></div></div>
     <div class="subview" id="sub-r"><div class="card"><div class="card-b">${raidHtml}</div></div></div>
     <div class="subview" id="sub-b">${depsHtml}</div>
-    <div class="subview" id="sub-s"><div class="card"><div class="card-b">${dealSinergias(p)}</div></div></div>
     <div class="subview" id="sub-h"><div class="card"><div class="card-b"><div style="display:flex;align-items:center;gap:.8rem"><span class="hbadge ${healthClass(p.health)}">${p.health}</span><span style="font-size:.85rem;color:var(--muted)">Farol do projeto (report semanal). Conclusão atual: ${pc}%.</span></div>${p.progresso?`<p style="font-size:.85rem;margin:.6rem 0 0">${p.progresso}</p>`:''}</div></div></div>`;
   document.querySelectorAll('#view-deal .subtab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('#view-deal .subtab').forEach(x=>x.classList.remove('active')); t.classList.add('active');

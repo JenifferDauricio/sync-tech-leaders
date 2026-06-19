@@ -9,6 +9,18 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-19 · ~19h UTC — ajustes de visualização (Matriz + Gantt + Dashboard + Sinergias) · ⏱ ~5 min
+
+Mudanças estruturais nos painéis (marcos reais lidos do Linear via `list_milestones`):
+- **Matriz tarefa × projeto** agora cobre os 10 projetos (antes só os motores Fiscal/DP). Incluído o squad **Contábil** (tarefas já existentes) e os 6 projetos **Cockpit/Hub** via seus marcos do Linear: Solicitações DP (DP1.M1–M3), Triagem OCR (M1–M5), Copiloto Samurai (M1–M3), BPO Financeiro (M1–M2), GDocs multi-CNPJ (GD1.M1), GDocs acompanhamento (GD2.M1).
+- **Gantt de entregas**: linha tracejada separando cada projeto (nos dois painéis), leitura mais fácil.
+- **Dashboard**: legenda "X de Y issues dos motores" trocada por "média do % de avanço (milestone) dos N projetos — report semanal" (o 56% e os faróis já derivam de pctLinear/health, ou seja, do report semanal; sync 2×/dia mantém atualizado).
+- **Aba "Sinergias" removida** do detalhe do projeto (nos dois painéis) — nenhum dos 10 projetos tinha sinergia cadastrada no Linear.
+
+Marcos/progresso lidos do Linear (19/06): Solicitações DP M1 85%, M2/M3 0% · Triagem OCR M1 20%, M4 83%, demais 0% · Samurai e BPO 0% (bloqueados) · GDocs GD1.M1 e GD2.M1 100% (exibidos como 90% na régua de % do projeto). Agendador atualizado para refrescar os `marcos` Cockpit/Hub a cada rodada.
+
+---
+
 ## 2026-06-19 · ~18h UTC — sync (novos reports Cockpit) · ⏱ ~3 min
 
 Dois Project Updates novos no Linear (postados ~17–18h de 19/06):

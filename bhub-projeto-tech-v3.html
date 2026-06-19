@@ -590,7 +590,8 @@ function execGantt(){
   let L='', R='';
   L+=`<div style="height:46px"></div>`;
   R+=`<div style="position:relative;height:46px;border-bottom:1px solid var(--border)">${hdr}${cicLab}</div>`;
-  projs.forEach(p=>{
+  projs.forEach((p,pIdx)=>{
+    if(pIdx>0){const sep='<div style="height:11px;border-top:1px dashed #cbd5e1;margin-top:5px"></div>';L+=sep;R+=sep;}
     L+=`<div style="height:24px;display:flex;align-items:flex-end;font-weight:700;font-size:.67rem;color:var(--muted);letter-spacing:.03em">${p.nome.split('—')[0].trim().toUpperCase()}</div>`;
     R+=`<div style="height:24px"></div>`;
     entregasOf(p).forEach(e=>{const info=eInfo(p,e);const d=eDates(p,e,info);
@@ -728,12 +729,11 @@ function renderDeal(){
       <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap"><span class="okr">${p.okr} · ${okrNome(p.okr)}</span><span class="hbadge ${healthClass(p.health)}">${p.health}</span></div></div>
     ${p.marco?`<div class="mstone"><div class="mp">${pc}%</div><div style="flex:1"><div style="font-family:'Roboto';font-weight:600">${p.marco}</div><div style="font-size:.78rem;color:var(--muted)">Alvo ${fmt(p.alvo)}</div><div class="pct-bar" style="margin-top:.4rem"><i style="width:${pc}%;background:${pctColor(pc)}"></i></div></div></div>`:''}
     ${p.progresso?`<div class="note"><b>Status da semana:</b> ${p.progresso}</div>`:''}
-    <div class="subtabs"><div class="subtab active" data-s="t">Tarefas</div><div class="subtab" data-s="b">Bloqueios</div><div class="subtab" data-s="r">Ações de Mitigação</div><div class="subtab" data-s="s">Sinergias</div><div class="subtab" data-s="h">Health</div></div>
+    <div class="subtabs"><div class="subtab active" data-s="t">Tarefas</div><div class="subtab" data-s="b">Bloqueios</div><div class="subtab" data-s="r">Ações de Mitigação</div><div class="subtab" data-s="h">Health</div></div>
     <div class="subview active" id="sub-t">${chipsBar}<div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Tarefa (passo)</th><th>Responsável</th><th style="width:120px">Data alvo</th><th style="width:120px">Situação</th><th style="width:150px">% Conclusão</th></tr></thead><tbody>${trows}</tbody></table></div>
       <div class="legend"><span><i style="background:var(--blue)"></i>On track</span><span><i style="background:var(--green)"></i>Done</span><span><i style="background:var(--red)"></i>Atrasado (passou da data alvo)</span><span><i style="background:#94a3b8"></i>Pendente</span></div></div>
     <div class="subview" id="sub-r"><div class="card"><div class="card-b">${raidHtml}</div></div></div>
     <div class="subview" id="sub-b">${depsHtml}</div>
-    <div class="subview" id="sub-s"><div class="card"><div class="card-b">${dealSinergias(p)}</div></div></div>
     <div class="subview" id="sub-h"><div class="card"><div class="card-b"><div style="display:flex;align-items:center;gap:.8rem"><span class="hbadge ${healthClass(p.health)}">${p.health}</span><span style="font-size:.85rem;color:var(--muted)">Farol do projeto (report semanal). Conclusão atual: ${pc}%.</span></div>${p.progresso?`<p style="font-size:.85rem;margin:.6rem 0 0">${p.progresso}</p>`:''}</div></div></div>`;
   document.querySelectorAll('#view-deal .subtab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('#view-deal .subtab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
