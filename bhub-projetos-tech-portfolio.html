@@ -910,21 +910,31 @@ function consolWeeks(){
   return Object.values(map).sort((a,b)=>b.ref.localeCompare(a.ref));
 }
 function parseReport(body){
-  const out={avancos:[],bloqueios:[],pendencias:[]}; let cur=null;
-  body.split('\n').forEach(raw=>{
-    const ln=raw.trim(); if(!ln) return;
-    const h=ln.replace(/[#*>`]/g,'').trim();
-    if(/^(\d+[.\)·]?\s*)?(evolu|progresso|o que foi entregue|entregas conclu)/i.test(h)){cur='avancos';return;}
-    if(/^(\d+[.\)·]?\s*)?(bloqueio|gest[aã]o de risco|riscos? ativ|depend[eê]ncia)/i.test(h)){cur='bloqueios';return;}
-    if(/^(\d+[.\)·]?\s*)?(pr[oó]ximos|o que falta|decis[oõ]es necess)/i.test(h)){cur='pendencias';return;}
-    if(/^(\d+[.\)·]?\s*)?(indicador|kpi|status geral|marcos do projeto|t[ií]tulo do update|sa[uú]de do projeto|per[ií]odo|status do projeto)/i.test(h)){cur=null;return;}
-    if(!cur) return;
-    let m=ln.match(/^[-*•]\s+(.*)$/)||ln.match(/^(?:✅|🔄|⏳|🟢|🟡|🔴|\[[ x]\])\s*(.*)$/);
-    let txt=m?m[1]:( /^[A-Za-zÀ-ÿ"']/.test(ln)&&ln.length>18&&!raw.trim().startsWith('**')? ln : null);
-    if(!txt) return;
-    txt=txt.replace(/\*\*/g,'').replace(/^\*+|\*+$/g,'').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/`/g,'').trim();
-    txt=txt.replace(/^(Principais avanços|Entregas conclu[ií]das|Status de risco|Coment[aá]rio|Foco da pr[oó]xima semana|Entregas previstas|Status do KPI|Causa do Risco\s*\d?|Impacto\s*\d?|Há necessidade de apoio externo\??)\s*[:\-]?\s*/i,'');
-    if(txt && txt.length>4 && out[cur].length<4) out[cur].push(txt);
+  const out={avancos:[],bloqueios:[],pendencias:[]};
+  const cat=function(h){
+    if(/evolu|progresso|entregue|entrega|avan[çc]o|conclu[ií]/i.test(h)) return 'avancos';
+    if(/bloqueio|risco|depend|impedimento|decis[oõ]es necess/i.test(h)) return 'bloqueios';
+    if(/pr[oó]xim|o que falta|foco da|a fazer|pend[eê]nc/i.test(h)) return 'pendencias';
+    return null;
+  };
+  const push=function(b,t){ t=t.replace(/\*\*/g,'').replace(/^[\*\-•✅🔄⏳🟢🟡🔴\s]+/,'').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/`/g,'').replace(/^\[[ x]\]\s*/,'').trim(); if(t.length>4 && out[b].length<4 && t.indexOf('|')!==0) out[b].push(t); };
+  const LBL=/^(?:\*\*)?\s*(Principais avan[çc]os|Avan[çc]os|O que foi entregue[^:*]*|Entregue[^:*]*|Entregas[^:*]*|Evolu[çc][ãa]o[^:*]*|Progresso[^:*]*|Bloqueios?[^:*]*|Riscos?[^:*]*|Gest[ãa]o de Riscos?[^:*]*|Depend[êe]ncias?[^:*]*|Impedimentos?[^:*]*|Pr[oó]ximos?[^:*]*|Pr[oó]ximos passos|Pend[êe]ncias[^:*]*|Foco[^:*]*|Decis[õo]es[^:*]*)\s*:(?:\*\*)?\s*(.*)$/i;
+  let cur=null, gotSummary=false;
+  body.split('\n').forEach(function(raw){
+    let ln=raw.trim(); if(!ln) return;
+    if(ln.indexOf('|')===0) return;
+    const plain=ln.replace(/[#>`*]/g,'').trim();
+    let mlab=ln.match(LBL);
+    if(mlab){
+      const b=cat(mlab[1]);
+      if(b){ cur=b; const rest=(mlab[2]||'').trim(); if(rest && !/^(sim|n[ãa]o|sem altera|sem riscos|nenhum|em risco|em aten|on track|no prazo|off track|—|-)$/i.test(rest.replace(/\.$/,''))){ rest.split(/\s+·\s+|;\s+/).forEach(function(x){push(b,x);}); } return; }
+      cur=null; return;
+    }
+    if(/^#{1,6}\s/.test(ln) || /^\d+[.\)]\s/.test(plain) || /^\*\*[^*]+\*\*$/.test(ln)){ cur=cat(plain); return; }
+    if(/^[-*•]|^✅|^🔄|^⏳|^\[[ x]\]/.test(ln)){ push(cur||'avancos', ln); return; }
+    if(cur){ if(/^[A-Za-zÀ-ÿ0-9"']/.test(plain) && plain.length>18) push(cur, ln); return; }
+    // parágrafo-resumo (sem seção): vira o 1º avanço
+    if(!gotSummary && /^[A-Za-zÀ-ÿ"']/.test(plain) && plain.length>40){ push('avancos', ln); gotSummary=true; }
   });
   return out;
 }
