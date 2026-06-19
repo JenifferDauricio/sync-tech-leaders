@@ -9,6 +9,16 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-19 · ~18h UTC — sync (novos reports Cockpit) · ⏱ ~3 min
+
+Dois Project Updates novos no Linear (postados ~17–18h de 19/06):
+- **Copiloto Samurai** → 🔴 **bloqueado**: projeto parado, execução depende só do Daniel (alocado em DP/Cockpit), sem previsão de retomada. Saúde Em risco · % 10 (M1 em andamento).
+- **BPO Financeiro** → 🔴 **bloqueado**: demanda do CFO (painel financeiro); faturamento não padronizado (pagamentos fora do sistema) trava o escopo do discovery. Saúde Em risco · % 10 (M1, 1/4 issues).
+
+Ambos saíram de "pausado" para reportando na semana 19/06 no Consolidado. Demais 8 projetos sem mudança. Portfólio: 10 projetos · avanço médio 56% · 4 No prazo · 6 Em risco · 0 Off track.
+
+---
+
 ## 2026-06-19 · 16:57 UTC — sync manual ("rodar agora") · ⏱ ~4 min (execução manual nesta sessão; cronometragem automática a partir das próximas rodadas)
 
 Verificação: painéis refletem os Project Updates de 19/06 do Linear — sem mudanças desde a última montagem. Portfólio: **10 projetos · avanço médio 56%** · 4 No prazo · 6 Em risco · 0 Off track · 17 bloqueios · 6 ações de mitigação abertas.
