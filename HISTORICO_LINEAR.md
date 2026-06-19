@@ -9,6 +9,16 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-19 · ~21h30 UTC — Offboarding adicionado + report do Cadastro Único · ⏱ ~4 min
+
+"Atualizar tudo": fechei os reports restantes de 19/06.
+- **Offboarding estruturado de cliente** (Cockpit, O5) **adicionado ao painel** (15ª entrada) — 🔴 Off track/bloqueado desde 01/06 (sem PM/eng dedicados). Marcos M1–M3 (Pendente) na Matriz; report 19/06 incluído.
+- **Cadastro Único** — report 19/06 (Daniel Pereira) incluído; saúde corrigida para 🟡 **Em risco** (era No prazo): decisão de CPF aprovada (16/06), M1 1/4, dependência da carga massiva (Cléber, 23/06).
+
+Painel agora com **15 entradas** (13 do deck + GDocs desmembrado em 2 + Offboarding, que não está no deck). Dashboard: **6 No prazo · 7 Em risco · 2 Off track**. Consolidado de 19/06 com 13 projetos reportando; pausados: PMI Digital e Hubcount.
+
+---
+
 ## 2026-06-19 · ~21h UTC — reports do Hub que não tinham entrado + Cockpit 100% · ⏱ ~5 min
 
 Gabriel sinalizou que "as coisas do Hub não subiram direto": os dois GDocs **reportaram em 19/06** (14:42), mas o painel ainda não tinha esses updates no REPORTS — então apareciam como **pausados** no Consolidado da semana. Corrigido. Adicionados 3 Project Updates de 19/06 (fiéis ao Linear):
