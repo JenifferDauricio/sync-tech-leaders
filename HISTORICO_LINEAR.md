@@ -9,6 +9,17 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-19 · ~21h UTC — reports do Hub que não tinham entrado + Cockpit 100% · ⏱ ~5 min
+
+Gabriel sinalizou que "as coisas do Hub não subiram direto": os dois GDocs **reportaram em 19/06** (14:42), mas o painel ainda não tinha esses updates no REPORTS — então apareciam como **pausados** no Consolidado da semana. Corrigido. Adicionados 3 Project Updates de 19/06 (fiéis ao Linear):
+- **GDocs multi-CNPJ** → 🟢 No prazo · GD1.M1 **100%** (liberação ampla em produção, destaque no all hands; sem regressão). Próximo: 1ª leitura da taxa de substituição.
+- **GDocs acompanhamento** → 🟢 No prazo · GD2.M1 **100%** (painel de acompanhamento em produção, à frente do target 22/06). Próximo: adoção pelo operador.
+- **Cockpit 100%** → 🟢 No prazo · decisão de domésticas aprovada (16/06); M1 entregue, M2 (Top 200) 1/4. pctLinear 8→30; marco e marcos da Matriz atualizados (M1 Concluído, M2 Em andamento).
+
+Consolidado de 19/06 agora com 11 projetos reportando; pausados na semana: PMI Digital (bloqueado), Cadastro Único e Hubcount (backlog, sem report). Dashboard segue 7 No prazo · 6 Em risco · 1 bloqueado. (Obs.: há também um update novo de "Offboarding estruturado de cliente" — projeto que não está no deck dos 13 nem no painel; pendente de decisão se entra.)
+
+---
+
 ## 2026-06-19 · ~20h UTC — alinhamento com o Weekly Tech (4 projetos novos) + ajustes visuais · ⏱ ~7 min
 
 Comparação do painel (10) com o deck Weekly Tech 19/06 (13 projetos): faltavam 4 projetos, todos em status **"Ideia"/backlog** no Linear (por isso não tinham entrado no painel, que cobria os em execução). Adicionados ao Portfólio (agora 14 entradas — o deck conta 13 porque agrupa os 2 GDocs como um só "Cockpit 100%"):
