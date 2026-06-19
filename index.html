@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BHub Tech — Painéis de Projetos</title>
+<style>
+  :root{--navy:#0F1727;--blue:#0171E4;--muted:#5b6478;--border:#e6e3d9;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Lato',system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--navy);background:#f6f7fb}
+  .wrap{max-width:880px;margin:0 auto;padding:3rem 1.5rem}
+  .brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.4rem;margin-bottom:.4rem}
+  .brand .b{color:var(--blue)}
+  .sub{color:var(--muted);margin-bottom:2rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+  a.card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--border);border-radius:1rem;padding:1.4rem 1.5rem;transition:.15s}
+  a.card:hover{border-color:var(--blue);box-shadow:0 6px 24px rgba(1,113,228,.08);transform:translateY(-2px)}
+  a.card h2{font-size:1.1rem;margin:.2rem 0 .4rem}
+  a.card p{color:var(--muted);font-size:.9rem;margin:0;line-height:1.5}
+  .tag{display:inline-block;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:#eef2ff;color:#475569;padding:.15rem .55rem;border-radius:99px;margin-bottom:.6rem}
+  .foot{color:var(--muted);font-size:.8rem;margin-top:2.4rem;border-top:1px solid var(--border);padding-top:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">BHub <span class="b">Tech</span></div>
+  <div class="sub">Painéis de acompanhamento dos projetos Tech — dados do Linear, atualizados 2× por dia.</div>
+  <div class="grid">
+    <a class="card" href="bhub-projetos-tech-portfolio.html">
+      <span class="tag">Portfólio</span>
+      <h2>Projetos Tech — Portfólio</h2>
+      <p>Visão completa: 10 projetos em 5 squads (Fiscal, DP, Contábil, Cockpit, Hub). Dashboard, OKRs, Visão Executiva, Projetos, Bloqueios e Report Semanal (consolidado + histórico).</p>
+    </a>
+    <a class="card" href="bhub-projeto-tech-v3.html">
+      <span class="tag">Autopilot</span>
+      <h2>Autopilot — 4 Motores</h2>
+      <p>Foco nos motores do Autopilot (Fiscal SN, RPA, Trabalhista, Contábil): board por motor, Gantt de entregas por ciclo e matriz tarefa × projeto.</p>
+    </a>
+  </div>
+  <div class="foot">Atualização automática (12h e 19h) a partir do Linear · histórico em <code>HISTORICO_LINEAR.md</code>.</div>
+</div>
+</body>
+</html>

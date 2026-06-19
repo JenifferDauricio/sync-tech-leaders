@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BHub Tech — Projetos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- ============================================================= -->
+<!--  ███  EDITE AQUI  ███   (estrutura por squad + OKR + saúde)     -->
+<!--  grupo  = squad (Autopilot · Cockpit · Hub do Empreendedor)    -->
+<!--  okr    = O1..O5 (objetivo do deck)                            -->
+<!--  health = "No prazo" | "Em risco" | "Off track" (farol)        -->
+<!--  status válidos de tarefa: Pendente·Refinado·Em andamento·     -->
+<!--   Em revisão·Concluído·Cancelado  → viram % automaticamente    -->
+<!--  pctManual = % do projeto quando não há tarefas detalhadas     -->
+<!-- ============================================================= -->
+<script>
+const DADOS = {
+  empresa: "BHub",
+  workspace: "Autopilot · Projetos Tech",
+  areas:  ["Fiscal","DP","Produto/Design","Cockpit","Hub"],
+  grupos: ["Fiscal","DP","Contábil"],
+  temas: ["Autopilot"],   // temas agregadores (cross-squad). Autopilot = os 3 motores + fornecedores.
+  okrs: [
+    {id:"O1", nome:"Absorver Negócio Novo"},
+    {id:"O2", nome:"Ativação & Adoção"},
+    {id:"O3", nome:"Visibilidade Operacional"},
+    {id:"O4", nome:"Fábrica Automatizada"},
+    {id:"O5", nome:"Ciclo de Vida & Expansão"},
+  ],
+
+  projetos: [
+    /* ===================== AUTOPILOT (os 3 motores + fornecedores) ===================== */
+    {
+      id:"motor-fiscal-sn", pctLinear:24, marcoLinear:"Construção Motor de Cálculo SN (Classificação SN em 52%)", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"Em risco",
+      nome:"Motor Fiscal SN — escala 100% da base",
+      lead:"Jeni Dauricio", iniciativa:"Motor Fiscal", statusProjeto:"Construção",
+      inicio:"2026-05-01", alvo:"2026-07-31",
+      marco:"M1 Classificação 38% · M2 Cálculo 12%",
+      progresso:"Gate de revisão humana p/ Lucro Real e árvore de regras formalizada. Decisão Jettax × Unecont até 20/06.",
+      tarefas:[
+        {ref:"FIS-299", entrega:true, area:"Fiscal", nome:"E1 · Discovery e Workflow de Apuração Fiscal", owner:"Fernando Hlibka", status:"Em andamento", inicio:"2026-05-18", venc:"2026-07-03"},
+        {ref:"FIS-121", parent:"FIS-299", area:"Fiscal", nome:"[Discovery] Macrofluxo fiscal (entrada/processamento/saída)", owner:"—", status:"Concluído", venc:"2026-05-22"},
+        {ref:"FIS-149", parent:"FIS-299", area:"Fiscal", nome:"[Discovery] Jornada fiscal + pré-requisitos por obrigação (SN)", owner:"Jeisy Sousa", status:"Em andamento"},
+        {ref:"FIS-258", parent:"FIS-299", area:"Fiscal", nome:"[Discovery] Busca de insumos + Geração de DAS", owner:"Glauco Junior", status:"Em andamento"},
+        {ref:"FIS-246", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Protótipo — resolução de pendências pelo operador", owner:"—", status:"Pendente"},
+        {ref:"FIS-245", parent:"FIS-299", area:"Fiscal", nome:"[Discovery] Estado da arte da jornada de processamento fiscal", owner:"—", status:"Pendente"},
+        {ref:"FIS-191", parent:"FIS-299", area:"Fiscal", nome:"[Validação] Fluxo de consumo de notas — elegibilidade (v1)", owner:"Sávio Lopes", status:"Refinado"},
+        {ref:"FIS-276", parent:"FIS-299", area:"Fiscal", nome:"[Infra] Scheduler e Router do workflow ApuracaoFiscal", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"FIS-277", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Anomalia 1 — completude dos insumos fiscais", owner:"—", status:"Pendente"},
+        {ref:"FIS-278", parent:"FIS-299", area:"Fiscal", nome:"[Feature] HITL fiscal — awakeables para exceções", owner:"—", status:"Pendente"},
+        {ref:"FIS-279", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Anomalia 2 — gate de validação da apuração", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"FIS-300", entrega:true, area:"Fiscal", nome:"E2 · Cálculo & emissão do DAS", owner:"Glauco Junior", status:"Em andamento", inicio:"2026-06-05", venc:"2026-07-17"},
+        {ref:"FIS-259", parent:"FIS-300", area:"Fiscal", nome:"[Validação] Cálculos do DAS com empresas de teste", owner:"Glauco Junior", status:"Refinado", venc:"2026-07-17"},
+        {ref:"FIS-329", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Motor de Cálculo Fiscal — API de apuração do DAS", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"FIS-330", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Adapter — histórico SERPRO (e-CAC)", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"FIS-331", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Transmissão PGDAS-D e geração do DAS (SERPRO)", owner:"—", status:"Pendente", venc:"2026-07-17"},
+        {ref:"FIS-301", entrega:true, area:"Fiscal", nome:"E3 · Provisão & integração contábil", owner:"—", status:"Pendente", inicio:"2026-05-01"},
+        {ref:"FIS-280", parent:"FIS-301", area:"Fiscal", nome:"[Feature] Emitir provisões de impostos ao Motor Contábil", owner:"—", status:"Pendente"},
+        {ref:"FIS-302", entrega:true, area:"Fiscal", nome:"E4 · Relatórios fiscais", owner:"Luiz Mendonça", status:"Em andamento", inicio:"2026-06-09", venc:"2026-07-31"},
+        {ref:"FIS-238", parent:"FIS-302", area:"Fiscal", nome:"[Spec] Emissão de relatórios de faturamento", owner:"Luiz Mendonça", status:"Concluído"},
+        {ref:"FIS-239", parent:"FIS-302", area:"Fiscal", nome:"[Spec] Emissão de relatórios de impostos retidos", owner:"Luiz Mendonça", status:"Em andamento"},
+        {ref:"FIS-240", parent:"FIS-302", area:"Fiscal", nome:"[Spec] Emissão de relatórios de DIFAL", owner:"Luiz Mendonça", status:"Em andamento"},
+        {ref:"FIS-281", parent:"FIS-302", area:"Fiscal", nome:"[Feature] Geração de relatórios e entrega ao S3", owner:"—", status:"Pendente", venc:"2026-07-31"},
+        {ref:"FIS-303", entrega:true, area:"Fiscal", nome:"E5 · Demais obrigações (ISS, REINF, DCTFWeb, ICMS/DIFAL)", owner:"—", status:"Pendente", inicio:"2026-06-17", venc:"2026-07-31"},
+        {ref:"FIS-348", parent:"FIS-303", area:"Fiscal", nome:"[Feature] Transmissão EFD-Reinf — retenções da competência", owner:"—", status:"Pendente", venc:"2026-07-31"},
+        {ref:"FIS-349", parent:"FIS-303", area:"Fiscal", nome:"[Feature] Convergência DCTFWeb — eSocial + EFD-Reinf", owner:"—", status:"Pendente", venc:"2026-07-31"},
+        {ref:"FIS-350", parent:"FIS-303", area:"Fiscal", nome:"[Feature] ICMS DIFAL SN — elegibilidade, cálculo e integração", owner:"—", status:"Pendente"}
+      
+      ],
+      raid:[
+        {titulo:"Decisão Jettax × Unecont — ingestão de notas (1.534 clientes)", refs:["FIS-299"], tipo:"decisao", severidade:"Alta", status:"aberto", area:"Fiscal", owner:"Jeni Dauricio", venc:"2026-06-20", participantes:3, decisao:"Definir o provedor de ingestão de notas para escalar a 100% da base SN — decisão até 20/06.", risco:"Sem a definição, a escala da base trava.", mitigacao:"Comitê técnico avaliando Jettax vs Unecont."},
+        {titulo:"Inconsistências de classificação — risco na integração", refs:["FIS-335","FIS-337","FIS-336"], tipo:"risco", severidade:"Alta", status:"aberto", area:"Fiscal", owner:"Jorge Rodrigues", venc:"2026-06-22", participantes:2, risco:"Casos de CST/CFOP classificados incorretamente podem propagar erro na integração.", mitigacao:"Bugs FIS-335/337 em correção; gate HITL obrigatório para Lucro Real."}
+      ], sinergias:[]
+    },
+    {
+      id:"rpa-fiscal", pctLinear:80, marcoLinear:"Construção de RPAs — Escrituração e guias", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"No prazo",
+      nome:"RPA Fiscal — ponte de automação via bots",
+      lead:"Jeni Dauricio", iniciativa:"Motor Fiscal", statusProjeto:"Construção",
+      inicio:"2026-05-01", alvo:"2026-07-31",
+      marco:"Cobertura 100% — rollout por município (E1 testes · E2 rollout)",
+      progresso:"Lambda NFS-e SP/RJ elimina VMs Windows · ISS SP em produção · lançamento nota a nota. Sem bloqueios.",
+      tarefas:[
+        {ref:"FIS-284", entrega:true, area:"Fiscal", nome:"E1 · Escrituração NFS-e tomados (municipal)", owner:"Marcelo Santos", status:"Em andamento", inicio:"2026-05-12", venc:"2026-07-03"},
+        {ref:"FIS-2", parent:"FIS-284", area:"Fiscal", nome:"[Discovery] Escrituração de NFS-e tomados (RPA)", owner:"—", status:"Concluído", venc:"2026-05-22"},
+        {ref:"FIS-193", parent:"FIS-284", area:"Fiscal", nome:"[Feature] Escrituração de NFS-e tomados (Parte 2)", owner:"Marcelo Santos", status:"Em andamento", venc:"2026-06-19"},
+        {ref:"FIS-260", parent:"FIS-284", area:"Fiscal", nome:"[Feature] Comunicação BHules → RPA de escrituração", owner:"Danilo Silva", status:"Refinado", venc:"2026-07-03"},
+        {ref:"FIS-285", entrega:true, area:"Fiscal", nome:"E2 · Guia ISS São Paulo", owner:"Danilo Silva", status:"Em andamento", inicio:"2026-05-18", venc:"2026-07-03"},
+        {ref:"FIS-119", parent:"FIS-285", area:"Fiscal", nome:"Documentação consolidada do RPA ISS SP (rollout)", owner:"—", status:"Concluído", venc:"2026-05-22"},
+        {ref:"FIS-120", parent:"FIS-285", area:"Fiscal", nome:"Mapeamento documental dos 5 municípios prioritários", owner:"Marcelo Santos", status:"Concluído", venc:"2026-05-22"},
+        {ref:"FIS-194", parent:"FIS-285", area:"Fiscal", nome:"[Feature] Emissão da guia ISS São Paulo em produção", owner:"—", status:"Concluído"},
+        {ref:"FIS-269", parent:"FIS-285", area:"Fiscal", nome:"RPA ISS SP — melhoria para Lambda", owner:"Danilo Silva", status:"Em andamento", venc:"2026-07-03"},
+        {ref:"FIS-282", parent:"FIS-285", area:"Fiscal", nome:"[Feature] Conectar Motor Fiscal ao RPA de guia ISS SP", owner:"—", status:"Pendente"},
+        {ref:"FIS-286", entrega:true, area:"Fiscal", nome:"E3 · Bots SPED Agrocontar", owner:"Guilherme Porto", status:"Em andamento", inicio:"2026-05-01"},
+        {ref:"FIS-29", parent:"FIS-286", area:"Fiscal", nome:"Bots SPED Agrocontar — Diagnóstico e Baseline", owner:"—", status:"Concluído"},
+        {ref:"FIS-36", parent:"FIS-286", area:"Fiscal", nome:"Bots SPED Agrocontar — Arquitetura Padrão e Framework", owner:"—", status:"Concluído"},
+        {ref:"FIS-48", parent:"FIS-286", area:"Fiscal", nome:"Bots SPED Agrocontar — Estratégia de Agrupamento", owner:"—", status:"Concluído"},
+        {ref:"FIS-54", parent:"FIS-286", area:"Fiscal", nome:"[Feature] Migração dos bots SPED Agrocontar", owner:"Guilherme Porto", status:"Concluído"},
+        {ref:"FIS-68", parent:"FIS-286", area:"Fiscal", nome:"Implantar gradualmente os bots na nova estrutura", owner:"Guilherme Porto", status:"Concluído"},
+        {ref:"FIS-71", parent:"FIS-286", area:"Fiscal", nome:"[Feature] Monitoramento e relatórios dos bots SPED", owner:"Guilherme Porto", status:"Concluído"},
+        {ref:"FIS-197", parent:"FIS-286", area:"Fiscal", nome:"[Feature] Refatoração dos bots SPED (Parte 2)", owner:"Guilherme Porto", status:"Concluído"},
+        {ref:"FIS-198", parent:"FIS-286", area:"Fiscal", nome:"Implantar gradualmente os bots (continuação)", owner:"Guilherme Porto", status:"Concluído"},
+        {ref:"FIS-287", entrega:true, area:"Fiscal", nome:"E4 · Painel & observabilidade RPA", owner:"Guilherme Porto", status:"Em revisão", inicio:"2026-05-20", venc:"2026-06-19"},
+        {ref:"FIS-188", parent:"FIS-287", area:"Fiscal", nome:"[Feature] Painel RPA de controle interno (Fiscal + Tech)", owner:"Guilherme Porto", status:"Em revisão", venc:"2026-06-19"},
+        {ref:"FIS-351", entrega:true, area:"Fiscal", nome:"E1 · Testes e validação final do RPA por município (Cobertura 100%)", owner:"Jeisy Sousa", status:"Pendente", inicio:"2026-05-01"},
+        {ref:"FIS-356", parent:"FIS-351", area:"Fiscal", nome:"[E1] Testes — São Paulo", owner:"—", status:"Pendente"},
+        {ref:"FIS-357", parent:"FIS-351", area:"Fiscal", nome:"[E1] Testes — Rio de Janeiro", owner:"—", status:"Pendente"},
+        {ref:"FIS-358", parent:"FIS-351", area:"Fiscal", nome:"[E1] Testes — Fortaleza", owner:"—", status:"Pendente"},
+        {ref:"FIS-359", parent:"FIS-351", area:"Fiscal", nome:"[E1] Testes — São Bernardo do Campo", owner:"—", status:"Pendente"},
+        {ref:"FIS-360", parent:"FIS-351", area:"Fiscal", nome:"[E1] Testes — Campinas", owner:"—", status:"Pendente"},
+        {ref:"FIS-352", entrega:true, area:"Fiscal", nome:"E2 · Rollout e implantação por município (Cobertura 100%)", owner:"—", status:"Pendente", inicio:"2026-05-01"},
+        {ref:"FIS-361", parent:"FIS-352", area:"Fiscal", nome:"[E2] Rollout — São Paulo", owner:"—", status:"Pendente"},
+        {ref:"FIS-362", parent:"FIS-352", area:"Fiscal", nome:"[E2] Rollout — Rio de Janeiro", owner:"—", status:"Pendente"},
+        {ref:"FIS-363", parent:"FIS-352", area:"Fiscal", nome:"[E2] Rollout — Fortaleza", owner:"—", status:"Pendente"},
+        {ref:"FIS-364", parent:"FIS-352", area:"Fiscal", nome:"[E2] Rollout — São Bernardo do Campo", owner:"—", status:"Pendente"},
+        {ref:"FIS-365", parent:"FIS-352", area:"Fiscal", nome:"[E2] Rollout — Campinas", owner:"—", status:"Pendente"},
+        {ref:"FIS-353", entrega:true, area:"Fiscal", nome:"E3 · Validação pós-implantação (first-time-right)", owner:"—", status:"Pendente", inicio:"2026-05-01"},
+        {ref:"FIS-354", entrega:true, area:"Fiscal", nome:"E4 · Monitoramento e observabilidade operacional", owner:"—", status:"Pendente", inicio:"2026-05-01"},
+        {ref:"FIS-355", entrega:true, area:"Fiscal", nome:"E5 · Entrega à operação e sustentação", owner:"—", status:"Pendente", inicio:"2026-05-01"}
+      
+      ],
+      raid:[], sinergias:[]
+    },
+    {
+      id:"motor-trabalhista", pctLinear:68, marcoLinear:"Construção Pró-Labore SN (Folha s/ apont. em 18%)", grupo:"DP", tema:"Autopilot", okr:"O4", health:"Em risco",
+      nome:"Motor Trabalhista — folha + obrigações DP",
+      lead:"Jeni Dauricio", iniciativa:"Motor DP (Trabalhista)", statusProjeto:"Construção",
+      inicio:"2026-05-01", alvo:"2026-07-31",
+      marco:"M1 68% · M2 22%",
+      progresso:"Pró-labore Parte 2 (API Cockpit desbloqueada) · FGTS Digital em produção. Bloqueio: base de Prod p/ validar 10 empresas piloto (16/06).",
+      tarefas:[
+        {ref:"DP-113", entrega:true, area:"DP", nome:"E1 · Folha + pró-labore SN calculável", owner:"Sávio Lopes", status:"Em andamento", inicio:"2026-05-13", venc:"2026-07-31"},
+        {ref:"DP-3", parent:"DP-113", area:"DP", nome:"[Feature] Cálculo de folha e pró-labore", owner:"Sávio Lopes", status:"Em revisão", venc:"2026-06-19"},
+        {ref:"DP-56", parent:"DP-113", area:"DP", nome:"[Feature] Cálculo de folha e pró-labore — Parte 2", owner:"Luiz Mendonça", status:"Concluído"},
+        {ref:"DP-22", parent:"DP-113", area:"DP", nome:"[Feature] API de empresas — filtros por tag e regime SN", owner:"Dan Jesus", status:"Em andamento", venc:"2026-07-31"},
+        {ref:"DP-9", parent:"DP-113", area:"DP", nome:"[Discovery] Jornada DP", owner:"Andressa Rodrigues", status:"Concluído"},
+        {ref:"DP-114", entrega:true, area:"DP", nome:"E2 · eSocial e DCTFWeb entregue", owner:"Matheus Mota", status:"Em andamento", inicio:"2026-06-05", venc:"2026-07-31"},
+        {ref:"DP-55", parent:"DP-114", area:"DP", nome:"[Feature] Tabelas do eSocial no motor", owner:"—", status:"Concluído"},
+        {ref:"DP-101", parent:"DP-114", area:"DP", nome:"[Feature] Envio da folha ao eSocial", owner:"Matheus Mota", status:"Em andamento", venc:"2026-06-19"},
+        {ref:"DP-132", parent:"DP-114", area:"DP", nome:"[Feature] Convergência DCTFWeb — eSocial (folha) + EFD-Reinf (fiscal)", owner:"—", status:"Pendente", venc:"2026-07-31"},
+        {ref:"DP-115", entrega:true, area:"DP", nome:"E3 · eConsignado entregue", owner:"Matheus Mota", status:"Em andamento", inicio:"2026-05-21", venc:"2026-07-31"},
+        {ref:"DP-58", parent:"DP-115", area:"DP", nome:"[Feature] Empréstimo consignado em folha", owner:"Matheus / Sávio", status:"Em andamento", venc:"2026-06-19"},
+        {ref:"DP-93", parent:"DP-115", area:"DP", nome:"[Feature] Empréstimo consignado em folha — Parte 2 (CLT)", owner:"Sávio Lopes", status:"Refinado", venc:"2026-07-31"},
+        {ref:"DP-116", entrega:true, area:"DP", nome:"E4 · FGTS emitido (RPA)", owner:"—", status:"Em andamento", inicio:"2026-05-12", venc:"2026-07-31"},
+        {ref:"DP-2", parent:"DP-116", area:"DP", nome:"[Feature] Emissão FGTS Digital (RPA)", owner:"—", status:"Concluído", venc:"2026-05-22"},
+        {ref:"DP-57", parent:"DP-116", area:"DP", nome:"[Feature] Emissão da guia FGTS Digital em produção", owner:"—", status:"Concluído"},
+        {ref:"DP-110", parent:"DP-116", area:"DP", nome:"[Feature] FGTS integrado ao workflow e entrega da guia", owner:"—", status:"Pendente", venc:"2026-07-31"},
+        {ref:"DP-117", entrega:true, area:"DP", nome:"E5 · Experiência DP no Hub", owner:"—", status:"Pendente", inicio:"2026-05-21", venc:"2026-07-31"},
+        {ref:"DP-67", parent:"DP-117", area:"DP", nome:"[Feature] Admissão — migração Azure→AWS e integração Zendesk", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"DP-104", parent:"DP-117", area:"DP", nome:"[Feature] Motor de Regras DP — endpoints síncronos para o Hub", owner:"—", status:"Pendente", venc:"2026-07-17"},
+        {ref:"DP-105", parent:"DP-117", area:"DP", nome:"[Feature] Integração Hub → Motor DP (documentos por jornada)", owner:"—", status:"Pendente", venc:"2026-07-17"},
+        {ref:"DP-118", entrega:true, area:"DP", nome:"E6 · Relatórios de folha gerados", owner:"Reginaldo Evaristo", status:"Em andamento", inicio:"2026-06-05", venc:"2026-07-31"},
+        {ref:"DP-1", parent:"DP-118", area:"DP", nome:"[Feature] Relatórios de folha e pró-labore — Líquidos e Holerites", owner:"—", status:"Concluído"},
+        {ref:"DP-133", parent:"DP-118", area:"DP", nome:"[Feature] Extrato Mensal — desenvolvimento e validação com dados reais", owner:"Reginaldo Evaristo", status:"Em andamento", venc:"2026-06-19"},
+        {ref:"DP-100", parent:"DP-118", area:"DP", nome:"[Validação] Resumo de Folha e Holerites com dados reais — 10 empresas", owner:"Reginaldo Evaristo", status:"Em andamento", venc:"2026-06-19"},
+        {ref:"DP-135", entrega:true, area:"DP", nome:"E7 · Orquestração + Guias e relatórios no Hub (entrega final)", owner:"—", status:"Pendente", inicio:"2026-06-09", venc:"2026-07-31"},
+        {ref:"DP-103", parent:"DP-135", area:"DP", nome:"[Feature] Readiness check — Anomalia 1 (completude de insumos)", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"DP-134", parent:"DP-135", area:"DP", nome:"[Feature] Anomalia 2 — validação pós-cálculo (folha vs histórico)", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"DP-106", parent:"DP-135", area:"DP", nome:"[Feature] Workflow de fechamento de folha mensal (Restate)", owner:"—", status:"Pendente", venc:"2026-07-17"},
+        {ref:"DP-107", parent:"DP-135", area:"DP", nome:"[Infra] Disparo automático do fechamento (EventBridge)", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"DP-109", parent:"DP-135", area:"DP", nome:"[Feature] Distribuição pós-gate e transmissão eSocial da folha", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"DP-111", parent:"DP-135", area:"DP", nome:"[Feature] Lançamentos contábeis da folha → Motor Contábil", owner:"—", status:"Pendente"}
+      
+      ],
+      raid:[
+        {titulo:"Base de Prod DEV insuficiente p/ validar 10 empresas piloto", refs:["DP-100"], tipo:"impedimento", severidade:"Alta", status:"aberto", area:"DP", owner:"Jorge + Dan", venc:"2026-06-16", participantes:2, impedimento:"Base de DEV desatualizada impede a validação dos relatórios de folha com dados reais.", risco:"Atrasa o fechamento da validação do piloto.", mitigacao:"Alinhamento Jorge + Dan para consumir dados de Produção."},
+        {titulo:"API Dataprev (consignado) — dependência externa sem data", refs:["DP-93"], tipo:"risco", severidade:"Média", status:"aberto", area:"DP", owner:"Jeni + Johnata", participantes:3, risco:"Habilitação da API Dataprev depende de documentação e retorno externo (sem data).", mitigacao:"Consignado isolado como issue independente — não bloqueia o restante do roadmap."}
+      ], sinergias:[]
+    },
+    {
+      id:"motor-contabil", pctLinear:26, marcoLinear:"Construção Motor Contábil Entregue", grupo:"Contábil", tema:"Autopilot", okr:"O4", health:"Em risco",
+      nome:"Motor Contábil — fechamento + conciliação",
+      lead:"Andressa Rodrigues", iniciativa:"Motor Contábil", statusProjeto:"Construção",
+      inicio:"2026-06-01", alvo:"2026-07-31",
+      marco:"Construção | Motor Contábil Entregue",
+      progresso:"TO-BE validado · plano de contas mínimo SN. Bloqueios: D1–D5 (comitê 20/06) + Ledger Midaz na AWS (19/06). ~30 issues paradas.",
+      tarefas:[
+        {ref:"CTB-31", entrega:true, area:"Contábil", nome:"E1 · Discovery & arquitetura", owner:"Andressa Rodrigues", status:"Em andamento", inicio:"2026-06-01"},
+        {ref:"CTB-1", parent:"CTB-31", area:"Contábil", nome:"[Discovery] Jornada Motor Contábil (SN)", owner:"Andressa Rodrigues", status:"Concluído"},
+        {ref:"CTB-68", parent:"CTB-31", area:"Contábil", nome:"[Discovery] Decisões técnicas de arquitetura (D1–D5)", owner:"Fernando Hlibka", status:"Em andamento"},
+        {ref:"CTB-32", entrega:true, area:"Contábil", nome:"E2 · Ledger Midaz no ar", owner:"Paulo Dias", status:"Em andamento", inicio:"2026-06-01"},
+        {ref:"CTB-4", parent:"CTB-32", area:"Contábil", nome:"[Infra] Setup do Ledger Midaz na AWS dev", owner:"Paulo Dias", status:"Em andamento"},
+        {ref:"CTB-17", parent:"CTB-32", area:"Contábil", nome:"[Spike] Primeiro lançamento E2E no Midaz", owner:"—", status:"Pendente"},
+        {ref:"CTB-69", parent:"CTB-32", area:"Contábil", nome:"[Infra] Repositórios e infraestrutura base do Motor Contábil", owner:"—", status:"Pendente"},
+        {ref:"CTB-70", parent:"CTB-32", area:"Contábil", nome:"[Spike] Primeiro lançamento real no Midaz ponta a ponta", owner:"—", status:"Pendente"},
+        {ref:"CTB-71", parent:"CTB-32", area:"Contábil", nome:"[Feature] Conexão entre o Motor Contábil e o Ledger (Midaz)", owner:"—", status:"Pendente"},
+        {ref:"CTB-72", parent:"CTB-32", area:"Contábil", nome:"[Feature] Modelos de dados do Conciliador", owner:"—", status:"Pendente"},
+        {ref:"CTB-33", entrega:true, area:"Contábil", nome:"E3 · Plano de contas", owner:"—", status:"Pendente", inicio:"2026-06-01"},
+        {ref:"CTB-23", parent:"CTB-33", area:"Contábil", nome:"[Feature] Plano de Contas Padrão BHub via API", owner:"—", status:"Pendente"},
+        {ref:"CTB-24", parent:"CTB-33", area:"Contábil", nome:"[Discovery] Mapeamento de planos personalizados (de/para)", owner:"Andressa Rodrigues", status:"Pendente"},
+        {ref:"CTB-74", parent:"CTB-33", area:"Contábil", nome:"[Feature] Plano canônico RFB e validador de lançamentos", owner:"—", status:"Pendente"},
+        {ref:"CTB-34", entrega:true, area:"Contábil", nome:"E4 · Fechamento mensal SN (via caixa)", owner:"—", status:"Pendente", inicio:"2026-06-01"},
+        {ref:"CTB-25", parent:"CTB-34", area:"Contábil", nome:"[Feature] Fechamento via caixa (PGTOWEB) — escopo/spec", owner:"—", status:"Pendente"},
+        {ref:"CTB-75", parent:"CTB-34", area:"Contábil", nome:"[Doc] Contratos de API do Motor Contábil para Cockpit e Hub", owner:"—", status:"Pendente"},
+        {ref:"CTB-35", entrega:true, area:"Contábil", nome:"E5 · Onboarding de clientes", owner:"—", status:"Pendente", inicio:"2026-06-01"},
+        {ref:"CTB-26", parent:"CTB-35", area:"Contábil", nome:"[Discovery] Onboarding contábil — importação do razão histórico", owner:"Andressa Rodrigues", status:"Pendente"},
+        {ref:"CTB-76", parent:"CTB-35", area:"Contábil", nome:"[Feature] Importação do histórico contábil de clientes novos", owner:"—", status:"Pendente"},
+        {ref:"CTB-77", parent:"CTB-35", area:"Contábil", nome:"[Feature] Ponto de partida do Conciliador (clientes sem histórico)", owner:"—", status:"Pendente"},
+        {ref:"CTB-37", entrega:true, area:"Contábil", nome:"E6 · Motor de classificação", owner:"—", status:"Pendente", inicio:"2026-06-01"},
+        {ref:"CTB-78", parent:"CTB-37", area:"Contábil", nome:"[Feature] Ingestão de NFs do BHules no Motor Contábil", owner:"—", status:"Pendente"},
+        {ref:"CTB-79", parent:"CTB-37", area:"Contábil", nome:"[Feature] Ingestão do extrato bancário do TioPatinhas", owner:"—", status:"Pendente"},
+        {ref:"CTB-80", parent:"CTB-37", area:"Contábil", nome:"[Feature] Motor de classificação unificado (pipeline 9 camadas)", owner:"—", status:"Pendente"},
+        {ref:"CTB-81", parent:"CTB-37", area:"Contábil", nome:"[Feature] Classificação por IA com guardrails e custo", owner:"—", status:"Pendente"},
+        {ref:"CTB-82", parent:"CTB-37", area:"Contábil", nome:"[Feature] Aprendizado contínuo a partir das correções", owner:"—", status:"Pendente"},
+        {ref:"CTB-56", parent:"CTB-37", area:"Contábil", nome:"[Feature] Detecção de anomalias (anomaly service v1)", owner:"—", status:"Pendente"},
+        {ref:"CTB-89", parent:"CTB-37", area:"Contábil", nome:"[Feature] Consumo de eventos de provisão de folha do Motor DP", owner:"—", status:"Pendente"},
+        {ref:"CTB-90", parent:"CTB-37", area:"Contábil", nome:"[Feature] Consumo de eventos de provisão de impostos do Motor Fiscal", owner:"—", status:"Pendente"},
+        {ref:"CTB-38", entrega:true, area:"Contábil", nome:"E7 · Orquestração & workflows", owner:"—", status:"Pendente", inicio:"2026-06-01"},
+        {ref:"CTB-83", parent:"CTB-38", area:"Contábil", nome:"[Infra] Disparo automático mensal do fechamento por cliente", owner:"—", status:"Pendente"},
+        {ref:"CTB-84", parent:"CTB-38", area:"Contábil", nome:"[Feature] Workflow de fechamento contábil mensal (Restate)", owner:"—", status:"Pendente"},
+        {ref:"CTB-85", parent:"CTB-38", area:"Contábil", nome:"[Doc] Contratos de integração do workflow com Cockpit e Hub", owner:"—", status:"Pendente"},
+        {ref:"CTB-39", entrega:true, area:"Contábil", nome:"E8 · Piloto — 10 clientes Itaú", owner:"Fernando Hlibka", status:"Pendente", inicio:"2026-06-01"},
+        {ref:"CTB-86", parent:"CTB-39", area:"Contábil", nome:"[Discovery] Seleção dos clientes para o piloto", owner:"Andressa Rodrigues", status:"Pendente"},
+        {ref:"CTB-87", parent:"CTB-39", area:"Contábil", nome:"[Validação] Fechamento ponta a ponta com clientes do piloto", owner:"—", status:"Pendente"},
+        {ref:"CTB-88", parent:"CTB-39", area:"Contábil", nome:"[Infra] Observabilidade e monitoramento do Motor Contábil", owner:"—", status:"Pendente"}
+      
+      ],
+      raid:[
+        {titulo:"Decisões técnicas de arquitetura D1–D5 (comitê)", refs:["CTB-68"], tipo:"decisao", severidade:"Alta", status:"aberto", area:"Contábil", owner:"Fernando Hlibka", venc:"2026-06-20", participantes:4, decisao:"Ratificar D1–D4 e fechar D5 para liberar o desenvolvimento.", risco:"Sem as decisões, ~30 issues ficam paradas.", mitigacao:"CTB-68 em andamento; Readiness Check 20/06."},
+        {titulo:"Ledger Midaz sem setup na AWS dev", refs:["CTB-4","CTB-71"], tipo:"impedimento", severidade:"Alta", status:"aberto", area:"Contábil", owner:"Paulo Dias", venc:"2026-06-19", participantes:1, impedimento:"Sem o Midaz na AWS, nenhum lançamento real é postado (motor passa por mock).", mitigacao:"CTB-4 refinada; subir Midaz até 19/06."}
+      ], sinergias:[]
+    },
+  ],
+
+  // ===== Bloqueios & Dependências (cross-time, com issues no Linear) =====
+  // tipo: FS (Finish-to-Start, mais comum) · FF · SS · SF
+  // categoria: Cross-time · Externa · Recurso · Lógica
+  // critico: true = está no caminho crítico (trava entrega-chave)
+  dependencias: [
+    {projetos:["motor-fiscal-sn"], nome:"Tarefas GTO — Fiscal", tipo:"FS", categoria:"Cross-time", critico:false, venc:"2026-07-31", fluxo:"Autopilot → Cockpit", responsavel:"Cockpit (req. Autopilot)", status:"Triage", refs:["COCKPIT-521","FIS-277","FIS-278","FIS-279","FIS-282"], desc:"Criar as tarefas genéricas do Fiscal (apuração, HITL, anomalias, guia ISS)."},
+    {projetos:["motor-trabalhista"], nome:"Tarefas GTO — DP", tipo:"FS", categoria:"Cross-time", critico:true, venc:"2026-07-31", fluxo:"Autopilot → Cockpit", responsavel:"Cockpit (req. Autopilot)", status:"Triage", refs:["COCKPIT-523","DP-103","DP-109","DP-110"], desc:"Criar as tarefas genéricas do DP (readiness, folha, FGTS, GDocs)."},
+    {projetos:["motor-fiscal-sn","motor-trabalhista","motor-contabil"], nome:"Requisitos de tarefas (GTO)", tipo:"FS", categoria:"Cross-time", critico:false, fluxo:"Autopilot → Cockpit", responsavel:"time Autopilot", status:"A iniciar", refs:["COCKPIT-521","COCKPIT-523","COCKPIT-537"], desc:"Preparar os requisitos de tarefas (Fiscal, DP, Contábil) para o time do Cockpit."},
+    {projetos:["motor-trabalhista"], nome:"Motor de Regras DP — endpoints síncronos", tipo:"FS", categoria:"Cross-time", critico:true, fluxo:"DP → Hub", responsavel:"Time Hub", status:"Pendente", refs:["DP-104"], desc:"Hub chama o motor antes de o cliente salvar qualquer solicitação."},
+    {projetos:["motor-trabalhista"], nome:"Documentos por jornada", tipo:"FS", categoria:"Cross-time", critico:true, venc:"2026-07-31", fluxo:"DP → Hub", responsavel:"Time Hub", status:"Pendente", refs:["DP-105","HUB-235"], desc:"Documentos (admissão/rescisão/férias/RPA) enviados ao motor e devolvidos ao Hub."},
+    {projetos:["motor-trabalhista"], nome:"Fechamento de folha (gates)", tipo:"FS", categoria:"Cross-time", critico:true, venc:"2026-07-31", fluxo:"DP → Hub", responsavel:"Time Hub", status:"Pendente", refs:["DP-106","HUB-235"], desc:"Workflow de fechamento da folha mensal (gates/awakeables) no Hub."},
+    {projetos:["motor-trabalhista"], nome:"Gate de aprovação do cliente", tipo:"FS", categoria:"Cross-time", critico:false, fluxo:"DP → Hub", responsavel:"Time Hub", status:"Pendente", refs:["DP-108"], desc:"Aprovação da folha pelo cliente no Hub Empreendedor, com prazo."},
+    {projetos:["motor-fiscal-sn"], nome:"Distribuição de relatórios ao cliente", tipo:"FS", categoria:"Cross-time", critico:false, fluxo:"Fiscal → Hub", responsavel:"Time Hub", status:"Pendente", refs:["FIS-281","HUB-234"], desc:"Relatórios fiscais entregues ao S3 para o Hub disponibilizar ao cliente."},
+    {projetos:["motor-contabil"], nome:"Open Finance / extratos / contábil", tipo:"FS", categoria:"Cross-time", critico:false, fluxo:"Contábil → Hub", responsavel:"Time Hub", status:"Pendente", refs:["HUB-238"], desc:"Open Finance, upload de extratos, aprovação de lançamentos e relatórios ao cliente."},
+    {projetos:["motor-trabalhista"], nome:"API Dataprev — consignado", tipo:"FS", categoria:"Externa", critico:false, fluxo:"Externo → DP", responsavel:"Externo (Dataprev)", status:"Pendente", refs:[], desc:"API externa do consignado — sem data definida. Bloqueio fora do controle do time."}
+    ,{projetos:["motor-trabalhista"], nome:"Base de DEV sem dados de produção", tipo:"FS", categoria:"Recurso", critico:true, venc:"2026-06-16", fluxo:"Eng → DP", responsavel:"Dan + Felipe (req. CPO)", status:"Pendente", refs:["DP-100","DP-133"], desc:"Sem dados reais na base de DEV, a validação dos relatórios de folha (10 empresas piloto) não fecha no Cycle 03."}
+    ,{projetos:["motor-contabil"], nome:"Decisões técnicas D1–D5 (comitê)", tipo:"FS", categoria:"Lógica", critico:true, venc:"2026-06-20", fluxo:"Comitê → Contábil", responsavel:"Jorge + Fernando + comitê", status:"Em curso", refs:[], desc:"5 decisões de arquitetura (D1–D5) bloqueiam o início de praticamente toda a construção (E2–E8)."}
+    ,{projetos:["motor-contabil"], nome:"Ledger Midaz na AWS dev", tipo:"FS", categoria:"Recurso", critico:true, venc:"2026-06-20", fluxo:"Infra → Contábil", responsavel:"Paulo Dias", status:"Em curso", refs:["CTB-4"], desc:"Sem o Ledger Midaz provisionado, o time não inicia o motor de classificação nem a integração com o Ledger."}
+    ,{projetos:["motor-fiscal-sn"], nome:"Decisão Jettax × Unecont (captura de notas)", tipo:"FS", categoria:"Lógica", critico:false, venc:"2026-06-20", fluxo:"Produto → Fiscal", responsavel:"Jeni + Jorge", status:"Em curso", refs:["FIS-124"], desc:"Define a arquitetura de ingestão de notas e o custo de escala para 1.534 clientes SN."}
+  ]
+};
+
+const REPORTS = [{"proj": "motor-fiscal-sn", "projNome": "Motor Fiscal SN", "data": "2026-06-19", "autor": "Andressa", "health": "Em risco", "body": "**MOTOR FISCAL SN — Project Update**\n**Título do Update:** Semana de 19/06/2026\n**Saúde do Projeto:** 🟡 At risk\n\n**1. Evolução e Progresso (O que avançou?)**\n* **Arquitetura do workflow validada com Jorge — sem mais impedimentos:** documentação completa da arquitetura do workflow ApuracaoFiscal alinhada e validada. Decisões de escopo com Produto (remoção da detecção de anomalia de insumos pré-DAS, simplificando o fluxo).\n* **BHules consolidado como fonte da verdade para insumos de notas:** Jorge migrou todos os insumos de notas para o BHules.\n* **Tarefas dos próximos cycles planejadas no Linear:** backlog do Motor de Cálculo SN estruturado (FIS-329, FIS-330, FIS-331, FIS-372, FIS-373, FIS-276, FIS-259).\n* **Motor de Classificação SN (BHules) evoluindo:** bugs críticos resolvidos (FIS-336, FIS-338 concluídos); features concluídas (FIS-307, FIS-313). Em andamento: FIS-340, FIS-326, FIS-323, FIS-328, FIS-341.\n* **Fluxo de consumo de notas validado (FIS-191 — concluído).**\n* **Reorganização e limpeza do Linear:** duplicadas canceladas/arquivadas (FIS-277, FIS-278, FIS-280); epics-mãe FIS-299 a FIS-303 mantidas.\n\n**2. Gestão de Riscos (Por que está em risco?)**\n* **Causa:** Motor de Classificação SN ainda apresenta inconsistências em produção — CST incorreto SN, CFOP interestadual errado, CFOP 5929 automático indevido, instabilidade nos filtros. Volume de ajustes para first-time-right >= 95% é relevante.\n* **Impacto:** meta de cobertura 100% (1.534) e KPI first-time-right >= 95% em risco enquanto bugs não resolvidos e motor reprocessado. Construção do Motor de Cálculo depende da estabilidade da classificação.\n\n**3. Indicador Chave de Desempenho (KPI)**\n* **Primário:** First-time-right na classificação fiscal (BHules).\n* **Status:** ~52% de progresso no milestone Motor de Classificação SN (meta >= 95%).\n* **Tendência:** em evolução, ainda abaixo da meta.\n\n**4. Próximos Passos**\n* Jorge concluir correções do BHules (FIS-340, FIS-337, FIS-339, FIS-327) e reprocessar (FIS-342).\n* Refinamento técnico das issues do Motor de Cálculo SN (FIS-329, FIS-330, FIS-331).\n* Decisão sobre continuidade do robô de ECD (FIS-347).\n* Iniciar tarefas do Cycle 04.\n\n**5. Bloqueios externos**\n* Sem bloqueios externos que exijam intervenção da Diretoria/CPO nesta semana. Riscos internos (qualidade do motor) tratados pelo time.\n\n*Progresso desde 12/06: Classificação SN 60% → 52% · Cálculo SN 12% → 24%*"}, {"proj": "motor-fiscal-sn", "projNome": "Motor Fiscal SN", "data": "2026-06-12", "autor": "Andressa", "health": "Em risco", "body": "**Update de Projeto — Motor Fiscal SN · escala 100% da base**\n**Período: Semana · Data: 12/06/2026 · Lead: Jeisy Sousa · Time: Fiscal + Cockpit + Hub · Objetivo: O4 · Wave: SN (Onda 1)**\n\n**Status geral:** 🟡 Em risco\n\nO Cycle 3 inicia com avanço expressivo na estabilização do Motor de Classificação: o gate de revisão humana para Lucro Real e o discovery da árvore de regras de classificação foram concluídos nesta semana. O Motor de Cálculo (DAS) entrou em construção com discovery de arquitetura iniciado. O milestone de 31/07 segue em risco dado o volume de correções pendentes — mas o ritmo desta semana é positivo.\n\n**Marcos**\n| Marco | Status | Previsão |\n| -- | -- | -- |\n| M1 · Construção · Motor de Classificação SN | Em andamento | 31/07/2026 |\n| M2 · Construção · Motor de Cálculo SN | Em andamento | 31/07/2026 |\n| M3 · Cobertura 100% · Classificação de notas | Em andamento | 31/07/2026 |\n| M4 · Cobertura 100% · Cálculo DAS | A iniciar | 31/08/2026 |\n\n**Entregue no período:** gate de revisão humana obrigatória p/ Lucro Real (FIS-313) · árvore de decisão de classificação formalizada (FIS-314) · discovery do fluxo DAS iniciado (FIS-258) · dependências Cockpit e Hub formalizadas (COCKPIT-521, HUB-234) · escopo de construção mapeado em 7+5 entregas.\n\n**Riscos:** volume de bugs de classificação pode comprimir a janela do Motor de Cálculo (mitigação: árvore de regras estrutura as correções) · alta concentração de entregas em Jorge Rodrigues.\n\n**Decisão necessária:** ferramenta de captura de notas — Jettax ou Unecont (Jeni + Jorge, prazo 20/06; comparativo FIS-124).\n\n*Progresso desde 02/06: Cálculo SN 0% → 12%*"}, {"proj": "motor-fiscal-sn", "projNome": "Motor Fiscal SN", "data": "2026-06-02", "autor": "Jeniffer", "health": "Em risco", "body": "**Título do Update:** Semana de 02/06/2026\n**Saúde do Projeto:** 🟡 At risk\n\n**1. Evolução e Progresso**\nSemana dominada pela resposta ao incidente de classificação automática do motor (detectado 28/05, contido no mesmo dia). Entre 21/04 e 28/05 o motor escriturou automaticamente notas com classificação incorreta no Domínio/Onvio — 16.031 notas no universo de risco, 559 clientes, 111 com erro confirmável. Causa raiz: loop de autorreforço do precedente, finalidade inferida do emitente, lacunas de dados tributários (ST e PIS/COFINS).\nResposta: 28/05 congelamento na origem · 29–31/05 correção da causa raiz · 01/06 cutover (maio bypassa o motor, revisão humana obrigatória) · 01–02/06 reenvio de 32.125 notas de maio · junho ativo com 0 escrituração automática.\nAvanços paralelos: FIS-121 concluída · FIS-247 e FIS-248 criadas (Jeisy) · FIS-238 em andamento · FIS-245/FIS-246 (protótipos) · RPA emissão ISS SP anunciado.\n\n**2. Gestão de Riscos**\nCenário pós-incidente em estabilização. 4 pontos: (a) reincidência silenciosa — monitoramento proativo de qualidade ainda aberto · (b) volumetria de revisão sobrecarregando operação · (c) dependência crítica do Jorge · (d) bugs operacionais (FIS-92/93/94/95/100); métricas BHules não confiáveis (FIS-101).\n\n**3. KPI**\nKR4.1 — Cobertura BHules SN. Onda 1 (423) + Onda 2 (2.150) implantadas. Junho com motor corrigido + revisão humana. 0 escrituração automática confirmada.\n\n**4. Próximos Passos**\nMonitoramento proativo de qualidade · generalização do cross-check legal × precedente · exclusão das 145 empresas de exceção · FIS-247/FIS-248 · concluir FIS-191 (destrava FIS-189) · relatórios SN (FIS-238/239/240) · bugs FIS-92/93/94/95/100.\n\n**5. Bloqueios/Dependências**\n🔴 Prioridade: estabilizar o motor em junho com revisão humana antes de qualquer expansão. Dependências: time tech (Jorge+Eng) · AWS/time Dan · Papa/infra · Hub Experiência."}, {"proj": "motor-fiscal-sn", "projNome": "Motor Fiscal SN", "data": "2026-05-29", "autor": "Jeniffer", "health": "Em risco", "body": "**Título do Update:** Semana de 28/05/2026\n**Saúde do Projeto:** 🟡 At risk\n\n**1. Evolução e Progresso**\nSemana de validação intensa com a operação. Mutirão pós-Onda 1 (Sônia, Aline, Karen, JP) em 28/05 — ferramenta avaliada 5/5 em usabilidade. Em 22/05 Jorge subiu regras novas; a partir de 25/05 a operação observou melhora clara na classificação automática.\nConcluídas: FIS-88 (De/Para CFOPs), FIS-89 (exceções), FIS-91 (Onda 2 — 2.150 empresas), FIS-122 (balde — Glauco). FIS-149 (Discovery Jornada Fiscal SN) em andamento. Luiz Felipe abriu FIS-238/239/240 (relatórios).\nFluxo DAS (FIS-189): motor testado em 3 de 5 casos; 2 falharam por falta de insumos.\n\n**2. Gestão de Riscos**\n⚠️ Escalada formal para a diretoria em 28/05 após o mutirão expor falhas estruturais. (a) qualidade 3-4/5 vs 5/5 usabilidade · (b) bugs estruturais (CFOP em massa, precedente anulando regras legais, SPED contaminando entre empresas, NCM, ramo de atividade ignorado, PIS/COFINS monofásicos) · (c) bugs FIS-92/93/94/95/100 (Jorge) · (d) métricas não confiáveis (FIS-101).\n\n**3. KPI**\nKR4.1 — Cobertura BHules SN. Onda 1 (423) + Onda 2 (2.150). Qualidade ainda não validada para escalar.\n\n**4. Próximos Passos**\nRepriorizar roadmap de correções · limpeza do painel Domínio · reindexação Jettax→Domínio · status \"pendente operação\" + Excel · repuxar histórico SPED por empresa · concluir FIS-191 · avançar FIS-149.\n\n**5. Bloqueios/Dependências**\n🔴 Corrigir os erros estruturais do mutirão antes de qualquer novo rollout. Dependências: tech (Jorge+Eng) · Papa/infra · Hub Experiência."}, {"proj": "motor-fiscal-sn", "projNome": "Motor Fiscal SN", "data": "2026-05-22", "autor": "Jeniffer", "health": "No prazo", "body": "**Título do Update:** Semana de 21/05/2026\n**Saúde do Projeto:** 🟢 On track\n\n**1. Evolução e Progresso**\nA Onda 2 (2.150 empresas SN) saiu da implantação e entrou em validação. O discovery de buscadores (Jettax × Unecont × Agrocontar) avançou: não é viável migrar para Jettax agora (cobertura inferior à Unecont — Lobby: Jettax 29 × Unecont 99 NFS). Decisão de migrar SIEG → Jettax para padronizar. Jorge rodou ajustes em CFOP × CST/CSOSN e limpeza de notas. Criadas FIS-189 (validar fluxo DAS) e FIS-191 (validar consumo de notas — bloqueia FIS-189).\n\n**2. Gestão de Riscos**\nOn track, 4 pontos em monitoramento: (a) volume alto de notas em revisão pós-Onda 2 (2.635 em 21/05) · (b) classificação inconsistente entre meses (ASPR) · (c) rotina de importação travou no fim de abril · (d) bugs FIS-92/93/94/95/100.\n\n**3. KPI**\nKR4.1 — Cobertura BHules SN. Onda 1 (423) + Onda 2 (2.150). Subindo em cobertura.\n\n**4. Próximos Passos**\nAgenda operacional + Mutirão (28/05) · acompanhar apuração de maio (Carnavale) · concluir FIS-191 · interface temporária do balde no Cockpit · comparativo Unecont × Jettax × Agrocontar · bugs do BHules.\n\n**5. Bloqueios/Dependências**\nDependência Papa/infra (rotina de importação) · Hub Experiência (cobrança de documentos / balde)."}, {"proj": "motor-fiscal-sn", "projNome": "Motor Fiscal SN", "data": "2026-05-15", "autor": "Jeniffer", "health": "No prazo", "body": "**Título do Update:** Semana de 15/05/2026\n**Saúde do Projeto:** 🟢 On track\n\n**1. Evolução e Progresso**\nMarco da Onda 2 do BHules: implantação de 2.150 novas empresas ativas no motor, elevando a cobertura sobre a base SN e mantendo a Onda 1 (423) estável. Discovery de captura comparando Jettax e Unecont; próxima semana testes com Agrocontar para fechar a recomendação do buscador padrão. Bugs operacionais endereçados; tabela De/Para de CFOPs e planilha de exceções em construção.\n\n**2. Gestão de Riscos**\nOn track. Atenção (sem alterar health): confiabilidade das métricas do BHules (não batem com a fonte bruta), baixa de SPED 100% manual, e bugs operacionais (notas voltando para \"Requer Revisão\", CFOP inexistente, auditoria com horário inconsistente, oscilações do motor).\n\n**3. KPI**\nKR4.1 — Cobertura BHules SN. Onda 2 (+2.150) sobre Onda 1 (423) → avanço material rumo a 1.534/1.534. Número exato depende do fechamento na fonte bruta (Databricks).\n\n**4. Próximos Passos**\nTestes com Agrocontar e fechar recomendação · monitorar estabilização da Onda 2 · resolver 4 bugs operacionais + divergência de 241 notas Jettax × BHules · finalizar De/Para CFOPs e exceções · métricas com fonte única (Databricks) · automação da baixa de SPED.\n\n**5. Bloqueios externos**\nNenhum que exija Diretoria/CPO. Atenção: dependência do tech para automatizar a baixa de SPED (hoje 100% manual)."}, {"proj": "rpa-fiscal", "projNome": "RPA Fiscal", "data": "2026-06-19", "autor": "Andressa", "health": "No prazo", "body": "**RPA FISCAL — Project Update**\n**Título do Update:** Semana de 19/06/2026\n**Saúde do Projeto:** 🟢 On track\n\n**1. Evolução e Progresso**\n* **Módulo único de consulta Nacional em revisão (FIS-275):** cobertura validada para SBC, Curitiba, RJ, Niterói, Goiânia, Brasília, Vitória, Florianópolis, Manaus e Porto Alegre.\n* **Escrituração SBC via Nacional concluída (FIS-272).**\n* **Painel RPA de controle interno em revisão (FIS-188):** infra de dashboard (FIS-232) pendente de provisionar.\n* **BRD do Motor de Trigger de Escrituração NFS-e concluído (FIS-283):** base para a integração BHules → RPA priorizada para o Cycle 04.\n* **Backlog de rollout estruturado:** issues por município (SP, RJ, Fortaleza, SBC, Campinas) — testes/validação (E1) e rollout gradual (E2), + epics E3, E4, E5.\n* **Epics em andamento:** FIS-284 (Marcelo), FIS-285 (Danilo), FIS-286 e FIS-287 (Guilherme Porto), FIS-288 (Marcelo).\n\n**2. Gestão de Riscos**\nOn track. Frentes avançando dentro do cycle. Repriorizar BHules → RPA para o Cycle 04 reduz risco. Municípios foco Q2 (SP, RJ, Fortaleza, SBC, Campinas) via portais próprios, sem dependência do Nacional. Sem desvios críticos.\n\n**3. KPI**\n* **Primário:** First-time-right na escrituração de NFS-e tomados por município (meta >= 95%).\n* **Status:** milestone \"Construção de RPAs\" com ~80%. SP, Fortaleza e Campinas com RPAs entregues aguardando validação/rollout; SBC via Nacional.\n\n**4. Próximos Passos**\nMarcelo concluir revisão do módulo Nacional (FIS-275) e testes por município (FIS-351) · Danilo finalizar Guia ISS SP (FIS-285) · Guilherme Porto provisionar infra (FIS-232) e concluir painel (FIS-188).\n\n**5. Bloqueios externos**\nMunicípios com certificado/spec de API privada (ex.: Campinas — ABRASF) seguem com workaround via RPA/upload, já em produção. Sem bloqueios que exijam Diretoria/CPO.\n\n*Progresso desde 12/06: Construção de RPAs 75% → 80%*"}, {"proj": "rpa-fiscal", "projNome": "RPA Fiscal", "data": "2026-06-12", "autor": "Andressa", "health": "No prazo", "body": "**Update de Projeto — RPA Fiscal · ponte de automação via bots**\n**Período: Semana · Data: 12/06/2026 · Lead: Jeisy Sousa · Time: Fiscal · Objetivo: O4 · Wave: SN**\n\n**Status geral:** 🟢 No prazo\n\nSemana de alto volume de entregas. A escrituração de NFS-e tomados deu um salto: abordagem via Lambda (scraping HTTP no lugar de VM Windows) validada e implementada para SP e RJ, tornando a escrituração escalável. Cobertura via NFS-e Nacional expandida para SBC, Curitiba, Niterói e demais. RPA ISS SP validado em produção e migrando para Lambda com trigger por eventos. Painel de controle interno avançou para revisão final.\n\n**Marco:** M1 · Construção · RPAs Escrituração e guias entregue — 31/07/2026 · Confiança 🟢 Alta.\n\n**Entregue:** escrituração SP e RJ via Lambda (scraping) ✓ · cobertura NFS-e Nacional (SBC, Curitiba, Niterói + 7 municípios) ✓ · Campinas em produção ✓ · lançamento nota a nota ✓ · RPA ISS SP validado em produção (02/06) ✓ · documentação rollout ISS SP e BRD AWS ✓ · painel em revisão final.\n\nEm andamento: FIS-269 (ISS SP→Lambda), FIS-267 (triagem), FIS-268 (fallback Slack), FIS-275 (módulo Nacional), FIS-271 (deploy AWS), FIS-188 (painel). Aguardando: FIS-260 (BHules→RPA), FIS-282 (Motor Fiscal→RPA ISS SP), FIS-232 (infra painel).\n\n**Bloqueios:** nenhum ativo. **Risco:** município Nacional com XSD privado (mitigação: RPA portal validado como fallback).\n\n*Progresso desde 03/06: Construção de RPAs 0% → 75%*"}, {"proj": "rpa-fiscal", "projNome": "RPA Fiscal", "data": "2026-06-03", "autor": "Andressa", "health": "No prazo", "body": "**Semana 03/06/2026 · 🟢 On track — RPA FISCAL**\n\n**1. Evolução e Progresso**\nSemana marcada pelo go live da automação de emissão de guias ISS São Paulo — principal entrega do Cycle 2. O robô processou o 1º de 3 grupos da base elegível na noite de 02/06, com mais de 100 empresas processadas em produção com insumos reais pela primeira vez. Painel interno avançou com backend integrado ao Bhubot. Bots SPED Agrocontar operacionais na nova estrutura, com monitoramento ativo. Fortaleza em produção para escrituração de NFS tomados.\n\n**2. Gestão de Riscos — Em atenção**\nGo live do ISS SP revelou dois pontos antes do próximo processamento: templates de entrega no Gestta Express ainda não funcionam (guias geradas mas não entregues ao cliente); 3 empresas com ponta invalidada (SOAP com código não tratado). Ambos mapeados e em tratamento.\n\n**3. KPI — Melhorou**\nPrimeiro processamento massivo em produção — +100 empresas no ISS SP, taxa de sucesso elevada (3 casos com observação).\n\n**4. Próximos Passos**\nResolver template do Gestta Express (bloqueador crítico) · investigar 3 casos invalidados · frontend do painel · decisão sobre guias já emitidas · iniciar Campinas.\n\n**5. Bloqueios/Dependências**\nApoio externo necessário? Não. Template Gestta Express em resolução (Jeniffer e JP apoiando)."}, {"proj": "rpa-fiscal", "projNome": "RPA Fiscal", "data": "2026-05-29", "autor": "Andressa", "health": "No prazo", "body": "**Semana 29/05/2026 · 🟢 On track — RPA FISCAL**\n\n**1. Evolução e Progresso**\nSemana de alta produtividade. Migração dos bots SPED Agrocontar para o novo framework concluída (todos os 31 bots implantados e operacionais). Escrituração NFS tomados: Fortaleza entregue para testes; Campinas em desenvolvimento. Painel interno de controle dos RPAs (Fiscal + DP) em desenvolvimento ativo, com parte do backend entregue. Validação da emissão do ISS SP em produção com insumos reais em andamento.\n\n**2. Gestão de Riscos — Sem riscos relevantes**\nOn track. A decisão de priorizar arquitetura escalável antes de finalizar Campinas e SBC é estratégica — garante expansão sustentável para 1.100+ clientes SN.\n\n**3. KPI — Sem alteração**\nBaseline de cobertura e redução de intervenção manual a ser estabelecido após estabilização dos bots e entrega do painel.\n\n**4. Próximos Passos**\nEstrutura escalável de escrituração de NFS tomados · concluir migração Agrocontar para VMs + monitoramento · avançar painel (backend+frontend) · ISS SP em produção com insumos reais.\n\n**5. Bloqueios:** Sem bloqueios externos no momento."}, {"proj": "rpa-fiscal", "projNome": "RPA Fiscal", "data": "2026-05-22", "autor": "Andressa", "health": "No prazo", "body": "**Semana 22/05/2026 · 🟢 On track — RPA Fiscal**\n\n**1. Evolução e Progresso**\nAlta produtividade em duas frentes. Escrituração de NFS tomados: SP e RJ concluídas no Cycle 1, Campinas em finalização. Bots SPED Agrocontar: migração para o novo framework acelerada — +15 clientes implantados na semana. RPA de emissão de guias ISS SP pronto para validação em produção na 1ª semana de junho.\n\n**Entregas:** escrituração NFS tomados SP ✓ e RJ ✓ em produção · novo padrão de framework em todos os grupos de bots SPED ✓ · +15 clientes Agrocontar migrados ✓ · RPA ISS SP documentado e pronto para rollout em junho.\n\n**2. Gestão de Riscos — Sem riscos relevantes.** Entregas do Cycle 1 dentro do prazo.\n\n**3. KPI — Sem alteração.** Baseline de cobertura no prazo e redução de HITL ainda não estabelecidos.\n\n**4. Próximos Passos**\nConcluir migração dos bots Agrocontar restantes · finalizar top 5 prefeituras (Campinas, Fortaleza) · iniciar Cycle 2 com foco em escalabilidade (1.100+ clientes SN) · MVP do painel interno de monitoramento.\n\n**5. Bloqueios:** Sem bloqueios externos."}, {"proj": "rpa-fiscal", "projNome": "RPA Fiscal", "data": "2026-05-14", "autor": "Jeisy Sousa", "health": "No prazo", "body": "**Título do Update:** Semana de 14/05/2026\n**Saúde do Projeto:** 🟢 On track\n\n**Evolução e Progresso**\n* Desenvolvimento e refatoração dos bots SPED clientes Agrocontar em andamento — FIS-54 com 10 de 16 subtarefas concluídas (62,5%).\n* Discovery de Escrituração de NFS Tomados (FIS-2): priorizar top 5 prefeituras (>50% da base); time tech já trabalhando na integração/RPA dessas prefeituras.\n\n**Gestão de Riscos:** On track. Atenção aos guardrails: risco de 2FA em certificado quebrando ~20% dos bots (handoff humano) e mudanças em layouts de prefeituras — exigem monitoramento contínuo.\n\n**KPI:** % de obrigações RPA no prazo / Redução de HITL por bot. Sem baseline (meta >= 95% no prazo; HITL -60%). Projeto iniciou 01/05/2026.\n\n**Próximos Passos**\nConcluir as 6 subtarefas restantes de FIS-54 e avançar para implantação gradual (FIS-68) · acompanhar time tech na escrituração de NFS tomados (FIS-2) e quebra por prefeitura.\n\n**Bloqueios externos:** Nenhum nesta semana. Milestone \"Versão interna pronta\" previsto para 15/jul — atenção ao ritmo."}, {"proj": "motor-trabalhista", "projNome": "Motor Trabalhista (DP)", "data": "2026-06-19", "autor": "Andressa", "health": "Em risco", "body": "**MOTOR TRABALHISTA / DP — Project Update**\n**Título do Update:** Semana de 19/06/2026\n**Saúde do Projeto:** 🟡 At risk\n\n**1. Evolução e Progresso**\n* **Motor eSocial fluindo para entrega no Cycle 03** — DP-101 (envio da folha ao eSocial) em andamento com Matheus. Infra S-1200/S-1299 em construção.\n* **Validação de relatórios desbloqueada** — DP-100 (Resumo de Folha e Holerites, 10 empresas) em andamento com Reginaldo.\n* **Extrato Mensal em desenvolvimento** — DP-133 criada e em andamento; validação aguarda atualização da base dev.\n* **Plano B do Consignado em construção** — diante do bloqueio DataPrev, Sávio estrutura importação manual; DP-91 em andamento.\n* **Reestruturação de escopo e epics** — DP-135 criado como E7 (orquestração Restate + entrega final); DP-134, DP-137, DP-136 formalizadas.\n* **Cálculo de folha (DP-3) em revisão.**\n* **Alinhamento com Hub sobre Experiência DP concluído** (HUB-235, COCKPIT-523).\n\n**2. Gestão de Riscos**\n* **Risco 1:** base de DEV sem dados de produção (depende de Dan e Felipe) → validação do Extrato Mensal (DP-133) e DP-100 travadas no Cycle 03.\n* **Risco 2:** acesso à DataPrev não obtido → consignado (DP-58 + DP-93) não entregue integralmente via API; Plano B (importação manual) mitiga para produção.\n\n**3. KPI**\n* **Primário:** Empresas SN com folha fechada automaticamente. **Status:** 0/10 empresas (meta: 10 até fim do Cycle 03).\n\n**4. Próximos Passos**\nAtualização da base dev (Dan/Felipe) · conclusão do motor eSocial (DP-101) · Reginaldo avançar Extrato Mensal (DP-133) · Sávio finalizar Plano B do consignado (DP-91 + DP-93) · alinhamentos técnicos com Hub e Cockpit.\n\n**5. Bloqueios externos**\n* **[BLOQUEIO — requer CPO/Diretoria] Base de DEV com dados de produção** (Dan e Felipe) — sem isso DP-133 e DP-100 não fecham no Cycle 03.\n* **[BLOQUEIO EXTERNO] Acesso à DataPrev (Consignado)** — credenciais/acesso à API ainda não obtidos.\n\n*Progresso desde 12/06: Folha s/ apontamento 22% → 18%*"}, {"proj": "motor-trabalhista", "projNome": "Motor Trabalhista (DP)", "data": "2026-06-12", "autor": "Jeniffer", "health": "Em risco", "body": "**Update de Projeto — Motor Trabalhista · folha + obrigações DP**\n**Período: Semana · Data: 12/06/2026 · Lead: Jeniffer Dauricio · Time: DP + Cockpit + Hub · Objetivo: O4 · Wave: SN**\n\n**Status geral:** 🟡 Em risco\n\nCycle 3 inicia com o motor de cálculo de pró-labore construído e dois desbloqueadores recentes — API do Cockpit liberada e FGTS Digital validado em produção. Mas surgiram dois bloqueios: base de DEV desatualizada/insuficiente para as 10 empresas piloto, e empréstimo consignado impedido até retorno da DataPrev.\n\n**Marco atual:** M1 · Construção · Empresas Pró-Labore SN — 68% conforme Linear · 31/07/2026 · Confiança 🟡 Média.\n\n**Entregue:** FGTS Digital em produção (DP-57) · cálculo de folha e pró-labore Parte 2 com API Cockpit desbloqueada (DP-56) · discovery jornada DP (DP-9) · dependências Cockpit/Hub formalizadas (COCKPIT-523, HUB-235) · decisão: regras de negócio das jornadas ficam no Motor DP.\n\n**Bloqueios:** (1) base de DEV insuficiente — depende de Jorge + Dan, prazo 16/06; (2) habilitação da API DataPrev (consignado, DP-58/DP-93) — aguardando retorno externo.\n\n**Riscos:** acesso à base de Prod não resolvido até 16/06 atrasa validação · DataPrev não retornar no Cycle 3 · integração Hub ↔ Motor DP com múltiplas dependências em triage.\n\n*Progresso desde 02/06: Pró-Labore 0% → 68% · Folha s/ apontamento 0% → 22%*"}, {"proj": "motor-trabalhista", "projNome": "Motor Trabalhista (DP)", "data": "2026-06-02", "autor": "Andressa", "health": "Em risco", "body": "**Semana 03/06/2026 · 🟡 At risk — MOTOR TRABALHISTA**\n\n**1. Evolução e Progresso**\nSemana de alta entrega em duas frentes. Motor de cálculo: pró-labore e RAT/FAP adicionados ao cálculo de folha; primeiro relatório (holerite) em revisão final; relatório de líquidos concluído. Regras e discovery: documentos técnicos de admissão, rescisão, férias e RPA em revisão. Tabelas do eSocial implantadas no motor com infra e API de consumo. Automação da guia FGTS com arquitetura de robôs refatorada e em deploy.\n\n**2. Gestão de Riscos — Em atenção**\nDois pontos: (1) pendências técnicas de admissão/rescisão/férias/RPA direcionam decisões de arquitetura e dependências DP × Hub; (2) crítico — API do Cockpit para dados reais segue sem funcionar até 02/06, comprometendo entregas do Cycle 2 (desenvolvimento com dados mock → retrabalho).\n\n**3. KPI — Sem alteração.** Baseline no piloto de 10 clientes (julho). API do Cockpit ainda impede validação com dados reais.\n\n**4. Próximos Passos**\nAlinhar pendências técnicas e decisão DP × Hub · resolver API do Cockpit (bloqueador crítico) · finalizar holerite · avançar FGTS em produção · iniciar consignado + Dataprev.\n\n**5. Bloqueios:** Sim. API do Cockpit indisponível — sem ela, motores não validam com dados reais."}, {"proj": "motor-trabalhista", "projNome": "Motor Trabalhista (DP)", "data": "2026-05-29", "autor": "Andressa", "health": "No prazo", "body": "**Semana 29/05/2026 · 🟢 On track — MOTOR TRABALHISTA**\n\n**1. Evolução e Progresso**\nForte avanço em duas frentes. Produto/negócio: documentos técnicos das jornadas de admissão, rescisão, férias e RPA produzidos e em revisão — base para declarar dependências com o Hub. Especificações visuais dos relatórios (holerite, resumo de folha, relatório de líquidos) concluídas. Tecnologia: motor de cálculo de folha com lógica implementada e fluxo estruturado. Validação da emissão de guias FGTS Digital em produção programada para a semana.\n\n**2. Gestão de Riscos — Em atenção**\nDecisão arquitetural em aberto: onde cada regra de negócio das jornadas vai morar (Motor DP ou Hub) — a resolver no Cycle 2. Mapeamento concluído nesta semana; alinhamento entre times na próxima.\n\n**3. KPI — Sem alteração.** Baseline no piloto de 10 clientes (julho).\n\n**4. Próximos Passos**\nValidar FGTS Digital em produção · expandir motor (pró-labore, RAT/FAP) e primeiros relatórios · tabelas eSocial · migração do RPA de admissão para API.\n\n**5. Bloqueios:** Sim — decisão arquitetural DP × Hub (impacta os dois times)."}, {"proj": "motor-trabalhista", "projNome": "Motor Trabalhista (DP)", "data": "2026-05-22", "autor": "Andressa", "health": "No prazo", "body": "**Semana 22/05/2026 · 🟢 On track — Motor Trabalhista**\n\n**1. Evolução e Progresso**\nAvanço em duas frentes. Produto: mapeamento das regras das três jornadas mais críticas — admissão, rescisão e férias — concluído, garantindo validações corretas desde o início. Tech: motor de cálculo de folha próprio em finalização em dev. RPA de emissão de guias FGTS com solução pronta para validação em produção.\n\n**Entregas:** regras de admissão, rescisão e férias documentadas e validadas · specs visuais dos relatórios (holerite, resumo de folha, líquidos) em definição com padrão BHub · motor de cálculo de folha em finalização.\n\n**2. Gestão de Riscos — Sem riscos relevantes.** On track.\n\n**3. KPI — Sem alteração.** Baseline no piloto (julho).\n\n**4. Próximos Passos**\nValidar FGTS em produção · evoluir motor (pró-labore, encargos SN) · relatórios no padrão BHub · iniciar integração com eSocial.\n\n**5. Bloqueios:** Sim — decisão arquitetural em aberto (com Henrique e Jorge): onde residem as regras das jornadas (Motor DP ou Hub)."}, {"proj": "motor-trabalhista", "projNome": "Motor Trabalhista (DP)", "data": "2026-05-15", "autor": "Andressa", "health": "No prazo", "body": "**Semana de 15/05/2026 · 🟢 On track**\n\n**1. Evolução e Progresso**\n* DP-3 iniciada (Cálculo de folha + pró-labore): Eng (Sávio + Reginaldo) iniciou a implementação do cálculo de folha CLT e pró-labore para SN sem apontamentos. Repo bhub-general-ledger em setup.\n* DP-1 iniciada (Geração de relatórios): Eng (Glauco + Mateus) validando endpoints da PoC e levantando campos de Resumo de Folha e Relação de Líquidos.\n* Documentação das issues concluída (contexto + regras de negócio + requisitos).\n* Discovery de jornadas macro iniciado (admissão, rescisão, apontamentos, férias) com foco em dependências com o Hub.\n\n**2. Gestão de Riscos:** On track. Sem desvios.\n\n**3. KPI:** Cobertura Hub DP folha E2E. 0% (motor em implementação). Meta 65% até 15/jul, 100% até 31/jul.\n\n**4. Próximos Passos**\nDP-3: implementar INSS, IRRF, FGTS, RAT×FAP; validar contra 10 folhas reais · DP-1: estrutura do payload e geração de PDF · Infra: ambiente dev com CI/CD (Glauco) · agendar discovery de jornadas com PM do Hub.\n\n**5. Bloqueios externos:** Nenhum que exija Diretoria/CPO. Dependência a observar: jornadas (admissão/rescisão/apontamentos/férias) dependem do Hub — alinhamento com o PM do Hub nas próximas semanas."}, {"proj": "motor-contabil", "projNome": "Motor Contábil", "data": "2026-06-19", "autor": "Andressa", "health": "Em risco", "body": "**MOTOR CONTÁBIL — Project Update**\n**Título do Update:** Semana de 19/06/2026\n**Saúde do Projeto:** 🟡 At risk\n\n**1. Evolução e Progresso**\n* **Backlog de Q2 totalmente quebrado e estruturado no Linear** — epics E1 a E8 do milestone \"Construção | Motor Contábil Entregue\" (CTB-69, CTB-70, CTB-71, CTB-72, CTB-23, CTB-74, CTB-80, CTB-84, CTB-83, CTB-93 a CTB-96, CTB-87). Aguardam validação de Fernando e Jorge sobre sequência/priorização.\n* **Bloqueio de acesso ao Git do Paulo Daniel resolvido** — time liberado para execução técnica.\n* **Discovery da jornada Motor Contábil concluído (CTB-1)** — Readiness Check (CTB-15), mapa de eventos × lançamentos D/C (CTB-10), decisão extrato vs. caixa (CTB-13), dependências externas (CTB-12). E1 em andamento.\n* **Spike do Ledger Midaz concluído (CTB-3).**\n* **Spec dos relatórios contábeis criada (CTB-92)** — Razão, Balancete, Balanço, DRE.\n* **Alinhamento com Hub concluído (HUB-238).**\n\n**2. Gestão de Riscos**\n* **Causa:** motor ainda em discovery/planejamento — nenhuma feature técnica em desenvolvimento efetivo. Validação do backlog com Fernando e Jorge é o próximo gate.\n* **Impacto:** divergência de priorização/escopo pode atrasar o início do dev no próximo cycle, comprimindo o piloto (10 clientes Itaú) em Q2.\n\n**3. KPI**\n* **Primário:** Fechamentos contábeis ponta a ponta automatizados (piloto 10 clientes Itaú). **Status:** 0/10.\n\n**4. Próximos Passos**\nValidação do backlog com Fernando e Jorge · Fernando avançar decisões de arquitetura (CTB-68) e fechar E1 · Elaine iniciar spec dos relatórios (CTB-92) · alinhamentos das dependências do Hub (HUB-238).\n\n**5. Bloqueios externos**\nNão há bloqueios externos que exijam Diretoria nesta semana. (Internos em tratativa: decisões D1–D5 e Ledger Midaz na AWS.)\n\n*Progresso desde 12/06: Construção Motor Contábil 7% → 26%*"}, {"proj": "motor-contabil", "projNome": "Motor Contábil", "data": "2026-06-12", "autor": "Andressa", "health": "Em risco", "body": "**Update de Projeto — Motor Contábil · fechamento + conciliação**\n**Período: Semana · Data: 12/06/2026 · Lead: Andressa Rodrigues · Time: Contábil + Cockpit + Hub · Objetivo: O4 · Wave: SN → LP**\n\n**Status geral:** 🟡 Em risco\n\nDiscovery concluído com jornada TO-BE validada e escopo de construção quebrado em 8 entregas. O desenvolvimento ainda não iniciou — Cycle 3 começou nesta semana — com alto volume de decisões técnicas arquiteturais (D1–D5) que bloqueiam o início de várias entregas.\n\n**Marco:** M1 · Construção · Motor Contábil Entregue — 31/07/2026 · Confiança 🔴 Baixa.\nIssues concluídas: 4 (TO-BE validado, Plano de contas mínimo SN, Sustentação Hidra, Mapa de eventos D/C). Em andamento: 3 (Estudo Midaz/Matcher, Discovery CTB-1, Readiness Check). Pendentes/bloqueadas: ~30 (aguardando D1–D5 e Ledger no ar).\n\n**Bloqueios:** (1) decisões D1–D5 (Jorge + Fernando + comitê, prazo 20/06) — bloqueia E2–E8; (2) setup do Ledger Midaz na AWS (Paulo Dias, CTB-4) — atraso por falta de acessos/onboarding.\n\n**Riscos:** D1–D5 atrasar além de 20/06 · milestone 31/07 inatingível com 8 entregas sem início (mitigação: reduzir piloto a MVP Itaú) · alta dependência do Jorge.\n\n**Decisões necessárias:** D1 fusão vs. separação dos motores de classificação · D2 onde mora o plano de contas · D3 onde mora o histórico · D4 papel da IA · D5 multi-tenant Midaz (prazo 20/06).\n\n*Progresso desde 02/06: Construção Motor Contábil 0% → 7%*"}, {"proj": "motor-contabil", "projNome": "Motor Contábil", "data": "2026-06-02", "autor": "Andressa", "health": "Em risco", "body": "**Semana 03/06/2026 · 🟡 At risk — MOTOR CONTÁBIL**\n\n**1. Evolução e Progresso**\nSemana de avanço expressivo no discovery. Mapeamento AS-IS do processo contábil concluído e grande avanço no TO-BE. Plano de contas mínimo SN validado e entregue. Mapa de eventos e lançamentos D/C (interface entre Motor Contábil, DP e Fiscal) concluído. Estudo técnico do Ledger Midaz e Matcher (Lerian) em andamento. Readiness Check iniciado. Novas frentes refinadas para o próximo cycle (De/Para de plano de contas, onboarding contábil).\n\n**2. Gestão de Riscos — Em risco**\nO estudo técnico revelou volume significativo de dúvidas do time de engenharia sobre as ferramentas e o projeto — impedindo o início de qualquer desenvolvimento. Em 02/06 alinhado com Jorge para nivelar o time com documento de esquemas e fluxos. Escopo grande, dev só inicia no Cycle 3, alta dependência do Jorge nas primeiras semanas.\n\n**3. KPI — Sem alteração.** Discovery; baseline a partir da versão interna SN em julho.\n\n**4. Próximos Passos**\nJorge entregar documento de nivelamento (Ledger Midaz/Matcher) · concluir decisão fluxo com/sem extrato, Readiness Check e TO-BE · formalizar dependências com DP, Fiscal e Open Banking.\n\n**5. Bloqueios:** Não — necessidade de apoio já alinhada; soluções encaminhadas."}, {"proj": "motor-contabil", "projNome": "Motor Contábil", "data": "2026-05-29", "autor": "Andressa", "health": "No prazo", "body": "**Semana 29/05/2026 · 🟢 On track — MOTOR CONTÁBIL**\n\n**1. Evolução e Progresso**\nDiscovery avançou de forma consistente. Plano de contas mínimo SN concluído e validado com a especialista contábil. Desenho do TO-BE da jornada contábil SN iniciado, assim como o AS-IS do processo atual. Mapa de eventos e lançamentos D/C (interface entre Motor Contábil, DP e Fiscal) iniciado. Decisão sobre fluxo com extrato vs. fechamento via caixa em andamento. Engenharia iniciou o estudo técnico do Ledger Midaz e Matcher; primeiras tasks do Cycle 3 começaram a ser quebradas.\n\n**2. Gestão de Riscos — Sem riscos.** Em andamento conforme planejamento.\n\n**3. KPI — Sem alteração.** Discovery; baseline a partir da versão interna SN em julho.\n\n**4. Próximos Passos**\nConcluir AS-IS, TO-BE, mapa de eventos D/C e decisão com/sem extrato · finalizar estudo técnico Ledger Midaz/Matcher · refinar tasks do Cycle 3 · discovery do reprocessamento retroativo.\n\n**5. Bloqueios:** Não. Dependências com DP e Fiscal (mapa de eventos D/C) mapeadas internamente."}, {"proj": "motor-contabil", "projNome": "Motor Contábil", "data": "2026-05-22", "autor": "Andressa", "health": "No prazo", "body": "**Semana 22/05/2026 · 🟢 On track — Motor Contábil (Discovery Q2 · LP Q3)**\n\n**1. Evolução e Progresso**\nDiscovery iniciado com foco no SN. Jornada completa sendo estruturada — AS-IS (Domínio, Conciliador, Hydra) e TO-BE (Ledger Midaz + Matcher da Lerian). Frentes do Cycle 2 refinadas e distribuídas: AS-IS, TO-BE, mapa de eventos contábeis, plano de contas mínimo e dependências externas.\n\n**Entregas:** escopo do discovery estruturado e refinado para o Cycle 2, com responsáveis definidos. Nenhuma entrega finalizada ainda.\n\n**2. Gestão de Riscos — Sem riscos relevantes.** Discovery conforme planejado.\n\n**3. KPI — Sem alteração.** Discovery; baseline a partir da versão interna SN, ramp em Q3.\n\n**4. Próximos Passos**\nProduto: AS-IS, TO-BE com validação da especialista, plano de contas mínimo, dependências externas. Tecnologia: estudo técnico do Ledger Midaz e Matcher.\n\n**5. Bloqueios:** Sem bloqueios externos."}, {"proj": "motor-contabil", "projNome": "Motor Contábil", "data": "2026-05-15", "autor": "Andressa", "health": "No prazo", "body": "**Título do Update:** Semana de 15/05/2026\n**Saúde do Projeto:** 🟢 On track\n\n**1. Evolução e Progresso**\nSem evolução técnica ou de negócio nesta semana. O projeto foi deliberadamente desprioritizado no Cycle 1 em favor de outras iniciativas do quarter. Nenhum marco ou entrega atingido.\n\n**2. Gestão de Riscos**\nOn track conforme planejamento. A ausência de progresso é esperada — o Motor Contábil entra em execução no Cycle 2.\n\n**3. KPI**\nConciliador piloto + 5 estágios. Status: -. Baseline ainda não estabelecido.\n\n**4. Próximos Passos**\nAgendar reuniões de contexto das ferramentas (Conciliador, Ledger, Matcher) com Jorge e Jeni · agendar discovery das primeiras jornadas contábeis (5 estágios priorizados para Q2). Nenhuma entrega técnica prevista.\n\n**5. Bloqueios externos**\nNão há bloqueios. Disponibilidade de Jorge e Jeni para as reuniões de contexto é pré-condição para o início do Discovery."}];
+</script>
+<!-- ===========  FIM DO BLOCO EDITÁVEL  =========== -->
+
+<style>
+  :root{--navy:#0F1727;--navy7:#1a2438;--blue:#0171E4;--blue7:#005bb8;--purple:#9f8ff0;--beige-soft:#F4F1E8;--red:#F25461;--amber:#f59e0b;--green:#16a34a;--text:#0F1727;--muted:#5b6478;--border:#e6e3d9;}
+  *{box-sizing:border-box}
+  html,body{margin:0;font-family:'Lato',system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--text);background:#f6f7fb}
+  h1,h2,h3{font-family:'Roboto',sans-serif;letter-spacing:-.01em}
+  .app{display:flex;min-height:100vh}
+  .sidebar{width:248px;flex:0 0 248px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+  .brand{padding:1.4rem 1.3rem;display:flex;align-items:center;gap:.6rem}
+  .brand .logo{height:30px;width:30px;color:#fff}
+  .brand .txt{font-family:'Roboto';font-weight:700;font-size:1.2rem}
+  .brand .txt .b{color:var(--purple)}
+  .nav{flex:1;padding:.4rem .7rem;display:flex;flex-direction:column;gap:.1rem;overflow-y:auto}
+  .nav .grp{font-size:.62rem;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.32);text-transform:uppercase;padding:1rem .8rem .25rem}
+  .nav a{display:flex;align-items:center;gap:.75rem;padding:.62rem .8rem;border-radius:.55rem;color:rgba(255,255,255,.62);font-family:'Roboto';font-weight:500;font-size:.9rem;cursor:pointer}
+  .nav a:hover{background:rgba(255,255,255,.05);color:#fff}
+  .nav a.active{background:rgba(255,255,255,.09);color:#fff}
+  .nav .ic{width:18px;height:18px;flex-shrink:0;opacity:.9}
+  .sb-foot{padding:.9rem;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:.65rem}
+  .sb-foot .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--purple),#6d5bd0);display:grid;place-items:center;font-weight:700;font-family:'Roboto';font-size:.85rem;color:#fff}
+  .sb-foot .nm{font-size:.85rem;font-weight:700;font-family:'Roboto'}
+  .sb-foot .badge{display:inline-block;margin-top:.15rem;font-size:.6rem;font-weight:700;letter-spacing:.05em;background:#ede9fe;color:#5b21b6;padding:.1rem .45rem;border-radius:99px}
+  .main{flex:1;min-width:0;display:flex;flex-direction:column}
+  .topbar{background:#fff;border-bottom:1px solid var(--border);height:4.2rem;padding:0 1.6rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:5}
+  .topbar .search{flex:1;position:relative}
+  .topbar .search input{width:100%;background:#f5f6fa;border:1px solid var(--border);border-radius:.7rem;padding:.55rem .8rem .55rem 2.4rem;font-size:.9rem;font-family:inherit}
+  .topbar .search .mag{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:var(--muted)}
+  .content{padding:1.6rem 2rem;max-width:1480px;width:100%}
+  .view{display:none}.view.active{display:block}
+  .pghead{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.2rem}
+  .pghead h1{font-size:1.8rem;margin:0;color:var(--navy)}
+  .pghead .st{font-size:.92rem;color:var(--muted);margin-top:.3rem}
+  .kpi-hero-sec{display:flex;gap:1rem;align-items:stretch;margin-bottom:1.3rem}
+  .hero{background:linear-gradient(145deg,var(--navy),#1a2438);color:#fff;border-radius:1.4rem;padding:1.5rem 1.3rem;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:space-between;width:clamp(220px,23%,280px);flex-shrink:0;box-shadow:0 10px 28px rgba(15,23,39,.2)}
+  .hero .lab{font-size:.64rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;font-weight:600;font-family:'Roboto';line-height:1.5}
+  .hero .big{font-size:4.2rem;font-weight:700;font-family:'Roboto';line-height:1;margin:.3rem 0}
+  .hero .bar{height:6px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;width:100%;margin:.2rem 0 .3rem}
+  .hero .bar>i{display:block;height:100%;background:var(--purple);border-radius:99px}
+  .hero .cap{font-size:.7rem;color:rgba(255,255,255,.45);font-family:'Roboto'}
+  .hero .mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;width:100%;margin-top:.85rem}
+  .hero .mini div{background:rgba(255,255,255,.07);border-radius:.6rem;padding:.5rem .2rem}
+  .hero .mini .v{font-size:1.2rem;font-weight:700;font-family:'Roboto'}
+  .hero .mini .l{font-size:.52rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem;font-family:'Roboto'}
+  .kpi-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1rem;min-width:0}
+  @media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}.kpi-hero-sec{flex-direction:column}.hero{width:100%}}
+  .kpi{background:#fff;border:1px solid var(--border);border-radius:1.1rem;padding:1rem 1.15rem;display:flex;flex-direction:column;justify-content:space-between;gap:.45rem}
+  .kpi .top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+  .kpi .lab{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-family:'Roboto'}
+  .kpi .ic{width:30px;height:30px;border-radius:.6rem;display:grid;place-items:center;flex-shrink:0;font-size:.95rem}
+  .kpi .ic.blue{background:#dde9fa}.kpi .ic.green{background:#dcfce7}.kpi .ic.red{background:#fde0e3}.kpi .ic.amber{background:#fef3c7}.kpi .ic.purple{background:#ede9fe}
+  .kpi .val{font-size:1.8rem;font-weight:700;font-family:'Roboto';color:var(--navy);line-height:1}
+  .kpi .val.blue{color:var(--blue)}.kpi .val.red{color:var(--red)}.kpi .val.amber{color:#92400e}.kpi .val.green{color:var(--green)}
+  .kpi .sub{font-size:.71rem;color:var(--muted)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:1000px){.row2{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--border);border-radius:1.2rem;overflow:hidden;margin-bottom:1.3rem}
+  .card-h{padding:.9rem 1.15rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.55rem;font-family:'Roboto';font-weight:600;color:var(--navy);justify-content:space-between}
+  .card-h .l{display:flex;align-items:center;gap:.55rem}.card-h .ic{width:26px;height:26px;border-radius:.45rem;background:#f1f5f9;display:grid;place-items:center}
+  .card-b{padding:1.05rem 1.15rem}
+  table{border-collapse:collapse;width:100%}
+  th,td{border:1px solid var(--border);font-size:.85rem;vertical-align:middle;padding:.6rem .7rem}
+  thead th{background:var(--beige-soft);text-align:left;font-family:'Roboto';text-transform:uppercase;letter-spacing:.04em;font-size:.68rem;color:var(--navy)}
+  .area-band td{background:var(--beige-soft);font-family:'Roboto';font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:.74rem;color:var(--navy)}
+  .area-band td .adot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:.5rem;vertical-align:middle}
+  .grp-band td{background:var(--navy);color:#fff;font-family:'Roboto';font-weight:700;font-size:.82rem;letter-spacing:.03em;padding:.6rem .8rem}
+  td.num{text-align:center;color:var(--muted);font-family:'Roboto';font-weight:600;width:46px}
+  .ref{font-family:'Roboto';font-weight:700;font-size:.72rem;color:var(--blue);margin-right:.4rem}
+  td.st{text-align:center;padding:.45rem .5rem;width:130px}
+  .pill{display:inline-block;border-radius:.4rem;padding:.42rem .7rem;font-family:'Roboto';font-weight:600;font-size:.8rem;color:#fff;min-width:96px}
+  .st-ontrack{background:var(--blue)}.st-done{background:var(--green)}.st-late{background:var(--red)}.st-pend{background:#94a3b8}
+  .st-empty{color:#b6b09a;font-size:1rem}
+  .pct-wrap{display:flex;align-items:center;gap:.5rem;min-width:120px}
+  .pct-bar{flex:1;height:6px;background:#eceadf;border-radius:99px;overflow:hidden}.pct-bar>i{display:block;height:100%;border-radius:99px}
+  .hbadge{font-size:.66rem;font-weight:700;font-family:'Roboto';padding:.18rem .55rem;border-radius:99px;white-space:nowrap}
+  .h-ok{background:#dcfce7;color:#166534}.h-risco{background:#fef3c7;color:#92400e}.h-off{background:#fee2e2;color:#991b1b}
+  .okr{font-size:.62rem;font-weight:700;font-family:'Roboto';padding:.16rem .5rem;border-radius:99px;background:#ede9fe;color:#5b21b6;white-space:nowrap}
+  .proj-row{cursor:pointer;transition:background .12s}.proj-row:hover{background:#f5f6fb}.proj-row:hover .pname{color:var(--blue)}
+  .pname{font-weight:600;font-family:'Roboto';color:var(--navy)}.open-hint{font-size:.7rem;color:var(--blue);font-weight:600}
+  .subtabs{display:flex;gap:.25rem;border-bottom:1px solid var(--border);margin:0 0 1.1rem}
+  .subtab{padding:.6rem 1rem;font-size:.86rem;font-weight:600;color:var(--muted);font-family:'Roboto';border-bottom:2px solid transparent;cursor:pointer}
+  .subtab:hover{color:var(--navy)}.subtab.active{color:var(--navy);border-bottom-color:var(--blue)}
+  .subview{display:none}.subview.active{display:block}
+  .raid{border:1px solid var(--border);border-radius:.9rem;padding:.9rem 1rem;background:#fcfbf7;margin-bottom:.9rem}
+  .raid .rtitle{font-family:'Roboto';font-weight:700;color:var(--navy);font-size:.95rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+  .sev{font-size:.6rem;padding:.12rem .5rem;border-radius:99px;font-weight:700;font-family:'Roboto';text-transform:uppercase;letter-spacing:.04em;background:#fef3c7;color:#92400e}
+  .raid .meta{font-size:.73rem;color:var(--muted);margin:.45rem 0 .65rem;display:flex;gap:.85rem;flex-wrap:wrap}
+  .aspect{display:flex;gap:.5rem;font-size:.8rem;padding:.38rem 0;border-top:1px dashed var(--border)}
+  .aspect .k{flex:0 0 96px;font-weight:700;font-family:'Roboto';font-size:.66rem;text-transform:uppercase;letter-spacing:.04em}
+  .k-r{color:#9a3412}.k-i{color:#991b1b}.k-d{color:#5b21b6}.k-p{color:#075985}.k-m{color:#166534}
+  .empty{text-align:center;color:var(--muted);padding:2.2rem 1rem}
+  .empty .eic{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#ede9fe,#dde9fa);display:grid;place-items:center;margin:0 auto .8rem;font-size:1.4rem}
+  .legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.74rem;color:var(--muted);margin-top:.7rem}
+  .legend i{width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:.3rem;vertical-align:middle}
+  .back{font-size:.82rem;color:var(--blue);cursor:pointer;font-weight:600;font-family:'Roboto';margin-bottom:.6rem;display:inline-block}
+  .mstone{display:flex;align-items:center;gap:.8rem;background:#fcfbf7;border:1px solid var(--border);border-radius:.8rem;padding:.7rem .9rem;margin-bottom:1rem}
+  .mstone .mp{font-family:'Roboto';font-weight:700;color:var(--navy);font-size:1.05rem}
+  .note{font-size:.85rem;color:var(--text);background:#f8f9fc;border:1px solid var(--border);border-radius:.7rem;padding:.7rem .85rem;margin-bottom:1rem}
+  .chips{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-bottom:.9rem}
+  .fchip{font-size:.78rem;font-weight:600;font-family:'Roboto';padding:.35rem .75rem;border-radius:99px;border:1px solid var(--border);background:#fff;color:var(--text);cursor:pointer;transition:all .12s}
+  .fchip:hover{border-color:var(--blue)} .fchip.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .chips select{border:1px solid var(--border);border-radius:.6rem;padding:.38rem .6rem;font-size:.8rem;font-family:inherit;background:#fff;color:var(--text)}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M35.3985 0H4.16432C3.01466 0 1.97449 0.472325 1.219 1.23247C0.467163 1.99631 0 3.04797 0 4.21033V35.7897C0 36.952 0.467163 38.0037 1.219 38.7675C1.97084 39.5314 3.01466 40 4.16432 40H35.3985C36.5482 40 37.5884 39.5277 38.3439 38.7675C39.0993 38.0074 39.5629 36.952 39.5629 35.7897V4.21033C39.5629 3.04797 39.0957 1.99631 38.3439 1.23247C37.592 0.472325 36.5482 0 35.3985 0ZM11.5404 30.1661C11.1316 30.5793 10.5951 30.786 10.0586 30.786C9.52209 30.786 8.98559 30.5793 8.57682 30.1661L6.12421 27.6863L3.67161 25.2066C3.26284 24.7934 3.05846 24.2509 3.05846 23.7048C3.05846 23.1587 3.26284 22.6199 3.67161 22.2066L6.86511 18.9779L10.0586 15.7491L13.993 19.7269L17.9274 23.7048L14.7339 26.9336L11.5404 30.1624V30.1661ZM11.8689 13.9594L15.0368 10.7565L18.2048 7.5535C18.6281 7.12546 19.1829 6.91144 19.7413 6.91144C20.2997 6.91144 20.8508 7.12546 21.2778 7.5535L24.4458 10.7565L27.6137 13.9594L23.6793 17.9373L19.7449 21.9151L15.8105 17.9373L11.8762 13.9594H11.8689ZM35.8146 25.1255L33.2781 27.69L30.7415 30.2546C30.3546 30.6458 29.8473 30.8413 29.34 30.8413C28.8327 30.8413 28.3254 30.6458 27.9385 30.2546L24.7012 26.9816L21.4639 23.7085L25.3983 19.7306L29.3327 15.7528L32.57 19.0258L35.8073 22.2989C36.1942 22.69 36.3876 23.2029 36.3876 23.7159C36.3876 24.2288 36.1942 24.7417 35.8073 25.1328L35.8146 25.1255Z"/></svg>
+      <span class="txt" id="brandtxt">BHub <span class="b">Tech</span></span>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="grp">Portfólio</div>
+      <a data-v="dashboard" class="active"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Dashboard</a>
+      <a data-v="okr"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Objetivos (OKR)</a>
+      <a data-v="exec"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> Visão Executiva</a>
+      <a data-v="projetos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Projetos</a>
+      <a data-v="raid"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Ação de Mitigação</a>
+      <a data-v="reports"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12l4 4v12a0 0 0 0 1 0 0H4z"/><path d="M8 11h8M8 15h8M8 7h5"/></svg> Report Semanal</a>
+    </nav>
+    <div class="sb-foot"><div class="av">JD</div><div><div class="nm">Jeni Dauricio</div><span class="badge">ADMIN · TECH</span></div></div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar"><div class="search"><span class="mag">🔎</span><input placeholder="Buscar…"></div></div>
+    <div class="content">
+      <section class="view active" id="view-dashboard"></section>
+      <section class="view" id="view-okr"></section>
+      <section class="view" id="view-exec"></section>
+      <section class="view" id="view-projetos"></section>
+      <section class="view" id="view-deal"></section>
+      <section class="view" id="view-raid"></section>
+      <section class="view" id="view-reports"></section>
+      <p style="font-size:.72rem;color:var(--muted);margin-top:.8rem">BHub Tech · Projetos Tech por squad + OKR + saúde · dados no bloco <code>DADOS</code>.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ===== LÓGICA ===== */
+const STATUS_PCT = {"Pendente":0,"Triage":0,"Refinado":10,"Em andamento":50,"Em revisão":80,"Concluído":100,"Cancelado":null};
+const AREA_COLORS = {"Fiscal":"#0171E4","Engenharia":"#16a34a","Produto/Design":"#5b21b6","DP":"#be123c","Cockpit":"#92400e","Hub":"#0891b2"};
+const ROTULO_SQUAD = "Squad";
+const squad = a => ROTULO_SQUAD + " " + a;
+const hoje = new Date();
+const okrNome = id => (DADOS.okrs.find(o=>o.id===id)||{}).nome || "";
+
+function pctOf(t){ const p = STATUS_PCT[t.status]; return (p===undefined?0:p); }
+function ativa(t){ return t.status !== "Cancelado"; }
+const hojeISO = new Date().toISOString().slice(0,10);
+function atrasada(t){ return t.venc && t.status!=="Concluído" && t.venc < hojeISO; }
+function projPct(p){
+  let v;
+  if(p.pctLinear!=null) v=p.pctLinear; // % do milestone no Linear (report semanal)
+  else { const ts=(p.tarefas||[]).filter(ativa).filter(t=>!t.entrega); v = ts.length?Math.round(ts.reduce((s,t)=>s+(pctOf(t)||0),0)/ts.length):(p.pctManual!=null?p.pctManual:0); }
+  return v>=100?90:v; // REGRA: 100% nunca é exibido como concluído — limita a 90% (projeto segue em andamento)
+}
+function pctColor(p){ return p>=70?"var(--green)":p>=30?"var(--amber)":"var(--red)"; }
+function healthClass(h){ return h==="No prazo"?"h-ok":h==="Em risco"?"h-risco":"h-off"; }
+function healthDot(h){ return h==="No prazo"?"var(--green)":h==="Em risco"?"var(--amber)":"var(--red)"; }
+// Régua: a "situação" do deck (On track / Done / Atrasado / Pendente), calculada
+// em relação à DATA ALVO (venc). Concluído=Done · venc no passado e não concluído=Atrasado.
+function statusPill(t){
+  if(t.status==="Cancelado") return '<span class="st-empty">cancelado</span>';
+  if(t.status==="Concluído") return '<span class="pill st-done">Done</span>';
+  if(atrasada(t)) return '<span class="pill st-late">Atrasado</span>';
+  if(t.status==="Pendente"||t.status==="Triage") return '<span class="pill st-pend">Pendente</span>';
+  return '<span class="pill st-ontrack">On track</span>';
+}
+function fmt(d){ if(!d)return"—"; const [y,m,dd]=d.split("-"); return dd+"/"+m+"/"+y; }
+// Célula de Data alvo: vermelho se atrasada (passou da data e não concluída).
+function vencCell(t){ if(!t.venc) return '<span style="color:var(--muted)">A definir</span>'; return atrasada(t)?`<span style="color:var(--red);font-weight:700">${fmt(t.venc)}</span>`:fmt(t.venc); }
+
+function portfolio(){
+  let total=0,done=0,andamento=0,raid=0,ok=0,risco=0,off=0;
+  DADOS.projetos.forEach(p=>{
+    (p.tarefas||[]).forEach(t=>{ if(!ativa(t)||t.entrega)return; total++; if(t.status==="Concluído")done++; else if(["Em andamento","Em revisão","Refinado"].includes(t.status))andamento++; });
+    raid += (p.raid||[]).filter(r=>r.status!=="fechado").length;
+    if(p.health==="No prazo")ok++; else if(p.health==="Em risco")risco++; else if(p.health==="Off track")off++;
+  });
+  const deps = (DADOS.dependencias||[]).length;
+  const pct = Math.round(DADOS.projetos.reduce((s,p)=>s+projPct(p),0)/DADOS.projetos.length);
+  return {total,done,andamento,raid,deps,ok,risco,off,pct,nProj:DADOS.projetos.length};
+}
+function depBadge(s){
+  const m={"Triage":"#94a3b8","Pendente":"#92400e","A iniciar":"#005bb8","Em curso":"#166534","Concluído":"#166534"};
+  const bg={"Triage":"#f1f5f9","Pendente":"#fef3c7","A iniciar":"#dde9fa","Em curso":"#dcfce7","Concluído":"#dcfce7"};
+  return `<span class="hbadge" style="background:${bg[s]||'#f1f5f9'};color:${m[s]||'#475569'}">${s}</span>`;
+}
+
+document.getElementById('brandtxt').innerHTML = DADOS.empresa+' <span class="b">Tech</span>';
+
+function barLine(label,pc,extra){return `<div style="margin-bottom:.8rem"><div style="display:flex;justify-content:space-between;font-size:.84rem"><span style="font-weight:600;font-family:'Roboto'">${label}${extra||''}</span><span style="color:var(--muted)">${pc}%</span></div><div class="pct-bar" style="margin-top:.35rem"><i style="width:${pc}%;background:${pctColor(pc)}"></i></div></div>`;}
+
+function renderDashboard(){
+  const m=portfolio();
+  document.getElementById('view-dashboard').innerHTML = `
+    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo por squad • ${m.nProj} motores (Autopilot) • dados e reports do Linear · 19/06</div></div></div>
+    <div class="kpi-hero-sec">
+      <div class="hero"><div class="lab">% Conclusão<br>média do portfólio</div>
+        <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">${m.done} de ${m.total} tarefas detalhadas</div></div>
+        <div class="mini"><div><div class="v" style="color:#86efac">${m.ok}</div><div class="l">No prazo</div></div><div><div class="v" style="color:#fcd34d">${m.risco}</div><div class="l">Risco</div></div><div><div class="v" style="color:#fca5a5">${m.off}</div><div class="l">Off</div></div></div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="top"><span class="lab">Projetos</span><span class="ic purple">📁</span></div><div class="val">${m.nProj}</div><div class="sub">3 squads · tema Autopilot · OKR O4</div></div>
+        <div class="kpi"><div class="top"><span class="lab">No prazo</span><span class="ic green">✓</span></div><div class="val green">${m.ok}</div><div class="sub">saúde verde no Linear</div></div>
+        <div class="kpi"><div class="top"><span class="lab">Em risco</span><span class="ic amber">⚠️</span></div><div class="val amber">${m.risco}</div><div class="sub">Fiscal · DP · Contábil</div></div>
+        <div class="kpi"><div class="top"><span class="lab">Off track</span><span class="ic red">⏰</span></div><div class="val red">${m.off}</div><div class="sub">${m.off?'projetos off track':'nenhum off track'}</div></div>
+        <div class="kpi"><div class="top"><span class="lab">Bloqueios & Dependências</span><span class="ic amber">🔗</span></div><div class="val amber">${m.deps}</div><div class="sub">cross-time c/ issues no Linear</div></div>
+        <div class="kpi"><div class="top"><span class="lab">Ações de Mitigação</span><span class="ic purple">⚑</span></div><div class="val">${m.raid}</div><div class="sub">ações em aberto</div></div>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="card"><div class="card-h"><span class="l"><span class="ic">👥</span> Conclusão por squad</span></div><div class="card-b" id="bygrupo"></div></div>
+      <div class="card"><div class="card-h"><span class="l"><span class="ic">🎯</span> Conclusão por objetivo (OKR)</span></div><div class="card-b" id="byokr"></div></div>
+    </div>
+    <div class="card"><div class="card-h"><span class="l"><span class="ic">🧩</span> Conclusão por tema agregador</span><span style="font-weight:400;color:var(--muted);font-size:.78rem">Autopilot = agregação de projetos de várias squads</span></div><div class="card-b" id="bytema"></div></div>`;
+  document.getElementById('bygrupo').innerHTML = DADOS.grupos.map(g=>{
+    const ps=DADOS.projetos.filter(p=>p.grupo===g); const pc=ps.length?Math.round(ps.reduce((s,p)=>s+projPct(p),0)/ps.length):0;
+    const tms=[...new Set(ps.map(p=>p.tema).filter(Boolean))];
+    const lbl=g+(tms.length?` <span style="color:var(--purple);font-weight:600">(${tms.join(", ")})</span>`:"");
+    return barLine(lbl,pc,` <span style="color:var(--muted);font-weight:400">· ${ps.length}</span>`);
+  }).join('');
+  document.getElementById('byokr').innerHTML = DADOS.okrs.map(o=>{
+    const ps=DADOS.projetos.filter(p=>p.okr===o.id); if(!ps.length)return''; const pc=Math.round(ps.reduce((s,p)=>s+projPct(p),0)/ps.length);
+    return barLine(o.id+' · '+o.nome,pc,` <span style="color:var(--muted);font-weight:400">· ${ps.length}</span>`);
+  }).join('');
+
+  const bt=document.getElementById('bytema');
+  if(bt) bt.innerHTML=(DADOS.temas||[]).map(tm=>{ const ps=DADOS.projetos.filter(p=>p.tema===tm); const pc=ps.length?Math.round(ps.reduce((s,p)=>s+projPct(p),0)/ps.length):0; const sq=[...new Set(ps.map(p=>p.grupo))]; return barLine(tm,pc,` <span style="color:var(--muted);font-weight:400">· ${ps.length} projetos · ${sq.join(", ")}</span>`); }).join('') || '<div style="color:var(--muted);font-size:.85rem">Sem temas agregadores.</div>';
+}
+
+function renderOKR(){
+  const body = DADOS.okrs.map(o=>{
+    const ps=DADOS.projetos.filter(p=>p.okr===o.id);
+    if(!ps.length)return'';
+    const chips = ps.map(p=>`<div onclick="openDealById('${p.id}')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:.5rem;border:1px solid var(--border);border-radius:.6rem;padding:.5rem .7rem;margin-bottom:.4rem;background:#fff">
+        <span style="font-family:'Roboto';font-weight:600;font-size:.84rem">${p.nome}</span>
+        <span style="display:flex;align-items:center;gap:.5rem"><span class="hbadge ${healthClass(p.health)}">${p.health}</span><span style="font-size:.75rem;color:var(--muted)">${projPct(p)}%</span></span>
+      </div>`).join('');
+    return `<div class="card"><div class="card-h"><span class="l"><span class="okr">${o.id}</span> ${o.nome}</span><span class="card-h"></span><span style="font-size:.78rem;color:var(--muted)">${ps.length} projeto(s)</span></div><div class="card-b">${chips}</div></div>`;
+  }).join('');
+  document.getElementById('view-okr').innerHTML = `
+    <div class="pghead"><div><h1>Os grandes objetivos</h1><div class="st">Onde cada projeto entrega valor · cor = saúde no Linear</div></div></div>${body}`;
+}
+
+let EXECV = (function(){try{return localStorage.getItem('execv')||'board';}catch(e){return 'board';}})();
+function setExecV(v){ EXECV=v; try{localStorage.setItem('execv',v);}catch(e){} renderExec(); }
+function entregasOf(p){ return (p.tarefas||[]).filter(t=>t.entrega); }
+function eKids(p,ref){ return (p.tarefas||[]).filter(ativa).filter(t=>t.parent===ref); }
+function eInfo(p,e){
+  const ch=eKids(p,e.ref);
+  const done=ch.filter(c=>c.status==='Concluído').length;
+  const pct=ch.length?Math.round(ch.reduce((a,c)=>a+(pctOf(c)||0),0)/ch.length):(pctOf(e)||0);
+  const atras=atrasada(e)||ch.some(c=>atrasada(c));
+  return {ch,done,total:ch.length,pct,atras};
+}
+function execKPIs(){
+  const projs=DADOS.projetos;
+  const pct=Math.round(projs.reduce((s,p)=>s+projPct(p),0)/projs.length);
+  let atras=0; projs.forEach(p=>{(p.tarefas||[]).filter(ativa).filter(t=>!t.entrega).forEach(t=>{if(atrasada(t))atras++;});});
+  const bloq=(DADOS.dependencias||[]).length;
+  return {n:projs.length,pct,atras,bloq};
+}
+function kpiBox(l,v,c){ return `<div style="background:#f4f5f7;border:1px solid var(--border);border-radius:.7rem;padding:.7rem .9rem"><div style="font-size:.72rem;color:var(--muted)">${l}</div><div style="font-size:1.55rem;font-weight:800;color:${c||'var(--navy)'}">${v}</div></div>`; }
+function dot(c){ return `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${c}"></span>`; }
+function dateBR(d){ return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear(); }
+
+function execBoard(){
+  const projs=DADOS.projetos;
+  const cards=projs.map((p,i)=>{
+    const es=entregasOf(p); const pc=projPct(p);
+    let atras=0; (p.tarefas||[]).filter(ativa).filter(t=>!t.entrega).forEach(t=>{if(atrasada(t))atras++;});
+    const bloq=(DADOS.dependencias||[]).filter(d=>(d.projetos||[]).includes(p.id)).length;
+    const issues=(p.tarefas||[]).filter(t=>!t.entrega).length;
+    const rows=es.map(e=>{ const info=eInfo(p,e);
+      const ic=info.atras?dot('var(--red)'):info.pct>=100?dot('var(--green)'):info.pct>0?dot('var(--blue)'):dot('#cbd5e1');
+      const en=(e.nome.match(/^E\d+/)||[''])[0]; const nm=e.nome.replace(/^E\d+\s*·?\s*/,'');
+      return `<div style="display:flex;align-items:center;gap:.5rem;padding:.16rem 0;font-size:.79rem">
+        <span style="width:10px;text-align:center">${ic}</span>
+        <span style="font-weight:700;color:var(--navy);min-width:20px">${en}</span>
+        <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${e.nome}">${nm}</span>
+        <span style="width:58px"><span class="pct-bar" style="display:block;height:5px"><i style="width:${info.pct}%;background:${pctColor(info.pct)}"></i></span></span>
+        <span style="color:var(--muted);font-size:.71rem;min-width:28px;text-align:right">${info.done}/${info.total}</span></div>`;
+    }).join('');
+    return `<div class="card" style="cursor:pointer;padding:1rem 1.1rem" onclick="openDeal(${i})">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem">
+        <span class="pname" style="font-size:.95rem">${p.nome.split('—')[0].trim()}</span>
+        <span class="hbadge ${healthClass(p.health)}">${p.health}</span></div>
+      <div style="font-size:.71rem;color:var(--muted);margin:.2rem 0 .6rem">${p.grupo} · ${es.length} entregas · ${issues} issues</div>
+      <div class="pct-wrap" style="margin-bottom:.2rem"><span class="pct-bar"><i style="width:${pc}%;background:${pctColor(pc)}"></i></span><span style="font-size:.78rem;font-weight:700;color:var(--navy)">${pc}%</span></div>
+      ${p.marcoLinear?`<div style="font-size:.64rem;color:var(--muted);margin-bottom:.55rem">% Linear · ${p.marcoLinear}</div>`:'<div style="margin-bottom:.55rem"></div>'}
+      <div>${rows||'<div style="color:var(--muted);font-size:.78rem">Sem entregas cadastradas</div>'}</div>
+      <div style="margin-top:.6rem;padding-top:.5rem;border-top:1px solid var(--border);font-size:.74rem;color:var(--muted)">
+        <span style="color:${atras?'var(--red)':'var(--muted)'};font-weight:${atras?700:400}">${atras} atrasada${atras===1?'':'s'}</span> ·
+        <span style="color:${bloq?'#92400e':'var(--muted)'};font-weight:${bloq?700:400}">${bloq} bloqueio${bloq===1?'':'s'}</span></div></div>`;
+  }).join('');
+  return `<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem">${cards}</div>`;
+}
+
+function eDates(p,e,info){
+  let end = e.venc? new Date(e.venc) : null;
+  if(!end){ const cv=info.ch.map(c=>c.venc).filter(Boolean).sort(); if(cv.length) end=new Date(cv[cv.length-1]); }
+  if(!end) return null;
+  let start = e.inicio? new Date(e.inicio) : null;
+  if(!start){ const dur=(info.pct>=100?21:info.pct>0?28:14)*864e5; start=new Date(end.getTime()-dur); }
+  if(start>=end) start=new Date(end.getTime()-14*864e5);
+  return {start,end};
+}
+function execGantt(){
+  const projs=DADOS.projetos;
+  let min=null,max=null;
+  projs.forEach(p=>entregasOf(p).forEach(e=>{const info=eInfo(p,e);const d=eDates(p,e,info);if(d){if(!min||d.start<min)min=d.start;if(!max||d.end>max)max=d.end;}}));
+  const today=new Date();
+  if(!min)min=new Date(today); if(!max)max=new Date(today.getTime()+60*864e5);
+  if(today<min)min=new Date(today); if(today>max)max=new Date(today);
+  min=new Date(min.getTime()-5*864e5); max=new Date(max.getTime()+10*864e5);
+  const span=(max-min)||1;
+  const pos=d=>Math.max(0,Math.min(100,((d-min)/span)*100));
+  const MES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  const ticks=[]; let c=new Date(min.getFullYear(),min.getMonth(),1);
+  while(c<=max){ticks.push(new Date(c));c=new Date(c.getFullYear(),c.getMonth()+1,1);}
+  const tp=pos(today);
+  // ===== Ciclos (quinzenas) — EDITÁVEL: âncora = início do Ciclo 3 (08/06), 14 dias =====
+  const CIC_ANCHOR=new Date(2026,5,8), CIC_DIAS=14, CIC_NUM=3;
+  let cs0=new Date(CIC_ANCHOR); while(cs0>min) cs0=new Date(cs0.getTime()-CIC_DIAS*864e5);
+  const cics=[]; for(let cs=new Date(cs0); cs<max; cs=new Date(cs.getTime()+CIC_DIAS*864e5)){
+    const num=CIC_NUM+Math.round((cs-CIC_ANCHOR)/(CIC_DIAS*864e5));
+    if(num>=1) cics.push({s:new Date(cs), e:new Date(cs.getTime()+CIC_DIAS*864e5), num});
+  }
+  const curCic=cics.find(k=>k.s<=today&&today<k.e);
+  const cicShade=cics.map((k,i)=> (k===curCic)
+    ? `<div style="position:absolute;left:${pos(k.s)}%;width:${pos(k.e)-pos(k.s)}%;top:0;bottom:0;background:rgba(1,113,228,.07)"></div>`
+    : (i%2 ? `<div style="position:absolute;left:${pos(k.s)}%;width:${pos(k.e)-pos(k.s)}%;top:0;bottom:0;background:rgba(15,23,42,.022)"></div>` : '')).join('');
+  const cicLines=cics.map(k=>`<div style="position:absolute;left:${pos(k.s)}%;top:0;bottom:0;border-left:1px dashed var(--border)"></div>`).join('');
+  const cicLab=cics.map(k=>{const c=(pos(k.s)+pos(k.e))/2; return `<div style="position:absolute;left:${c}%;bottom:4px;transform:translateX(-50%);font-size:.6rem;font-weight:700;color:${k===curCic?'var(--blue)':'#94a3b8'}">C${k.num}</div>`;}).join('');
+  const grid=ticks.map(t=>`<div style="position:absolute;left:${pos(t)}%;top:0;bottom:0;width:1px;background:var(--border)"></div>`).join('');
+  const hdr=ticks.map(t=>`<div style="position:absolute;left:${pos(t)}%;top:4px;font-size:.68rem;font-weight:700;color:var(--navy);transform:translateX(3px)">${MES[t.getMonth()]}${t.getMonth()===0?'/'+String(t.getFullYear()).slice(2):''}</div>`).join('');
+  let L='', R='';
+  L+=`<div style="height:46px"></div>`;
+  R+=`<div style="position:relative;height:46px;border-bottom:1px solid var(--border)">${hdr}${cicLab}</div>`;
+  projs.forEach(p=>{
+    L+=`<div style="height:24px;display:flex;align-items:flex-end;font-weight:700;font-size:.67rem;color:var(--muted);letter-spacing:.03em">${p.nome.split('—')[0].trim().toUpperCase()}</div>`;
+    R+=`<div style="height:24px"></div>`;
+    entregasOf(p).forEach(e=>{const info=eInfo(p,e);const d=eDates(p,e,info);
+      const en=(e.nome.match(/^E\d+/)||[''])[0]; const nm=e.nome.replace(/^E\d+\s*·?\s*/,'');
+      const eLate = info.atras;
+      const doneLate = info.pct>=100 && e.venc && e.venc < hojeISO;
+      const col=eLate?'var(--red)':info.pct>=100?'var(--green)':info.pct>0?'var(--blue)':'#94a3b8';
+      L+=`<div style="height:21px;display:flex;align-items:center;font-size:.74rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${e.nome}"><b style="color:var(--navy);margin-right:.3rem">${en}</b>${nm}</div>`;
+      let bar;
+      if(d){const l=pos(d.start),w=Math.max(2.5,pos(d.end)-pos(d.start));
+        bar=`<div style="position:absolute;left:${l}%;width:${w}%;top:4px;height:12px;border-radius:4px;background:${col};opacity:${info.pct>0?1:.5};${doneLate?'box-shadow:0 0 0 1.5px var(--red)':''}" title="${dateBR(d.start)} → ${dateBR(d.end)}${doneLate?' · concluída em atraso':''}"></div><div style="position:absolute;left:${l}%;margin-left:calc(${w}% + 5px);top:3px;font-size:.65rem;color:var(--muted);white-space:nowrap"><b style="color:var(--navy)">${info.pct}%</b> · ${info.done}/${info.total}</div>`;
+      } else { bar=`<div style="position:absolute;left:${tp}%;top:3px;margin-left:5px;font-size:.65rem;color:var(--muted);font-style:italic">a definir</div>`; }
+      R+=`<div style="position:relative;height:21px">${bar}</div>`;
+    });
+  });
+  return `<div class="card" style="overflow-x:auto;padding:1rem 1.1rem">
+    <div style="display:grid;grid-template-columns:185px 1fr;min-width:640px">
+      <div>${L}</div>
+      <div style="position:relative">${cicShade}${cicLines}${grid}<div style="position:absolute;left:${tp}%;top:0;bottom:0;width:2px;background:var(--blue);opacity:.55;z-index:3"></div>${R}</div>
+    </div></div>
+  <div class="legend"><span>${dot('var(--green)')}&nbsp;Concluída no prazo</span><span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 1.5px var(--red)"></span>&nbsp;Concluída em atraso</span><span>${dot('var(--blue)')}&nbsp;Em andamento</span><span>${dot('#94a3b8')}&nbsp;Pendente</span><span>${dot('var(--red)')}&nbsp;Atrasada</span><span style="color:var(--muted)"><span style="display:inline-block;width:2px;height:11px;background:var(--blue);vertical-align:-1px;margin-right:4px"></span>hoje (${dateBR(today)})</span><span style="color:var(--muted)">C# = ciclo (quinzena) · faixa azul = ciclo atual</span></div>
+  <div class="note">Datas reais das issues do Linear (Start/Due date), agregadas por entrega: <b>início</b> = menor data das filhas · <b>data alvo</b> = maior due das filhas. Entregas sem data alvo no Linear aparecem como “a definir”. Ciclos = quinzenas (C3 = 08–22/06); a âncora é configurável no código do Gantt.</div>`;
+}
+
+function execMatriz(){
+  const projs=DADOS.projetos.filter(p=>(p.tarefas||[]).length);
+  let n=0, rows='';
+  DADOS.areas.forEach(area=>{
+    const tasksArea=[];
+    projs.forEach((p,pi)=>p.tarefas.filter(ativa).filter(t=>t.area===area&&!t.entrega).forEach(t=>tasksArea.push({t,pi})));
+    if(!tasksArea.length)return;
+    rows+=`<tr class="area-band"><td colspan="${2+projs.length}"><span class="adot" style="background:${AREA_COLORS[area]||'#888'}"></span>${squad(area)}</td></tr>`;
+    tasksArea.forEach(({t,pi})=>{ n++;
+      let cells=''; projs.forEach((p,j)=>{ cells+=`<td class="st">${j===pi?statusPill(t):'<span class="st-empty">—</span>'}</td>`; });
+      rows+=`<tr><td class="num">${n}</td><td><span class="ref">${t.ref}</span>${t.nome}</td>${cells}</tr>`;
+    });
+  });
+  return `<div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Tarefa</th>${projs.map(p=>`<th style="text-align:center;min-width:120px">${p.nome.split('—')[0].trim()}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="legend"><span><i style="background:var(--blue)"></i>On track</span><span><i style="background:var(--green)"></i>Done</span><span><i style="background:var(--red)"></i>Atrasado</span><span><i style="background:#94a3b8"></i>Pendente</span><span><i style="background:#efece2"></i>— sem a tarefa no projeto</span></div>`;
+}
+
+function renderExec(){
+  const k=execKPIs();
+  const seg=(v,lab)=>`<span onclick="setExecV('${v}')" class="fchip ${EXECV===v?'on':''}">${lab}</span>`;
+  let body;
+  if(EXECV==='gantt') body=execGantt();
+  else if(EXECV==='matriz') body=execMatriz();
+  else body=execBoard();
+  document.getElementById('view-exec').innerHTML = `
+    <div class="pghead"><div><h1>Visão Executiva — Autopilot</h1><div class="st">${k.n} motores · avanço médio ${k.pct}% · ${k.atras} atrasadas · ${k.bloq} bloqueios</div></div></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:1.1rem">
+      ${kpiBox('Motores',k.n,'')}${kpiBox('Avanço geral',k.pct+'%','')}${kpiBox('Atrasadas',k.atras,k.atras?'var(--red)':'')}${kpiBox('Bloqueios',k.bloq,k.bloq?'#92400e':'')}
+    </div>
+    <div class="chips" style="margin-bottom:1rem">${seg('board','▦ Board por motor')}${seg('gantt','▭ Gantt de entregas')}${seg('matriz','▤ Matriz tarefa × projeto')}</div>
+    ${body}`;
+}
+
+function dealMetrics(p){
+  const ts=(p.tarefas||[]).filter(ativa).filter(t=>!t.entrega);
+  const done=ts.filter(t=>t.status==='Concluído').length;
+  const atras=ts.filter(t=>atrasada(t)).length;
+  const bloq=(DADOS.dependencias||[]).filter(d=>(d.projetos||[]).includes(p.id)).length;
+  return {total:ts.length, done, atras, bloq, pct:projPct(p)};
+}
+function renderProjetos(){
+  let rows='', n=0;
+  DADOS.grupos.forEach(g=>{
+    const ps=DADOS.projetos.map((p,i)=>({p,i})).filter(x=>x.p.grupo===g);
+    if(!ps.length)return;
+    const _tms=[...new Set(ps.map(x=>x.p.tema).filter(Boolean))];
+    const _chips=_tms.map(t=>`<span style="background:#ede9fe;color:#5b21b6;padding:.08rem .5rem;border-radius:99px;font-size:.64rem;font-weight:700;margin-left:.3rem;vertical-align:middle">${t}</span>`).join("");
+    rows+=`<tr class="grp-band"><td colspan="10">👥 Squad ${g}${_chips} <span style="font-weight:400;opacity:.7">· ${ps.length}</span></td></tr>`;
+    ps.forEach(({p,i})=>{ n++; const m=dealMetrics(p);
+      rows+=`<tr class="proj-row" onclick="openDeal(${i})">
+        <td class="num">${n}</td>
+        <td><span class="pname">${p.nome}</span><div style="margin-top:.25rem"><span class="okr">${p.okr} · ${okrNome(p.okr)}</span>${p.tema?` <span class="okr" style="background:var(--navy);color:#fff">🧩 ${p.tema}</span>`:""} <span class="hbadge ${healthClass(p.health)}">${p.health}</span></div></td>
+        <td style="white-space:nowrap">${p.inicio?fmt(p.inicio):'—'}</td>
+        <td style="white-space:nowrap">${p.alvo?fmt(p.alvo):'<span style="color:var(--muted)">A definir</span>'}</td>
+        <td style="text-align:center">${m.total||'—'}</td>
+        <td><div class="pct-wrap"><div class="pct-bar"><i style="width:${m.pct}%;background:${pctColor(m.pct)}"></i></div><span style="font-size:.75rem;color:var(--muted)">${m.pct}%</span></div></td>
+        <td style="text-align:center;color:var(--green);font-weight:700">${m.done||'—'}</td>
+        <td style="text-align:center;font-weight:700;color:${m.atras?'var(--red)':'var(--muted)'}">${m.atras||'—'}</td>
+        <td style="text-align:center;font-weight:700;color:${m.bloq?'#92400e':'var(--muted)'}">${m.bloq||'—'}</td>
+        <td><span class="open-hint">→</span></td></tr>`;});
+  });
+  document.getElementById('view-projetos').innerHTML = `
+    <div class="pghead"><div><h1>Projetos — ${DADOS.workspace}</h1><div class="st">Visão consolidada · ${DADOS.projetos.length} projetos · clique para abrir o detalhe</div></div></div>
+    <div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Projeto / OKR</th><th>Início</th><th style="white-space:nowrap">Alvo</th><th style="text-align:center">Tasks</th><th style="width:150px">%</th><th style="text-align:center">Done</th><th style="text-align:center">Atrasadas</th><th style="text-align:center">Bloqueios</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function raidCard(r){
+  const asp=(k,cls,v)=>v?`<div class="aspect"><span class="k ${cls}">${k}</span><span>${v}</span></div>`:'';
+  return `<div class="raid"><div class="rtitle">${r.titulo} ${sevBadge(r.severidade||'—')}</div>
+    <div class="meta"><span>📂 ${r.area||'—'}</span><span>👤 ${r.owner||'—'}</span><span>📅 ${fmt(r.venc)}</span><span>● ${r.status||'aberto'}</span></div>
+    ${asp('Risco','k-r',r.risco)}${asp('Impedimento','k-i',r.impedimento)}${asp('Decisão','k-d',r.decisao)}${asp('Premissa','k-p',r.premissa)}${asp('Mitigação','k-m',r.mitigacao)}</div>`;
+}
+function dealSinergias(p){
+  if(!p.sinergias||!p.sinergias.length) return '<div class="empty"><div class="eic">📈</div><div style="font-family:\'Roboto\';font-weight:600;color:var(--navy)">Sem sinergias cadastradas</div></div>';
+  return '<table><thead><tr><th>Sinergia</th><th>Tipo</th><th>Planejado</th><th>Realizado</th></tr></thead><tbody>'+
+    p.sinergias.map(s=>`<tr><td>${s.nome||''}</td><td>${s.tipo||''}</td><td>R$ ${(s.planejado||0).toLocaleString('pt-BR')}</td><td>R$ ${(s.realizado||0).toLocaleString('pt-BR')}</td></tr>`).join('')+'</tbody></table>';
+}
+
+let DEAL=0;
+let DEALF={status:'all', area:'', owner:''};
+function openDeal(i){ DEAL=i; DEALF={status:'all', area:'', owner:''}; renderDeal(); go('deal'); }
+function openDealById(id){ const i=DADOS.projetos.findIndex(p=>p.id===id); if(i>=0) openDeal(i); }
+function setDF(k,v){ DEALF[k]=v; renderDeal(); }
+function setDFtab(){ renderDeal(); const b=document.querySelector('#view-deal .subtab[data-s="b"]'); if(b) b.click(); }
+function renderDeal(){
+  const p=DADOS.projetos[DEAL]; const pc=projPct(p);
+  const allT=(p.tarefas||[]).filter(ativa);
+  const leaf=allT.filter(t=>!t.entrega);
+  const cnt={all:leaf.length,done:leaf.filter(t=>t.status==='Concluído').length,ontrack:leaf.filter(t=>!atrasada(t)&&t.status!=='Concluído'&&!['Pendente','Triage'].includes(t.status)).length,atras:leaf.filter(t=>atrasada(t)).length};
+  const bloqCount=(DADOS.dependencias||[]).filter(d=>(d.projetos||[]).includes(p.id)).length;
+  const owners=[...new Set(leaf.map(t=>t.owner).filter(o=>o&&o!=='—'))];
+  function passF(t){ if(DEALF.area&&t.area!==DEALF.area)return false; if(DEALF.owner&&(t.owner||'—')!==DEALF.owner)return false; if(DEALF.status==='done')return t.status==='Concluído'; if(DEALF.status==='atras')return atrasada(t); if(DEALF.status==='ontrack')return !atrasada(t)&&t.status!=='Concluído'&&!['Pendente','Triage'].includes(t.status); return true; }
+  const chip=(k,lab,nv)=>`<span onclick="setDF('status','${k}')" class="fchip ${DEALF.status===k?'on':''}">${lab} ${nv}</span>`;
+  const chipsBar=`<div class="chips">${chip('all','Todas',cnt.all)}${chip('done','Done',cnt.done)}${chip('ontrack','On Track',cnt.ontrack)}${chip('atras','Atrasadas',cnt.atras)}<span class="fchip" onclick="setDFtab()">Bloqueio ${bloqCount}</span><select onchange="setDF('area',this.value)"><option value="">Todas as áreas</option>${DADOS.areas.map(a=>`<option ${DEALF.area===a?'selected':''}>${a}</option>`).join('')}</select><select onchange="setDF('owner',this.value)"><option value="">Todos os owners</option>${owners.map(o=>`<option ${DEALF.owner===o?'selected':''}>${o}</option>`).join('')}</select></div>`;
+  const vis=t=>passF(t);
+  const childrenOf=ref=>allT.filter(t=>t.parent===ref);
+  const ePct=t=>{const ch=childrenOf(t.ref).filter(ativa);return ch.length?Math.round(ch.reduce((a,c)=>a+(pctOf(c)||0),0)/ch.length):(pctOf(t)||0);};
+  const trow=(t,oo)=>{oo=oo||{};const pct=oo.epct!=null?oo.epct:(pctOf(t)||0);const ind=oo.child?'padding-left:2.4rem':'';const mk=oo.child?'<span style="color:#cbd2dd;margin-right:.45rem">└─</span>':'';const nm=oo.parent?('<b>'+t.nome+'</b>'):t.nome;const eb=oo.parent?' <span class="okr" style="background:var(--navy);color:#fff">entrega</span>':'';return `<tr${oo.child?' style="background:#fcfbf7"':''}><td class="num">${oo.num||''}</td><td style="${ind}">${mk}<span class="ref">${t.ref}</span>${nm}${eb}</td><td>${t.owner||'—'}</td><td style="white-space:nowrap">${vencCell(t)}</td><td class="st">${statusPill(t)}</td><td><div class="pct-wrap"><div class="pct-bar"><i style="width:${pct}%;background:${pctColor(pct)}"></i></div><span style="font-size:.75rem;color:var(--muted)">${pct}%</span></div></td></tr>`;};
+  let trows='',n=0;
+  allT.filter(t=>t.entrega||!t.parent).forEach(t=>{
+    if(t.entrega){const ch=childrenOf(t.ref);const chV=ch.filter(vis);if(!vis(t)&&!chV.length)return;n++;trows+=trow(t,{num:n,parent:true,epct:ePct(t)});chV.forEach(c=>{trows+=trow(c,{child:true});});}
+    else{if(!vis(t))return;n++;trows+=trow(t,{num:n});}
+  });
+  if(!(p.tarefas||[]).length) trows=`<tr><td colspan="5"><div class="empty"><div class="eic">🗂️</div><div style="font-family:'Roboto';font-weight:600;color:var(--navy)">${p.statusProjeto}</div><div style="font-size:.8rem;margin-top:.3rem">Acompanhamento a nível de projeto — tarefas detalhadas entram com o sync do Linear.</div></div></td></tr>`;
+  const raidHtml=(p.raid&&p.raid.length)?p.raid.map(raidCard).join(''):`<div class="empty"><div class="eic">⚑</div><div style="font-family:'Roboto';font-weight:600;color:var(--navy)">Nenhuma ação de mitigação</div></div>`;
+  const pdeps=(DADOS.dependencias||[]).filter(d=>(d.projetos||[]).includes(p.id));
+  const depsHtml = pdeps.length ? ('<div class="card" style="overflow-x:auto"><table><thead><tr><th>Dependência</th><th style="width:64px">Tipo</th><th>Fluxo</th><th>Issues</th><th>Responsável</th><th style="width:100px">Data alvo</th><th style="width:110px">Status</th></tr></thead><tbody>'+pdeps.map(d=>`<tr style="${d.critico?'box-shadow:inset 3px 0 0 var(--red)':''}"><td><b>${d.nome}</b>${d.critico?' <span class="hbadge h-off">\u26a0 crítico</span>':''}<div style="font-size:.76rem;color:var(--muted);margin-top:.2rem">${d.desc||''}</div></td><td class="st">${tipoChip(d.tipo)}</td><td style="white-space:nowrap"><span class="okr" style="background:#e8f0fd;color:#005bb8">${d.fluxo}</span></td><td>${(d.refs||[]).map(r=>`<span class="ref">${r}</span>`).join(' ')||'\u2014'}</td><td>${d.responsavel||'\u2014'}</td><td style="white-space:nowrap">${d.venc?fmt(d.venc):'<span style="color:var(--muted)">A definir</span>'}</td><td class="st">${depBadge(d.status)}</td></tr>`).join('')+'</tbody></table></div>') : '<div class="empty"><div class="eic">\ud83d\udd17</div><div style="font-family:\'Roboto\';font-weight:600;color:var(--navy)">Sem bloqueios/dependências neste projeto</div></div>';
+  document.getElementById('view-deal').innerHTML = `
+    <span class="back" onclick="go('projetos')">← Voltar para Projetos</span>
+    <div class="pghead"><div><h1>${p.nome}</h1><div class="st">Squad ${p.grupo} · ${p.iniciativa||''} · lead ${p.lead||'—'} · ${fmt(p.inicio)} → ${fmt(p.alvo)}</div></div>
+      <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap"><span class="okr">${p.okr} · ${okrNome(p.okr)}</span><span class="hbadge ${healthClass(p.health)}">${p.health}</span></div></div>
+    ${p.marco?`<div class="mstone"><div class="mp">${pc}%</div><div style="flex:1"><div style="font-family:'Roboto';font-weight:600">${p.marco}</div><div style="font-size:.78rem;color:var(--muted)">Alvo ${fmt(p.alvo)}</div><div class="pct-bar" style="margin-top:.4rem"><i style="width:${pc}%;background:${pctColor(pc)}"></i></div></div></div>`:''}
+    ${p.progresso?`<div class="note"><b>Status da semana:</b> ${p.progresso}</div>`:''}
+    <div class="subtabs"><div class="subtab active" data-s="t">Tarefas</div><div class="subtab" data-s="b">Bloqueios</div><div class="subtab" data-s="r">Ações de Mitigação</div><div class="subtab" data-s="s">Sinergias</div><div class="subtab" data-s="h">Health</div></div>
+    <div class="subview active" id="sub-t">${chipsBar}<div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Tarefa (passo)</th><th>Responsável</th><th style="width:120px">Data alvo</th><th style="width:120px">Situação</th><th style="width:150px">% Conclusão</th></tr></thead><tbody>${trows}</tbody></table></div>
+      <div class="legend"><span><i style="background:var(--blue)"></i>On track</span><span><i style="background:var(--green)"></i>Done</span><span><i style="background:var(--red)"></i>Atrasado (passou da data alvo)</span><span><i style="background:#94a3b8"></i>Pendente</span></div></div>
+    <div class="subview" id="sub-r"><div class="card"><div class="card-b">${raidHtml}</div></div></div>
+    <div class="subview" id="sub-b">${depsHtml}</div>
+    <div class="subview" id="sub-s"><div class="card"><div class="card-b">${dealSinergias(p)}</div></div></div>
+    <div class="subview" id="sub-h"><div class="card"><div class="card-b"><div style="display:flex;align-items:center;gap:.8rem"><span class="hbadge ${healthClass(p.health)}">${p.health}</span><span style="font-size:.85rem;color:var(--muted)">Farol do projeto (report semanal). Conclusão atual: ${pc}%.</span></div>${p.progresso?`<p style="font-size:.85rem;margin:.6rem 0 0">${p.progresso}</p>`:''}</div></div></div>`;
+  document.querySelectorAll('#view-deal .subtab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('#view-deal .subtab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
+    document.querySelectorAll('#view-deal .subview').forEach(s=>s.classList.remove('active'));
+    document.getElementById('sub-'+t.dataset.s).classList.add('active');
+  }));
+}
+
+const TIPO_LABEL = {FS:"Finish→Start", FF:"Finish→Finish", SS:"Start→Start", SF:"Start→Finish"};
+function tipoChip(t){ return `<span class="okr" style="background:#f1f5f9;color:#475569" title="${TIPO_LABEL[t]||t}">${t}</span>`; }
+function renderDeps(){
+  const deps = DADOS.dependencias||[];
+  const crit = deps.filter(d=>d.critico).length;
+  const grupos = [...new Set(deps.map(d=>d.categoria))];
+  let body='';
+  grupos.forEach(cat=>{
+    const ds=deps.filter(d=>d.categoria===cat);
+    let rows=ds.map(d=>`<tr style="${d.critico?'box-shadow:inset 3px 0 0 var(--red)':''}">
+      <td><span class="pname">${d.nome}</span>${d.critico?' <span class="hbadge h-off">⚠ Caminho crítico</span>':''}<div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">${d.desc||''}</div></td>
+      <td class="st">${tipoChip(d.tipo)}</td>
+      <td style="white-space:nowrap"><span class="okr" style="background:#e8f0fd;color:#005bb8">${d.fluxo}</span></td>
+      <td>${(d.refs||[]).map(r=>`<span class="ref">${r}</span>`).join(' ')||'<span style="color:var(--muted)">—</span>'}</td>
+      <td>${d.responsavel||'—'}</td>
+      <td style="white-space:nowrap">${d.venc?fmt(d.venc):'<span style="color:var(--muted)">A definir</span>'}</td>
+      <td class="st">${depBadge(d.status)}</td></tr>`).join('');
+    body+=`<div class="card"><div class="card-h"><span class="l"><span class="ic">🔗</span> ${cat} <span style="font-weight:400;color:var(--muted);font-size:.78rem">· ${ds.length}</span></span></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>Dependência (predecessor → sucessor)</th><th style="width:64px">Tipo</th><th>Fluxo</th><th>Issues no Linear</th><th>Responsável</th><th style="width:110px">Data alvo</th><th style="width:110px">Status</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+  });
+  document.getElementById('view-deps').innerHTML = `
+    <div class="pghead"><div><h1>Bloqueios & Dependências</h1><div class="st">${deps.length} dependências cross-time com issues no Linear · <b style="color:var(--red)">${crit}</b> no caminho crítico</div></div></div>
+    ${body}
+    <div class="note"><b>Tipo</b> (predecessor → sucessor): <b>FS</b> Finish→Start (mais comum — a predecessora termina p/ a sucessora começar) · <b>FF</b> · <b>SS</b> · <b>SF</b>.<br><b>Status</b>: Triage (triagem) · Pendente (backlog priorizado) · A iniciar (tem dono, não começou) · Em curso (em execução). Linha com borda vermelha = <b>caminho crítico</b>.</div>`;
+}
+
+function sevBadge(sv){ const m={"Alta":["#fee2e2","#991b1b"],"Média":["#fef3c7","#92400e"],"Baixa":["#dbeafe","#1e40af"]}; const c=m[sv]||["#f1f5f9","#475569"]; return `<span class="hbadge" style="background:${c[0]};color:${c[1]}">${sv}</span>`; }
+const TIPO_RAID={risco:"Risco",impedimento:"Impedimento",decisao:"Decisão",premissa:"Premissa"};
+let RAIDF='abertos';
+function setRAIDF(v){ RAIDF=v; renderRaid(); }
+function renderRaid(){
+  const items=[]; DADOS.projetos.forEach((p,i)=>(p.raid||[]).forEach(r=>items.push({r,proj:p.nome,pi:i})));
+  const open=items.filter(x=>(x.r.status||'aberto')!=='fechado');
+  const closed=items.filter(x=>(x.r.status||'aberto')==='fechado');
+  const list=RAIDF==='fechados'?closed:open;
+  const rows=list.length?list.map((x,n)=>{const r=x.r;return `<tr class="proj-row" onclick="openDeal(${x.pi})">
+      <td class="num">${n+1}</td>
+      <td><b>${r.titulo}</b>${r.tipo?` <span class="okr" style="background:#ede9fe;color:#5b21b6">${TIPO_RAID[r.tipo]||r.tipo}</span>`:''}</td>
+      <td>${x.proj.split('—')[0].trim()}</td>
+      <td>${r.area||'—'}</td>
+      <td class="st">${sevBadge(r.severidade||'—')}</td>
+      <td class="st">${(r.status||'aberto')==='fechado'?'<span class="hbadge h-ok">Fechado</span>':'<span class="hbadge h-risco">Aberto</span>'}</td>
+      <td>${r.owner||'—'}</td>
+      <td>${(r.refs||[]).map(x=>`<span class="ref">${x}</span>`).join(' ')||'—'}</td>
+      <td style="text-align:center">${r.participantes?('👥 '+r.participantes):'—'}</td>
+      <td style="white-space:nowrap">${r.venc?fmt(r.venc):'<span style="color:var(--muted)">A definir</span>'}</td></tr>`;}).join('')
+    :`<tr><td colspan="10"><div class="empty"><div class="eic">⚑</div><div style="font-family:'Roboto';font-weight:600;color:var(--navy)">Nenhuma ação ${RAIDF==='fechados'?'fechada':'aberta'}</div></div></td></tr>`;
+  document.getElementById('view-raid').innerHTML = `
+    <div class="pghead"><div><h1>Ações de Mitigação</h1><div class="st">Riscos · Premissas · Impedimentos · Decisões — clique para abrir o projeto</div></div></div>
+    <div class="chips"><span class="fchip ${RAIDF!=='fechados'?'on':''}" onclick="setRAIDF('abertos')">✔ Todos abertos ${open.length}</span><span class="fchip ${RAIDF==='fechados'?'on':''}" onclick="setRAIDF('fechados')">Fechados ${closed.length}</span></div>
+    <div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Título</th><th>Projeto afetado</th><th>Área</th><th>Severidade</th><th>Status</th><th>Owner</th><th>Issues</th><th style="text-align:center">Particip.</th><th style="width:110px">Prazo</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+/* ===== Report Semanal (Project Updates do Linear) ===== */
+function rEsc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function mdInline(t){
+  t=rEsc(t);
+  t=t.replace(/\\([\\`*_{}\[\]()#+\-.!~|])/g,'$1');
+  t=t.replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g,'<a href="$2" target="_blank" style="color:var(--blue)">$1</a>');
+  t=t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+  t=t.replace(/`([^`]+)`/g,'<code style="background:#f1f0ea;padding:0 .25rem;border-radius:3px">$1</code>');
+  return t;
+}
+function repTable(rows){
+  const cells=rows.map(r=>r.replace(/^\s*\|/,'').replace(/\|\s*$/,'').split('|').map(c=>c.trim()));
+  const body=cells.filter(r=>!r.every(c=>/^[-: ]*$/.test(c)));
+  if(!body.length) return '';
+  const head=body[0], rest=body.slice(1);
+  return '<table style="width:100%;border-collapse:collapse;font-size:.78rem;margin:.4rem 0"><thead><tr>'+head.map(c=>'<th style="text-align:left;border-bottom:1px solid var(--border);padding:.3rem .4rem;color:var(--muted)">'+mdInline(c)+'</th>').join('')+'</tr></thead><tbody>'+rest.map(r=>'<tr>'+r.map(c=>'<td style="border-bottom:1px solid var(--border);padding:.3rem .4rem;vertical-align:top">'+mdInline(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+}
+function mdLite(md){
+  const lines=md.split('\n'); let html='', i=0, inUl=false;
+  const closeUl=()=>{if(inUl){html+='</ul>';inUl=false;}};
+  while(i<lines.length){
+    let ln=lines[i];
+    if(ln.indexOf('|')>=0 && ln.split('|').length>2){
+      const tb=[]; while(i<lines.length && lines[i].indexOf('|')>=0){tb.push(lines[i]);i++;}
+      closeUl(); html+=repTable(tb); continue;
+    }
+    if(/^#{1,4}\s/.test(ln)){ closeUl(); const lvl=ln.match(/^#+/)[0].length; html+='<div style="font-family:Roboto;font-weight:700;font-size:'+(lvl<=2?'.95rem':'.85rem')+';margin:.7rem 0 .3rem">'+mdInline(ln.replace(/^#{1,4}\s/,''))+'</div>'; i++; continue; }
+    if(/^\s*[*\-]\s+/.test(ln)){ if(!inUl){html+='<ul style="margin:.2rem 0 .5rem;padding-left:1.1rem">';inUl=true;} html+='<li style="margin:.15rem 0">'+mdInline(ln.replace(/^\s*[*\-]\s+/,''))+'</li>'; i++; continue; }
+    if(ln.trim()===''){ closeUl(); i++; continue; }
+    closeUl(); html+='<p style="margin:.35rem 0">'+mdInline(ln)+'</p>'; i++;
+  }
+  closeUl(); return html;
+}
+let REPF='all';
+function setREPF(v){ REPF=v; renderReports(); }
+function renderReports(){
+  const projs=DADOS.projetos;
+  const all=(typeof REPORTS!=='undefined'?REPORTS:[]);
+  const chips='<div class="chips" style="margin-bottom:1rem"><span class="fchip '+(REPF==='all'?'on':'')+'" onclick="setREPF(\'all\')">Todos</span>'+projs.map(p=>'<span class="fchip '+(REPF===p.id?'on':'')+'" onclick="setREPF(\''+p.id+'\')">'+p.nome.split('—')[0].trim()+'</span>').join('')+'</div>';
+  let body='';
+  projs.forEach(p=>{
+    if(REPF!=='all'&&REPF!==p.id)return;
+    const reps=all.filter(r=>r.proj===p.id).sort((a,b)=>b.data.localeCompare(a.data));
+    if(!reps.length)return;
+    body+='<div style="margin:1.3rem 0 .5rem;display:flex;align-items:center;gap:.6rem"><span class="adot" style="background:'+(AREA_COLORS[p.grupo]||'#888')+'"></span><span style="font-family:Roboto;font-weight:700;font-size:1rem">'+p.nome.split('—')[0].trim()+'</span><span class="hbadge '+healthClass(p.health)+'">'+p.health+'</span><span style="font-size:.74rem;color:var(--muted)">'+reps.length+' report(s)</span></div>';
+    reps.forEach((r,idx)=>{ const open=idx===0;
+      body+='<div class="card" style="margin-bottom:.7rem;padding:.85rem 1.1rem">'
+        +'<div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="var b=this.nextElementSibling;b.style.display=b.style.display===\'none\'?\'block\':\'none\'">'
+        +'<span style="font-family:Roboto;font-weight:700">📅 '+fmt(r.data)+'</span>'
+        +'<span style="display:flex;gap:.5rem;align-items:center"><span class="hbadge '+healthClass(r.health)+'">'+r.health+'</span><span style="font-size:.72rem;color:var(--muted)">'+(r.autor||'')+'</span></span></div>'
+        +'<div style="display:'+(open?'block':'none')+';margin-top:.6rem;font-size:.85rem;line-height:1.55;border-top:1px solid var(--border);padding-top:.6rem">'+mdLite(r.body)+'</div></div>';
+    });
+  });
+  if(!body) body='<div class="empty"><div class="eic">📝</div><div style="font-family:Roboto;font-weight:600;color:var(--navy)">Sem reports cadastrados</div></div>';
+  document.getElementById('view-reports').innerHTML='<div class="pghead"><div><h1>Report Semanal</h1><div class="st">Project Updates do Linear · texto idêntico ao Linear · histórico por semana · clique na data para abrir/fechar</div></div></div>'+chips+body;
+}
+
+function go(v){
+  document.querySelectorAll('.view').forEach(s=>s.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active', a.dataset.v===v));
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>go(a.dataset.v)));
+
+renderDashboard(); renderOKR(); renderExec(); renderProjetos(); renderRaid(); renderReports();
+</script>
+</body>
+</html>
