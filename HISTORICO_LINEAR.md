@@ -9,6 +9,20 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-19 · ~20h UTC — alinhamento com o Weekly Tech (4 projetos novos) + ajustes visuais · ⏱ ~7 min
+
+Comparação do painel (10) com o deck Weekly Tech 19/06 (13 projetos): faltavam 4 projetos, todos em status **"Ideia"/backlog** no Linear (por isso não tinham entrado no painel, que cobria os em execução). Adicionados ao Portfólio (agora 14 entradas — o deck conta 13 porque agrupa os 2 GDocs como um só "Cockpit 100%"):
+- **PMI Digital — completude + handshake M&A** (O1, Cockpit) — 🔴 Off track (bloqueado desde 01/06, despriorizado).
+- **Cockpit 100% — mapa de completude PJ/PF/Foreign** (O3, Cockpit) — 🟢 No prazo · M1 8%.
+- **Cadastro Único de Cliente — entidade canônica** (O3, Cockpit) — 🟢 No prazo · M1 1/4.
+- **Hubcount — relatórios customizáveis** (O5, Contábil) — 🟢 No prazo · pré-Spec (M1 15/07).
+
+Resultado: Dashboard agora **7 No prazo · 6 Em risco · 1 bloqueado**, batendo com o deck. Marcos dos 4 vieram de `list_milestones`; entram na Matriz (área = squad). Observação: o rótulo "Cockpit 100%" no deck é sobrecarregado — aparece para os GDocs (slide 5) e para a completude cadastral/bancária (slide 12); no Linear são projetos distintos.
+
+Ajustes visuais: **Matriz mais compacta** (colunas/pílulas estreitas, classe `.mtx`) para caber os ~14 projetos; **legenda do Dashboard** com mais contraste (branco .72); **cor do squad Contábil** trocada para violeta (#7c3aed), distinta do ciano do Hub. Também: "report"→"reporte" em todos os textos visíveis e **clique no nome do projeto no Reporte Semanal** abre a aba do projeto.
+
+---
+
 ## 2026-06-19 · ~19h UTC — ajustes de visualização (Matriz + Gantt + Dashboard + Sinergias) · ⏱ ~5 min
 
 Mudanças estruturais nos painéis (marcos reais lidos do Linear via `list_milestones`):

@@ -265,6 +265,50 @@ const DADOS = {
       progresso:"Operador vê no Cockpit a timeline de cada envio (entregue/aberto/clicado) por destinatário, sem depender de outras áreas. Fase de adoção.",
       tarefas:[], marcos:[{ref:"GD2.M1", area:"Hub", nome:"Acompanhamento de envio no ar (timeline por destinatário)", status:"Concluído"}], raid:[], sinergias:[]
     },
+    {
+      id:"pmi-digital", grupo:"Cockpit", okr:"O1", health:"Off track", pctLinear:0, marcoLinear:"Bloqueado desde 01/06 — despriorizado (sem previsão de retomada)",
+      nome:"PMI Digital — completude + handshake M&A", lead:"Ana Caroline", iniciativa:"Aquisição & PMI", statusProjeto:"Ideia / Bloqueado", inicio:"2026-05-01", alvo:"2026-07-31",
+      marco:"ATO 0 Pré-requisitos (15/06) — projeto bloqueado",
+      progresso:"Bloqueado desde 01/06 — time alocado em outras prioridades, sem previsão de retomada. Status \"Ideia\" no Linear.",
+      tarefas:[], marcos:[
+        {ref:"PMI.A0", area:"Cockpit", nome:"ATO 0 · Pré-requisitos (cert/procuração/cadastros)", status:"Pendente"},
+        {ref:"PMI.A1", area:"Cockpit", nome:"ATO 1 · Migração técnica + handshake PMI↔Hub", status:"Pendente"},
+        {ref:"PMI.A2", area:"Cockpit", nome:"ATO 2 · Padronização (jornada cliente↔Hub)", status:"Pendente"}
+      ], raid:[], sinergias:[]
+    },
+    {
+      id:"cockpit-100", grupo:"Cockpit", okr:"O3", health:"No prazo", pctLinear:8, marcoLinear:"M1 · mapa de completude (8%) — base SN / contas bancárias",
+      nome:"Cockpit 100% — mapa de completude PJ + PF + Foreign", lead:"Ana Caroline", iniciativa:"Centro de Comando da Operação", statusProjeto:"Ideia", inicio:"2026-05-01", alvo:"2026-07-31",
+      marco:"M1 mapa de completude (8%) · só 32% da base elegível tem conta bancária cadastrada",
+      progresso:"Mapeamento de bancos da base SN concluído; decisão conceitual aprovada. M1 em 8%. Status \"Ideia\" no Linear.",
+      tarefas:[], marcos:[
+        {ref:"C100.M1", area:"Cockpit", nome:"Mapa de completude definido + incompletude visível", status:"Em andamento"},
+        {ref:"C100.M2", area:"Cockpit", nome:"Top 200 grupos saneados (≥70%)", status:"Pendente"},
+        {ref:"C100.M3", area:"Cockpit", nome:"Cockpit como fonte única de verdade (SSOT)", status:"Pendente"}
+      ], raid:[], sinergias:[]
+    },
+    {
+      id:"cadastro-unico", grupo:"Cockpit", okr:"O3", health:"No prazo", pctLinear:25, marcoLinear:"M1 em andamento (1/4) · decisão CPF aprovada (16/06)",
+      nome:"Cadastro Único de Cliente — entidade canônica", lead:"Daniel Pereira", iniciativa:"Cadastro Único", statusProjeto:"Ideia", inicio:"2026-05-01", alvo:"2026-07-31",
+      marco:"M1 em andamento (1/4 issues) · mapeamento campo a campo inicia 23/06",
+      progresso:"Decisão CPF aprovada (16/06); Cockpit já suporta PF/PJ/fazenda/estrangeiro. M1 1/4. Status \"Ideia\" no Linear.",
+      tarefas:[], marcos:[
+        {ref:"CAD.M1", area:"Cockpit", nome:"Regras de reconciliação + fonte da verdade por campo", status:"Em andamento"},
+        {ref:"CAD.M2", area:"Cockpit", nome:"Top 200 grupos inconsistentes corrigidos", status:"Pendente"},
+        {ref:"CAD.M3", area:"Cockpit", nome:"Dashboard de cobertura + base ≥75% consistente", status:"Pendente"}
+      ], raid:[], sinergias:[]
+    },
+    {
+      id:"hubcount", grupo:"Contábil", okr:"O5", health:"No prazo", pctLinear:0, marcoLinear:"Pré-Spec · M1 (Spec) 15/07 — sem issues abertas",
+      nome:"Hubcount — relatórios customizáveis pro cliente", lead:"Andressa Rodrigues", iniciativa:"Expansão & BPO", statusProjeto:"Ideia", inicio:"2026-07-01", alvo:"2026-08-31",
+      marco:"Pré-Spec — MVP validado por Ops; M1 (Spec) 15/07",
+      progresso:"MVP conduzido por Ops (Diego Lozano) validado e levado a clientes. Projeto ainda sem issues. Status \"Ideia\" no Linear.",
+      tarefas:[], marcos:[
+        {ref:"HBC.M1", area:"Contábil", nome:"Spec · UI cliente (Hub) + UI interna (Cockpit)", status:"Pendente"},
+        {ref:"HBC.M2", area:"Contábil", nome:"Pilot · reports core em 20 clientes", status:"Pendente"},
+        {ref:"HBC.M3", area:"Contábil", nome:"Cobertura 50% da base ativa", status:"Pendente"}
+      ], raid:[], sinergias:[]
+    },
   ],
 
   // ===== Bloqueios & Dependências (cross-time, com issues no Linear) =====
@@ -334,7 +378,7 @@ const CONSOLIDADO = {"semana": "2026-06-19", "nota": "Avanços, bloqueios e pend
   .hero .big{font-size:4.2rem;font-weight:700;font-family:'Roboto';line-height:1;margin:.3rem 0}
   .hero .bar{height:6px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;width:100%;margin:.2rem 0 .3rem}
   .hero .bar>i{display:block;height:100%;background:var(--purple);border-radius:99px}
-  .hero .cap{font-size:.7rem;color:rgba(255,255,255,.45);font-family:'Roboto'}
+  .hero .cap{font-size:.7rem;color:rgba(255,255,255,.72);font-family:'Roboto';line-height:1.4}
   .hero .mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;width:100%;margin-top:.85rem}
   .hero .mini div{background:rgba(255,255,255,.07);border-radius:.6rem;padding:.5rem .2rem}
   .hero .mini .v{font-size:1.2rem;font-weight:700;font-family:'Roboto'}
@@ -397,6 +441,11 @@ const CONSOLIDADO = {"semana": "2026-06-19", "nota": "Avanços, bloqueios e pend
   .fchip{font-size:.78rem;font-weight:600;font-family:'Roboto';padding:.35rem .75rem;border-radius:99px;border:1px solid var(--border);background:#fff;color:var(--text);cursor:pointer;transition:all .12s}
   .fchip:hover{border-color:var(--blue)} .fchip.on{background:var(--blue);color:#fff;border-color:var(--blue)}
   .chips select{border:1px solid var(--border);border-radius:.6rem;padding:.38rem .6rem;font-size:.8rem;font-family:inherit;background:#fff;color:var(--text)}
+  .mtx th{min-width:62px;font-size:.6rem;padding:.4rem .35rem}
+  .mtx td.st{width:62px;padding:.3rem .25rem}
+  .mtx .pill{min-width:0;padding:.26rem .38rem;font-size:.68rem}
+  .mtx .st-empty{font-size:.85rem}
+  .mtx td:nth-child(2){min-width:210px}
 </style>
 </head>
 <body>
@@ -436,7 +485,7 @@ const CONSOLIDADO = {"semana": "2026-06-19", "nota": "Avanços, bloqueios e pend
 <script>
 /* ===== LÓGICA ===== */
 const STATUS_PCT = {"Pendente":0,"Triage":0,"Refinado":10,"Em andamento":50,"Em revisão":80,"Concluído":100,"Cancelado":null};
-const AREA_COLORS = {"Fiscal":"#0171E4","Engenharia":"#16a34a","Produto/Design":"#5b21b6","DP":"#be123c","Contábil":"#0d9488","Cockpit":"#92400e","Hub":"#0891b2"};
+const AREA_COLORS = {"Fiscal":"#0171E4","Engenharia":"#16a34a","Produto/Design":"#5b21b6","DP":"#be123c","Contábil":"#7c3aed","Cockpit":"#92400e","Hub":"#0891b2"};
 const ROTULO_SQUAD = "Squad";
 const squad = a => ROTULO_SQUAD + " " + a;
 const hoje = new Date();
@@ -687,7 +736,7 @@ function execMatriz(){
       rows+=`<tr><td class="num">${n}</td><td><span class="ref">${t.ref}</span>${t.nome}</td>${cells}</tr>`;
     });
   });
-  return `<div class="card" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Tarefa</th>${projs.map(p=>`<th style="text-align:center;min-width:120px">${p.nome.split('—')[0].trim()}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
+  return `<div class="card mtx" style="overflow-x:auto"><table><thead><tr><th class="num">#</th><th>Tarefa</th>${projs.map(p=>`<th style="text-align:center;min-width:62px">${p.nome.split('—')[0].trim()}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
     <div class="legend"><span><i style="background:var(--blue)"></i>On track</span><span><i style="background:var(--green)"></i>Done</span><span><i style="background:var(--red)"></i>Atrasado</span><span><i style="background:#94a3b8"></i>Pendente</span><span><i style="background:#efece2"></i>— sem a tarefa no projeto</span><span style="color:var(--muted)">Fiscal/DP/Contábil: tarefas do Linear · Cockpit/Hub: marcos do Linear</span></div>`;
 }
 function renderExec(){
