@@ -9,6 +9,41 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-22 · 11h55 UTC — snapshot · ⏱ 5m 15s
+
+Re-execução do dia (após a carga das 12h). **Sem novos Project Updates no Linear desde 19/06** — `get_status_updates` (type:project, orderBy createdAt, limit 8) retorna os 8 updates mais recentes do workspace, todos de 19/06 (mais novo: **Copiloto Samurai, 19/06 18:04 UTC**). Logo %, saúde e marcos dos 15 projetos seguem os da carga de 19/06.
+
+Estado dos painéis nesta execução (nada a alterar nos dados):
+- Subtítulo do Dashboard já em **· 22/06** nos dois painéis (v3 linha 449 · portfólio linha 555).
+- CONSOLIDADO do portfólio na semana **2026-06-19** (semana de report mais recente) — mantido.
+- Sem novas entradas em REPORTS / CONSOLIDADO / marcos (nenhum report novo na semana). Hub conferido (solicitacoes-dp, gdocs-multicnpj, gdocs-acompanhamento) — os três já reportaram em 19/06; nenhum ficou pausado indevidamente.
+- **Validação:** `node --check` (compile) dos 2 scripts inline por painel — OK. Smoke test (DOM stub) renderizando dashboard/exec/projetos/raid/reports/deps/okr + `openDealById` — **ambos OK**. Contagens: **v3 → 4 motores · 24 reports · 14 dependências** · **portfólio → 15 projetos · 54 reports · 17 dependências**.
+- Publicado no GitHub (push de `HISTORICO_LINEAR.md`; os 4 demais arquivos sem alteração → "nothing to commit" nesse subconjunto).
+
+**Snapshot dos 15 projetos (sem alteração vs. carga de 19/06):**
+
+| Projeto | Squad | OKR | Saúde | % milestone (Linear) |
+| -- | -- | -- | -- | -- |
+| Motor Fiscal SN | Fiscal | O4 | 🟡 Em risco | 24% — Construção Motor de Cálculo SN (Classificação SN 52%) |
+| RPA Fiscal | Fiscal | O4 | 🟢 No prazo | 80% — Construção de RPAs (Escrituração e guias) |
+| Motor Trabalhista (DP) | DP | O4 | 🟡 Em risco | 68% — Construção Pró-Labore SN (Folha s/ apont. 18%) |
+| Motor Contábil | Contábil | O4 | 🟡 Em risco | 26% — Construção Motor Contábil Entregue |
+| Solicitações DP | Hub | O4 | 🟡 Em risco | 85% — DP1.M1 V1 no ar + piloto (Carnevale/BLN) |
+| Triagem de Documentos (OCR) | Cockpit | O4 | 🟢 No prazo | 75% — M2 entregue · M3 em andamento |
+| Copiloto Samurai | Cockpit | O4 | 🟡 Em risco | 10% — M1 em andamento · BLOQUEADO (Daniel indisponível) |
+| BPO Financeiro | Cockpit | O5 | 🟡 Em risco | 10% — M1 Discovery (30/06) · BLOQUEADO |
+| GDocs multi-CNPJ | Hub | O2 | 🟢 No prazo | 100% — GD1.M1 no ar |
+| GDocs acompanhamento | Hub | O3 | 🟢 No prazo | 100% — GD2.M1 no ar |
+| PMI Digital | Cockpit | O1 | 🔴 Off track | 0% — bloqueado desde 01/06 (despriorizado) |
+| Cockpit 100% | Cockpit | O3 | 🟢 No prazo | 30% — M2 Top 200 grupos (1/4) |
+| Cadastro Único | Cockpit | O3 | 🟡 Em risco | 25% — M1 em andamento (1/4) |
+| Hubcount | Contábil | O5 | 🟢 No prazo | 0% — Pré-Spec · M1 (Spec) 15/07 |
+| Offboarding estruturado | Cockpit | O5 | 🔴 Off track | 0% — M1 não iniciado (sem PM/eng) |
+
+Dashboard: **6 No prazo · 7 Em risco · 2 Off track**. Consolidado 19/06 mantido: 13 projetos reportando; pausados: PMI Digital e Hubcount.
+
+---
+
 ## 2026-06-22 · 12h UTC — snapshot · ⏱ ~4 min (tempo ativo)
 
 > Nota de cronometragem: o relógio da sessão saltou de 20/06 para 22/06 durante a execução, então o diff bruto início→fim (~2.682 min) é artefato de relógio e **não** representa o processamento. Tempo ativo de sincronização ≈ 4 min.
