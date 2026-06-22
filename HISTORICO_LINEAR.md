@@ -9,6 +9,47 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-22 · 12h UTC — snapshot · ⏱ ~4 min (tempo ativo)
+
+> Nota de cronometragem: o relógio da sessão saltou de 20/06 para 22/06 durante a execução, então o diff bruto início→fim (~2.682 min) é artefato de relógio e **não** representa o processamento. Tempo ativo de sincronização ≈ 4 min.
+
+Execução de fim de semana. **Sem novos Project Updates no Linear desde a sincronização de 19/06** — varredura `get_status_updates` (type:project, orderBy createdAt) confirma que o update mais recente do workspace é Copiloto Samurai, 19/06 18:04 UTC. Portanto %, saúde e marcos dos 15 projetos **permanecem os da carga de 19/06** (Portfólio já tinha as 21 entradas de 19/06; v3 já tinha os 4 reports de motores de 19/06).
+
+Validação cruzada dos diffs de 19/06 contra os painéis (todos batem, nada a alterar):
+- Motor Fiscal SN: Classificação 60→52% · Cálculo 12→24% → `pctLinear:24` ✓
+- RPA Fiscal: Construção de RPAs 75→80% → `pctLinear:80` ✓
+- Motor Trabalhista: Folha s/ apont. 22→18% (Pró-Labore 68%) → `pctLinear:68` ✓
+- Motor Contábil: Construção 7→26% → `pctLinear:26` ✓
+
+Alterações desta execução:
+- **Subtítulo do Dashboard** atualizado para a data de hoje (**· 22/06**) nos dois painéis (v3 e portfólio).
+- Sem novas entradas em REPORTS, CONSOLIDADO ou marcos (nenhum report novo na semana). Hub conferido (solicitacoes-dp, gdocs-multicnpj, gdocs-acompanhamento) — todos já com report de 19/06; nenhum ficou pausado indevidamente.
+- **Validação:** `node --check` nos 4 scripts inline (2 por painel) — OK. Smoke test (DOM stub) renderizando dashboard/exec/projetos/raid/reports/deps/okr + `openDealById` — **ambos OK** (v3: 4 motores · 24 reports · portfólio: 15 projetos · 54 reports).
+
+**Snapshot dos 15 projetos (sem alteração vs. carga de 19/06):**
+
+| Projeto | Squad | OKR | Saúde | % milestone (Linear) |
+| -- | -- | -- | -- | -- |
+| Motor Fiscal SN | Fiscal | O4 | 🟡 Em risco | 24% — Construção Motor de Cálculo SN (Classificação SN 52%) |
+| RPA Fiscal | Fiscal | O4 | 🟢 No prazo | 80% — Construção de RPAs (Escrituração e guias) |
+| Motor Trabalhista (DP) | DP | O4 | 🟡 Em risco | 68% — Construção Pró-Labore SN (Folha s/ apont. 18%) |
+| Motor Contábil | Contábil | O4 | 🟡 Em risco | 26% — Construção Motor Contábil Entregue |
+| Solicitações DP | Hub | O4 | 🟡 Em risco | 85% — DP1.M1 V1 no ar + piloto (Carnevale/BLN) |
+| Triagem de Documentos (OCR) | Cockpit | O4 | 🟢 No prazo | 75% — M2 entregue · M3 em andamento |
+| Copiloto Samurai | Cockpit | O4 | 🟡 Em risco | 10% — M1 em andamento · BLOQUEADO (Daniel indisponível) |
+| BPO Financeiro | Cockpit | O5 | 🟡 Em risco | 10% — M1 Discovery (30/06) · BLOQUEADO |
+| GDocs multi-CNPJ | Hub | O2 | 🟢 No prazo | 100% — GD1.M1 no ar |
+| GDocs acompanhamento | Hub | O3 | 🟢 No prazo | 100% — GD2.M1 no ar |
+| PMI Digital | Cockpit | O1 | 🔴 Off track | 0% — bloqueado desde 01/06 (despriorizado) |
+| Cockpit 100% | Cockpit | O3 | 🟢 No prazo | 30% — M2 Top 200 grupos (1/4) |
+| Cadastro Único | Cockpit | O3 | 🟡 Em risco | 25% — M1 em andamento (1/4) |
+| Hubcount | Contábil | O5 | 🟢 No prazo | 0% — Pré-Spec · M1 (Spec) 15/07 |
+| Offboarding estruturado | Cockpit | O5 | 🔴 Off track | 0% — M1 não iniciado (sem PM/eng) |
+
+Dashboard: **6 No prazo · 7 Em risco · 2 Off track**. Consolidado 19/06 mantido: 13 projetos reportando; pausados: PMI Digital e Hubcount.
+
+---
+
 ## 2026-06-19 · 22h UTC — snapshot · ⏱ 5m 27s
 
 Re-execução no mesmo dia. Sem novos Project Updates no Linear desde a sincronização anterior (último update: Copiloto Samurai, 18:04 UTC) — portanto %, saúde e marcos permanecem os da última carga. Esta execução fez **higiene de dados**:
