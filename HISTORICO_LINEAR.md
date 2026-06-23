@@ -9,6 +9,41 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-23 · 22h13 UTC — snapshot · ⏱ 8m 13s
+
+**1 novo Project Update na semana** — *Offboarding estruturado de cliente* (23/06, Ana Caroline): projeto **movido para a Geladeira** no Linear (`Status: Geladeira`, 🔴 Off track). Não será priorizado neste quarter — correções no processo operacional reduziram a urgência da demanda; **reavaliação em Q3/2026**. Nenhum outro projeto reportou desde 19/06 (lote já refletido nos snapshots anteriores). Esta execução também fez o *refresh do % real dos milestones* dos motores.
+
+**Mudanças aplicadas:**
+- `REPORTS` (Portfólio): **+1 entrada** — Offboarding 23/06 (Off track). Total 55 reportes; nenhum apagado.
+- Offboarding: `statusProjeto` → "Geladeira" · `marcoLinear`/`marco` → "Geladeira (23/06) — despriorizado no quarter; reavaliação em Q3/2026" · `progresso` atualizado.
+- `CONSOLIDADO` (semana 19/06): nota acrescida com a decisão de Geladeira do Offboarding em 23/06.
+- Milestones (refresh): **Motor de Cálculo SN 28→29%** (29,31%) · **Classificação SN 44→42%** (41,90%) · **Motor Contábil 29→28%** (28,28%). Pró-Labore 68,81% e RPA Construção 87,12% sem mudança material.
+
+**Dashboard após refresh:** Autopilot (4 motores) média **53%** · 1 No prazo · 3 Em risco. Portfólio (15 projetos) média **43%** · 6 No prazo · 7 Em risco · 2 Off track. (Faróis inalterados.)
+
+| Projeto | Squad | Saúde | % (milestone) | Δ desde 17h09 |
+| -- | -- | -- | -- | -- |
+| Motor Fiscal SN | Fiscal | 🟡 Em risco | 29% (Cálculo SN) | 28→29 · Classif. 44→42 |
+| RPA Fiscal | Fiscal | 🟢 No prazo | 87% (Construção RPAs) | — |
+| Motor Trabalhista (DP) | DP | 🟡 Em risco | 69% (Pró-Labore SN) | — · Folha s/ apont. 18% |
+| Motor Contábil | Contábil | 🟡 Em risco | 28% (Motor Entregue) | 29→28 |
+| Solicitações DP | Hub | 🟡 Em risco | 85% | — |
+| Triagem OCR | Cockpit | 🟢 No prazo | 75% | — |
+| Copiloto Samurai | Cockpit | 🟡 Em risco | 10% (bloqueado) | — |
+| BPO Financeiro | Cockpit | 🟡 Em risco | 10% (bloqueado) | — |
+| GDocs multi-CNPJ | Hub | 🟢 No prazo | 100% | — |
+| GDocs acompanhamento | Hub | 🟢 No prazo | 100% | — |
+| PMI Digital | Cockpit | 🔴 Off track | 0% (bloqueado) | — |
+| Cockpit 100% | Cockpit | 🟢 No prazo | 30% | — |
+| Cadastro Único | Cockpit | 🟡 Em risco | 25% | — |
+| Hubcount | Contábil | 🟢 No prazo | 0% (pré-spec) | — |
+| Offboarding | Cockpit | 🔴 Off track | 0% (Geladeira) | status → Geladeira (23/06) |
+
+**Observações:** subtítulo do Dashboard segue em 23/06. Sem alteração em lógica/JS — apenas dados/REPORTS/CONSOLIDADO. Validação: 2 blocos `<script>` por painel, `node --check` + smoke test (Dashboard/Exec/Projetos/RAID/Reports renderizados) — ambos OK.
+
+---
+
+
 ## 2026-06-23 · 17h09 UTC — snapshot · ⏱ 35m 27s
 
 **Sem novos Project Updates na semana** — o lote mais recente no Linear segue sendo o de 19/06 (já refletido no snapshot de 22/06). Esta execução fez o *refresh do % real dos milestones* (que alimenta o Dashboard) e atualizou o status de algumas issues que avançaram entre 20–23/06. `REPORTS`, `CONSOLIDADO` e `marcos` permanecem inalterados (nenhum reporte novo).
