@@ -35,7 +35,7 @@ const DADOS = {
   projetos: [
     /* ===================== AUTOPILOT (os 3 motores + fornecedores) ===================== */
     {
-      id:"motor-fiscal-sn", pctLinear:24, marcoLinear:"Construção Motor de Cálculo SN (Classificação SN em 52%)", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"Em risco",
+      id:"motor-fiscal-sn", pctLinear:28, marcoLinear:"Construção Motor de Cálculo SN (Classificação SN em 44%)", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"Em risco",
       nome:"Motor Fiscal SN — escala 100% da base",
       lead:"Jeni Dauricio", iniciativa:"Motor Fiscal", statusProjeto:"Construção",
       inicio:"2026-05-01", alvo:"2026-07-31",
@@ -77,7 +77,7 @@ const DADOS = {
       ], sinergias:[]
     },
     {
-      id:"rpa-fiscal", pctLinear:80, marcoLinear:"Construção de RPAs — Escrituração e guias", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"No prazo",
+      id:"rpa-fiscal", pctLinear:87, marcoLinear:"Construção de RPAs — Escrituração e guias", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"No prazo",
       nome:"RPA Fiscal — ponte de automação via bots",
       lead:"Jeni Dauricio", iniciativa:"Motor Fiscal", statusProjeto:"Construção",
       inicio:"2026-05-01", alvo:"2026-07-31",
@@ -86,7 +86,7 @@ const DADOS = {
       tarefas:[
         {ref:"FIS-284", entrega:true, area:"Fiscal", nome:"E1 · Escrituração NFS-e tomados (municipal)", owner:"Marcelo Santos", status:"Em andamento", inicio:"2026-05-12", venc:"2026-07-03"},
         {ref:"FIS-2", parent:"FIS-284", area:"Fiscal", nome:"[Discovery] Escrituração de NFS-e tomados (RPA)", owner:"—", status:"Concluído", venc:"2026-05-22"},
-        {ref:"FIS-193", parent:"FIS-284", area:"Fiscal", nome:"[Feature] Escrituração de NFS-e tomados (Parte 2)", owner:"Marcelo Santos", status:"Em andamento", venc:"2026-06-19"},
+        {ref:"FIS-193", parent:"FIS-284", area:"Fiscal", nome:"[Feature] Escrituração de NFS-e tomados (Parte 2)", owner:"Marcelo Santos", status:"Em revisão", venc:"2026-06-19"},
         {ref:"FIS-260", parent:"FIS-284", area:"Fiscal", nome:"[Feature] Comunicação BHules → RPA de escrituração", owner:"Danilo Silva", status:"Refinado", venc:"2026-07-03"},
         {ref:"FIS-285", entrega:true, area:"Fiscal", nome:"E2 · Guia ISS São Paulo", owner:"Danilo Silva", status:"Em andamento", inicio:"2026-05-18", venc:"2026-07-03"},
         {ref:"FIS-119", parent:"FIS-285", area:"Fiscal", nome:"Documentação consolidada do RPA ISS SP (rollout)", owner:"—", status:"Concluído", venc:"2026-05-22"},
@@ -103,8 +103,8 @@ const DADOS = {
         {ref:"FIS-71", parent:"FIS-286", area:"Fiscal", nome:"[Feature] Monitoramento e relatórios dos bots SPED", owner:"Guilherme Porto", status:"Concluído"},
         {ref:"FIS-197", parent:"FIS-286", area:"Fiscal", nome:"[Feature] Refatoração dos bots SPED (Parte 2)", owner:"Guilherme Porto", status:"Concluído"},
         {ref:"FIS-198", parent:"FIS-286", area:"Fiscal", nome:"Implantar gradualmente os bots (continuação)", owner:"Guilherme Porto", status:"Concluído"},
-        {ref:"FIS-287", entrega:true, area:"Fiscal", nome:"E4 · Painel & observabilidade RPA", owner:"Guilherme Porto", status:"Em revisão", inicio:"2026-05-20", venc:"2026-06-19"},
-        {ref:"FIS-188", parent:"FIS-287", area:"Fiscal", nome:"[Feature] Painel RPA de controle interno (Fiscal + Tech)", owner:"Guilherme Porto", status:"Em revisão", venc:"2026-06-19"},
+        {ref:"FIS-287", entrega:true, area:"Fiscal", nome:"E4 · Painel & observabilidade RPA", owner:"Guilherme Porto", status:"Em andamento", inicio:"2026-05-20", venc:"2026-06-19"},
+        {ref:"FIS-188", parent:"FIS-287", area:"Fiscal", nome:"[Feature] Painel RPA de controle interno (Fiscal + Tech)", owner:"Guilherme Porto", status:"Concluído", venc:"2026-06-19"},
         {ref:"FIS-351", entrega:true, area:"Fiscal", nome:"E1 · Testes e validação final do RPA por município (Cobertura 100%)", owner:"Jeisy Sousa", status:"Pendente", inicio:"2026-05-01"},
         {ref:"FIS-356", parent:"FIS-351", area:"Fiscal", nome:"[E1] Testes — São Paulo", owner:"—", status:"Pendente"},
         {ref:"FIS-357", parent:"FIS-351", area:"Fiscal", nome:"[E1] Testes — Rio de Janeiro", owner:"—", status:"Pendente"},
@@ -125,7 +125,7 @@ const DADOS = {
       raid:[], sinergias:[]
     },
     {
-      id:"motor-trabalhista", pctLinear:68, marcoLinear:"Construção Pró-Labore SN (Folha s/ apont. em 18%)", grupo:"DP", tema:"Autopilot", okr:"O4", health:"Em risco",
+      id:"motor-trabalhista", pctLinear:69, marcoLinear:"Construção Pró-Labore SN (Folha s/ apont. em 18%)", grupo:"DP", tema:"Autopilot", okr:"O4", health:"Em risco",
       nome:"Motor Trabalhista — folha + obrigações DP",
       lead:"Jeni Dauricio", iniciativa:"Motor DP (Trabalhista)", statusProjeto:"Construção",
       inicio:"2026-05-01", alvo:"2026-07-31",
@@ -142,7 +142,7 @@ const DADOS = {
         {ref:"DP-101", parent:"DP-114", area:"DP", nome:"[Feature] Envio da folha ao eSocial", owner:"Matheus Mota", status:"Em andamento", venc:"2026-06-19"},
         {ref:"DP-132", parent:"DP-114", area:"DP", nome:"[Feature] Convergência DCTFWeb — eSocial (folha) + EFD-Reinf (fiscal)", owner:"—", status:"Pendente", venc:"2026-07-31"},
         {ref:"DP-115", entrega:true, area:"DP", nome:"E3 · eConsignado entregue", owner:"Matheus Mota", status:"Em andamento", inicio:"2026-05-21", venc:"2026-07-31"},
-        {ref:"DP-58", parent:"DP-115", area:"DP", nome:"[Feature] Empréstimo consignado em folha", owner:"Matheus / Sávio", status:"Em andamento", venc:"2026-06-19"},
+        {ref:"DP-58", parent:"DP-115", area:"DP", nome:"[Feature] Empréstimo consignado em folha", owner:"Matheus / Sávio", status:"Concluído", venc:"2026-06-19"},
         {ref:"DP-93", parent:"DP-115", area:"DP", nome:"[Feature] Empréstimo consignado em folha — Parte 2 (CLT)", owner:"Sávio Lopes", status:"Refinado", venc:"2026-07-31"},
         {ref:"DP-116", entrega:true, area:"DP", nome:"E4 · FGTS emitido (RPA)", owner:"—", status:"Em andamento", inicio:"2026-05-12", venc:"2026-07-31"},
         {ref:"DP-2", parent:"DP-116", area:"DP", nome:"[Feature] Emissão FGTS Digital (RPA)", owner:"—", status:"Concluído", venc:"2026-05-22"},
@@ -157,11 +157,11 @@ const DADOS = {
         {ref:"DP-133", parent:"DP-118", area:"DP", nome:"[Feature] Extrato Mensal — desenvolvimento e validação com dados reais", owner:"Reginaldo Evaristo", status:"Em andamento", venc:"2026-06-19"},
         {ref:"DP-100", parent:"DP-118", area:"DP", nome:"[Validação] Resumo de Folha e Holerites com dados reais — 10 empresas", owner:"Reginaldo Evaristo", status:"Em andamento", venc:"2026-06-19"},
         {ref:"DP-135", entrega:true, area:"DP", nome:"E7 · Orquestração + Guias e relatórios no Hub (entrega final)", owner:"—", status:"Pendente", inicio:"2026-06-09", venc:"2026-07-31"},
-        {ref:"DP-103", parent:"DP-135", area:"DP", nome:"[Feature] Readiness check — Anomalia 1 (completude de insumos)", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"DP-103", parent:"DP-135", area:"DP", nome:"[Feature] Readiness check — Anomalia 1 (completude de insumos)", owner:"—", status:"Refinado", venc:"2026-07-03"},
         {ref:"DP-134", parent:"DP-135", area:"DP", nome:"[Feature] Anomalia 2 — validação pós-cálculo (folha vs histórico)", owner:"—", status:"Pendente", venc:"2026-07-03"},
-        {ref:"DP-106", parent:"DP-135", area:"DP", nome:"[Feature] Workflow de fechamento de folha mensal (Restate)", owner:"—", status:"Pendente", venc:"2026-07-17"},
-        {ref:"DP-107", parent:"DP-135", area:"DP", nome:"[Infra] Disparo automático do fechamento (EventBridge)", owner:"—", status:"Pendente", venc:"2026-07-03"},
-        {ref:"DP-109", parent:"DP-135", area:"DP", nome:"[Feature] Distribuição pós-gate e transmissão eSocial da folha", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"DP-106", parent:"DP-135", area:"DP", nome:"[Feature] Workflow de fechamento de folha mensal (Restate)", owner:"—", status:"Refinado", venc:"2026-07-17"},
+        {ref:"DP-107", parent:"DP-135", area:"DP", nome:"[Infra] Disparo automático do fechamento (EventBridge)", owner:"—", status:"Refinado", venc:"2026-07-03"},
+        {ref:"DP-109", parent:"DP-135", area:"DP", nome:"[Feature] Distribuição pós-gate e transmissão eSocial da folha", owner:"—", status:"Refinado", venc:"2026-07-03"},
         {ref:"DP-111", parent:"DP-135", area:"DP", nome:"[Feature] Lançamentos contábeis da folha → Motor Contábil", owner:"—", status:"Pendente"}
       
       ],
@@ -171,7 +171,7 @@ const DADOS = {
       ], sinergias:[]
     },
     {
-      id:"motor-contabil", pctLinear:26, marcoLinear:"Construção Motor Contábil Entregue", grupo:"Contábil", tema:"Autopilot", okr:"O4", health:"Em risco",
+      id:"motor-contabil", pctLinear:29, marcoLinear:"Construção Motor Contábil Entregue", grupo:"Contábil", tema:"Autopilot", okr:"O4", health:"Em risco",
       nome:"Motor Contábil — fechamento + conciliação",
       lead:"Andressa Rodrigues", iniciativa:"Motor Contábil", statusProjeto:"Construção",
       inicio:"2026-06-01", alvo:"2026-07-31",
@@ -446,7 +446,7 @@ function barLine(label,pc,extra){return `<div style="margin-bottom:.8rem"><div s
 function renderDashboard(){
   const m=portfolio();
   document.getElementById('view-dashboard').innerHTML = `
-    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo por squad • ${m.nProj} motores (Autopilot) • dados e reportes do Linear · 22/06</div></div></div>
+    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo por squad • ${m.nProj} motores (Autopilot) • dados e reportes do Linear · 23/06</div></div></div>
     <div class="kpi-hero-sec">
       <div class="hero"><div class="lab">% Conclusão<br>média do portfólio</div>
         <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">${m.done} de ${m.total} tarefas detalhadas</div></div>

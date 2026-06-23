@@ -9,6 +9,41 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-23 · 17h09 UTC — snapshot · ⏱ 35m 27s
+
+**Sem novos Project Updates na semana** — o lote mais recente no Linear segue sendo o de 19/06 (já refletido no snapshot de 22/06). Esta execução fez o *refresh do % real dos milestones* (que alimenta o Dashboard) e atualizou o status de algumas issues que avançaram entre 20–23/06. `REPORTS`, `CONSOLIDADO` e `marcos` permanecem inalterados (nenhum reporte novo).
+
+**Dashboard após refresh:** Autopilot (4 motores) média **53%** · 1 No prazo · 3 Em risco. Portfólio (15 projetos) média **43%** · 6 No prazo · 7 Em risco · 2 Off track.
+
+| Projeto | Squad | Saúde | % (milestone) | Δ desde 22/06 |
+| -- | -- | -- | -- | -- |
+| Motor Fiscal SN | Fiscal | 🟡 Em risco | 28% (Cálculo SN) | 24→28 · Classif. 52→44 |
+| RPA Fiscal | Fiscal | 🟢 No prazo | 87% (Construção RPAs) | 80→87 |
+| Motor Trabalhista (DP) | DP | 🟡 Em risco | 69% (Pró-Labore SN) | 68→69 · Folha s/ apont. 18% |
+| Motor Contábil | Contábil | 🟡 Em risco | 29% (Motor Entregue) | 26→29 |
+| Solicitações DP | Hub | 🟡 Em risco | 85% | — |
+| Triagem OCR | Cockpit | 🟢 No prazo | 75% | — |
+| Copiloto Samurai | Cockpit | 🟡 Em risco | 10% (bloqueado) | — |
+| BPO Financeiro | Cockpit | 🟡 Em risco | 10% (bloqueado) | — |
+| GDocs multi-CNPJ | Hub | 🟢 No prazo | 100% | — |
+| GDocs acompanhamento | Hub | 🟢 No prazo | 100% | — |
+| PMI Digital | Cockpit | 🔴 Off track | 0% (bloqueado) | — |
+| Cockpit 100% | Cockpit | 🟢 No prazo | 30% | — |
+| Cadastro Único | Cockpit | 🟡 Em risco | 25% | — |
+| Hubcount | Contábil | 🟢 No prazo | 0% (pré-spec) | — |
+| Offboarding | Cockpit | 🔴 Off track | 0% (bloqueado) | — |
+
+**O que mudou nas issues (verificado no Linear, 20–23/06):**
+- **FIS-188** Painel RPA de controle interno → **Concluído** (completado 23/06).
+- **FIS-193** Escrituração NFS-e tomados (Parte 2) → **Em revisão** (era Em andamento).
+- **FIS-287** E4 · Painel & observabilidade RPA → **Em andamento** (era Em revisão).
+- **DP-58** Empréstimo consignado em folha → **Concluído** (completado 22/06).
+- **DP-103 / DP-106 / DP-107 / DP-109** (fechamento de folha) → **Refinado** (eram Pendente).
+- Milestones: Cálculo SN 28,45% · Classificação SN 43,75% · RPA Construção 87,12% · Pró-Labore 68,81% · Folha s/ apont. 17,86% · Motor Contábil 28,69%.
+- Subtítulo do Dashboard atualizado para 23/06. Nenhuma alteração em lógica/JS — apenas dados.
+
+---
+
 ## 2026-06-22 · 16h16 UTC — snapshot · ⏱ 71m 28s
 
 Re-execução do dia (3ª carga de 22/06). **Sem novos Project Updates no Linear desde 19/06** — `get_status_updates` (type:project, orderBy createdAt, limit 6) retorna os 6 updates mais recentes do workspace, todos de 19/06; o mais novo segue sendo **Copiloto Samurai, 19/06 18:04 UTC**. Logo %, saúde, marcos, REPORTS, CONSOLIDADO e marcos dos 15 projetos permanecem os da carga de 19/06.
