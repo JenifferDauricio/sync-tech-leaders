@@ -9,6 +9,40 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-24 · 15h11 UTC — snapshot · ⏱ 5m 51s
+
+**Nenhum Project Update novo dos 15 projetos monitorados na semana.** O único update novo no Linear desde a última sync (23/06 22h13) é *Design System v1.4.1* (24/06 11h27, Arthur Moreira, 🟢 On track) — fix + update no DatePicker (CDSG-10, locale pt-BR), publicado em `@bhubai/bhub-design-system@1.4.1`. **Design System não faz parte dos 15 projetos dos painéis**, portanto não entra em REPORTS/CONSOLIDADO. Offboarding (Geladeira, 23/06) já refletido no snapshot anterior. Esta execução fez o *refresh do % real dos milestones* dos motores via `list_milestones`. Hub (solicitacoes-dp, gdocs-multicnpj, gdocs-acompanhamento) conferido — sem reporte novo na semana; status mantidos.
+
+**Mudanças aplicadas:**
+- Milestones (refresh, % real): **Motor de Cálculo SN 29→27%** (26,52%) · Classificação SN **42%** (41,90%, sem mudança) · RPA Construção **87%** (87,37%) · Pró-Labore **69%** (69,03%) · Folha s/ apont. **18%** (17,86%) · Motor Contábil **28%** (28,28%).
+- `motor-fiscal-sn`: `pctLinear` 29→27 (nos dois painéis) · `marco` "M1 Classificação 42% · M2 Cálculo 27%" (era 38%/12%).
+- `REPORTS`, `CONSOLIDADO` e `marcos`: **sem alteração** (nenhum reporte novo dos 15 projetos). Total de reportes inalterado.
+
+**Dashboard após refresh:** Autopilot (4 motores) média **53%** · 1 No prazo · 3 Em risco. Portfólio (15 projetos) média **43%** · 6 No prazo · 7 Em risco · 2 Off track. (Faróis inalterados.)
+
+| Projeto | Squad | Saúde | % (milestone) | Δ desde 23/06 22h13 |
+| -- | -- | -- | -- | -- |
+| Motor Fiscal SN | Fiscal | 🟡 Em risco | 27% (Cálculo SN) | 29→27 · Classif. 42 |
+| RPA Fiscal | Fiscal | 🟢 No prazo | 87% (Construção RPAs) | — |
+| Motor Trabalhista (DP) | DP | 🟡 Em risco | 69% (Pró-Labore SN) | — · Folha s/ apont. 18% |
+| Motor Contábil | Contábil | 🟡 Em risco | 28% (Motor Entregue) | — |
+| Solicitações DP | Hub | 🟡 Em risco | 85% | — |
+| Triagem OCR | Cockpit | 🟢 No prazo | 75% | — |
+| Copiloto Samurai | Cockpit | 🟡 Em risco | 10% (bloqueado) | — |
+| BPO Financeiro | Cockpit | 🟡 Em risco | 10% (bloqueado) | — |
+| GDocs multi-CNPJ | Hub | 🟢 No prazo | 100% | — |
+| GDocs acompanhamento | Hub | 🟢 No prazo | 100% | — |
+| PMI Digital | Cockpit | 🔴 Off track | 0% (bloqueado) | — |
+| Cockpit 100% | Cockpit | 🟢 No prazo | 30% | — |
+| Cadastro Único | Cockpit | 🟡 Em risco | 25% | — |
+| Hubcount | Contábil | 🟢 No prazo | 0% (pré-spec) | — |
+| Offboarding | Cockpit | 🔴 Off track | 0% (Geladeira) | — |
+
+**Observações:** subtítulo do Dashboard auto-deriva de `new Date()` → 24/06. Sem alteração em lógica/JS — apenas dados (pctLinear/marco dos motores). Validação: 2 blocos `<script>` por painel, `node --check` + smoke test (DOM stub, renders executados sem erro) — ambos OK.
+
+---
+
+
 ## 2026-06-23 · 22h13 UTC — snapshot · ⏱ 8m 13s
 
 **1 novo Project Update na semana** — *Offboarding estruturado de cliente* (23/06, Ana Caroline): projeto **movido para a Geladeira** no Linear (`Status: Geladeira`, 🔴 Off track). Não será priorizado neste quarter — correções no processo operacional reduziram a urgência da demanda; **reavaliação em Q3/2026**. Nenhum outro projeto reportou desde 19/06 (lote já refletido nos snapshots anteriores). Esta execução também fez o *refresh do % real dos milestones* dos motores.
