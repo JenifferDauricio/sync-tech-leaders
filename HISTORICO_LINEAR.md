@@ -9,6 +9,46 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-25 · 22h UTC — snapshot · ⏱ 5m 47s
+
+**Refresh de milestones dos motores — recomputação do `progress` real no Linear desde a sync das 15h.** Nenhum Project Update novo dos 15 projetos do portfólio na semana: os mais recentes na fila do Linear são **Procurações no Cockpit** (26/06) e **Design System v1.4.1** (24/06) — ambos fora dos painéis — e Offboarding/Geladeira (23/06), já refletido. Hub (solicitacoes-dp, gdocs-multicnpj, gdocs-acompanhamento) reconferido — sem reporte novo. O `progress` real dos milestones de **Cálculo SN** e **Pró-Labore SN** recomputou para baixo (escopo expandido com novas issues nas milestones), então `pctLinear` foi atualizado nos **dois painéis** para refletir o valor real.
+
+**Mudanças aplicadas (ambos os painéis):**
+- `pctLinear` Motor Fiscal SN (Motor de Cálculo SN): **30% → 29%** (milestone real 28,68%).
+- `pctLinear` Motor Trabalhista (Pró-Labore SN): **70% → 66%** (milestone real 66,27%).
+- `pctLinear` Motor Contábil (Motor Entregue): **30% → 30%** (milestone real 29,92%, sem mudança).
+- `pctLinear` RPA Fiscal (Construção de RPAs): **88% → 88%** (milestone real 87,63%, sem mudança).
+- `marco` Motor Fiscal SN: "M1 Classificação **42%** · M2 Cálculo **27%**" → "M1 Classificação **45%** · M2 Cálculo **29%**".
+- `marco` Motor Trabalhista: "M1 **68%** · M2 **22%**" → "M1 **66%** · M2 **18%**".
+- Subtítulo do Dashboard: data dinâmica (auto-hoje) — já em **25/06**.
+- `REPORTS`, `CONSOLIDADO`, `marcos` (Cockpit/Hub/backlog), `dependencias`, `health`/faróis: **sem alteração** (nenhum reporte novo dos 15 projetos).
+
+**Milestones lidos do Linear (% real):** Classificação SN **44,52%** · Motor de Cálculo SN **28,68%** · RPA Construção **87,63%** · Pró-Labore SN **66,27%** · Folha s/ apont. **17,86%** · Motor Contábil Entregue **29,92%**.
+
+**Dashboard após refresh:** Autopilot (4 motores) média **~53%** · 1 No prazo · 3 Em risco. Portfólio (15 projetos) média **~43%** · 6 No prazo · 7 Em risco · 2 Off track. (Faróis/health inalterados — sem novo Project Update.)
+
+| Projeto | Squad | Saúde | % (milestone) | Δ desde 25/06 15h |
+| -- | -- | -- | -- | -- |
+| Motor Fiscal SN | Fiscal | 🟡 Em risco | 29% (Cálculo SN) | −1 · Classif. 42→45% |
+| RPA Fiscal | Fiscal | 🟢 No prazo | 88% (Construção RPAs) | — |
+| Motor Trabalhista (DP) | DP | 🟡 Em risco | 66% (Pró-Labore SN) | −4 · Folha s/ apont. 18% |
+| Motor Contábil | Contábil | 🟡 Em risco | 30% (Motor Entregue) | — |
+| Solicitações DP | Hub | 🟡 Em risco | 85% | — |
+| Triagem OCR | Cockpit | 🟢 No prazo | 75% | — |
+| Copiloto Samurai | Cockpit | 🟡 Em risco | 10% (bloqueado) | — |
+| BPO Financeiro | Cockpit | 🟡 Em risco | 10% (bloqueado) | — |
+| GDocs multi-CNPJ | Hub | 🟢 No prazo | 100% | — |
+| GDocs acompanhamento | Hub | 🟢 No prazo | 100% | — |
+| PMI Digital | Cockpit | 🔴 Off track | 0% (bloqueado) | — |
+| Cockpit 100% | Cockpit | 🟢 No prazo | 30% | — |
+| Cadastro Único | Cockpit | 🟡 Em risco | 25% | — |
+| Hubcount | Contábil | 🟢 No prazo | 0% (pré-spec) | — |
+| Offboarding | Cockpit | 🔴 Off track | 0% (geladeira) | — |
+
+**Validação:** os 2 `<script>` de cada painel passaram em `node --check` + smoke test (DOM stub renderizando dashboard/exec/projetos/raid/reports). Sem teto de 90% (GDocs = 100% real). Painéis salvos só após validação OK.
+
+---
+
 ## 2026-06-25 · 15h UTC — snapshot · ⏱ 6m 12s
 
 **Refresh de milestones dos motores — avanço real desde a sync das 12h.** Nenhum Project Update novo dos 15 projetos na semana (o último é Design System v1.4.1 de 24/06, fora dos painéis; Offboarding/Geladeira de 23/06 já refletido). Hub (solicitacoes-dp, gdocs-multicnpj, gdocs-acompanhamento) reconferido — sem reporte novo. Mas o `progress` real dos milestones dos 4 motores subiu desde 12h (issues concluídas ao longo do dia), então `pctLinear` foi atualizado nos **dois painéis**.
