@@ -9,6 +9,42 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-26 · 15h UTC — snapshot · ⏱ 10m 52s
+
+**Sync de complemento da semana de 26/06 — Project Updates publicados após a execução das 12h.** A run das 12h rodou com o relógio do ambiente em 22/06 e capturou apenas parte dos reportes; entre ~11h48 e ~14h50 UTC entraram (ou foram lidos agora) updates de 4 projetos do portfólio que ainda não estavam nos painéis. Esta run incorpora esses reportes nos dois painéis e mantém todo o histórico anterior.
+
+**Mudanças aplicadas (ambos os painéis quando motor; senão portfólio):**
+- **Motor Trabalhista** (ambos): novo Project Update 26/06 (Andressa, 🟡 Em risco). **Target do projeto 31/07 → 31/08.** Ciclo de construção em andamento — DP-103 (Readiness Anomalia 1, Paulo Dias), DP-134 (Anomalia 2, Reginaldo) e DP-107 (disparo via EventBridge, Sávio) iniciados, due 03/07; nova DP-165 (tabelas fiscais → dp-rules, faixa de isenção de IR Lei 15.270). eSocial DP-101 atrasou por migração de infra (Terraform → Restate), fecha na próxima semana. Milestones Linear: Pró-Labore SN **65,89%** · Folha s/ apont. **17,86%** (pctLinear 66 mantido).
+- **Triagem OCR** (portfólio): novo Update 26/06 (Ana Caroline, 🟢 No prazo). pctLinear **75 → 65** · marcoLinear corrigido (milestone "Top 5 tipos roteados" está em **0% / a iniciar 20/07**, não entregue). Milestones: M1 Universo mapeado **64,71%** · Regras auditáveis **43,48%** · Top 5 0%. Entregas: BHUB-48 (extractor lxml NFS-e SP), COCKPIT-522.
+- **Cockpit 100%** (portfólio): novo Update 26/06 (Ana Caroline, 🟢 No prazo). **Cobertura 100% PJ+PF concluída (subida em massa de CPF em 25/06).** pctLinear **30 → 85** · status "Ideia" → "Construção" · marcos M1/M2/M3 → **Concluído** (100% no Linear) + M4 estabilidade em andamento. Milestones de cobertura todos 100%; "Estável em produção (30 dias)" 0%.
+- **Cadastro Único** (portfólio): novo Update 26/06 reportado sob o projeto **"Sincronização de informações de sistemas satélites e o Cockpit (SSOT)"** (Ana Caroline, 🟢 No prazo) — marcos batem exatamente (reconciliação · Top 200 inconsistentes · Dashboard ≥75%). pctLinear **25 → 6** · health **Em risco → No prazo** · target **31/07 → 31/08**. M1 reconciliação **6,25%** (10/07). *Escolha autônoma: tratado como o mesmo projeto do Cadastro Único, dado o casamento de marcos e a ausência de update separado na semana.*
+- **REPORTS**: +1 no Autopilot (motor-trabalhista) · +4 no Portfólio (motor-trabalhista, triagem-ocr, cockpit-100, cadastro-unico). **CONSOLIDADO** (semana 2026-06-26) → 13 itens; nota atualizada (Motor Trabalhista, Triagem, Cockpit 100% e Cadastro Único saíram de "sem report").
+- **Sem novo reporte na semana** (sem alteração): Motor Fiscal SN (último 19/06), BPO Financeiro. Copiloto Samurai e PMI Digital seguem na Geladeira; Offboarding na Geladeira (23/06); GDocs ×2 encerrados (100%); RPA Fiscal (88%), Motor Contábil (38%) e Solicitações DP (97%) já refletidos na run das 12h.
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | % | Saúde |
+| -- | -- | -- |
+| Motor Fiscal SN | 29 | Em risco |
+| RPA Fiscal | 88 | No prazo |
+| Motor Trabalhista | 66 | Em risco |
+| Motor Contábil | 38 | Em risco |
+| Solicitações DP | 97 | Em risco |
+| Triagem OCR | 65 | No prazo |
+| Copiloto Samurai | 0 | Off track |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo |
+| GDocs acompanhamento | 100 | No prazo |
+| PMI Digital | 0 | Off track |
+| Cockpit 100% | 85 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track |
+
+**Dashboard após sync:** Portfólio (15 projetos) — 7 No prazo · 5 Em risco · 3 Off track · média pctLinear ~46%. Autopilot (4 motores) — 1 No prazo (RPA) · 3 Em risco (Fiscal, Trabalhista, Contábil). **Validação:** os 2 `<script>` de cada painel passaram em `node --check` + smoke test (DOM stub, render sem exceção) antes de salvar.
+
+---
+
 ## 2026-06-26 · 12h UTC — snapshot · ⏱ ~8m *(relógio do ambiente avançou 22→26/06 durante a execução; duração real ~8 min)*
 
 **Semana de 26/06 — novos Project Updates capturados.** Esta sync incorpora os reportes da semana de 26/06 publicados no Linear (o ciclo anterior eram refreshes de milestone em 25/06). 10 Project Updates novos lidos via `get_status_updates` — 8 dentro do portfólio + os motores RPA Fiscal e Contábil. **Motor Fiscal SN e Motor Trabalhista sem novo reporte** (último 19/06): `pctLinear` mantido pelo milestone real do Linear (live).
