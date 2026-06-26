@@ -9,6 +9,40 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-26 · 22h UTC — snapshot · ⏱ 7m 5s
+
+**Sync de fechamento do dia — incorpora o Project Update do Motor Fiscal SN publicado às 18h23 UTC**, depois da run das 15h. Esse era o único reporte da semana ainda ausente dos painéis (o último capturado era de 19/06). Demais projetos sem alteração desde a run das 15h.
+
+**Mudanças aplicadas:**
+- **Motor Fiscal SN** (ambos os painéis): novo Project Update 26/06 (Jeisy Sousa / publicado por Jeniffer, 🟡 Em risco, em melhora). **Target do projeto 31/07 → 31/08** (`alvo` atualizado nos dois painéis). Maior salto de confiabilidade do BHules desde o incidente de maio: causa-raiz dos erros de classificação resolvida (trava de crédito ICMS 5/5, "sistema imunológico" com revogação rastreável, 747 decisões antigas removidas, trava anti-regressão) — tudo em produção. **14.861 notas reprocessadas com segurança** (77,8% conformes; nada enviado ao cliente); R$ 5,07 mi em créditos identificados. BHules confirmado como fonte única de notas (Jorge, 26/06). Milestones Linear: Classificação SN **52% → 45%**, Cálculo SN **24% → 29%** (pctLinear 29 mantido). Bloqueios: decisão Jettax × Unecont travada; ~936 notas em revisão aguardando decisão; integração c/ Motor Contábil e suporte Cockpit/Hub em triage (31/07).
+- **REPORTS**: +1 no Autopilot (motor-fiscal-sn) · +1 no Portfólio (motor-fiscal-sn). **CONSOLIDADO** (semana 2026-06-26) → 14 itens; nota atualizada (Motor Fiscal SN saiu de "sem novo Project Update" para reporte 26/06).
+- **Subtítulo dos dashboards**: "Linear · 25/06" → "Linear · 26/06" nos dois painéis.
+- **Sem novo reporte na semana** (sem alteração): BPO Financeiro (último 19/06). Copiloto Samurai e PMI Digital seguem na Geladeira; Offboarding na Geladeira (23/06); GDocs ×2 encerrados (100%).
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | % | Saúde |
+| -- | -- | -- |
+| Motor Fiscal SN | 29 | Em risco |
+| RPA Fiscal | 88 | No prazo |
+| Motor Trabalhista | 66 | Em risco |
+| Motor Contábil | 38 | Em risco |
+| Solicitações DP | 97 | Em risco |
+| Triagem OCR | 65 | No prazo |
+| Copiloto Samurai | 0 | Off track |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo |
+| GDocs acompanhamento | 100 | No prazo |
+| PMI Digital | 0 | Off track |
+| Cockpit 100% | 85 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track |
+
+**Dashboard após sync:** Portfólio (15 projetos) — 7 No prazo · 5 Em risco · 3 Off track · média pctLinear ~46%. Autopilot (4 motores) — 1 No prazo (RPA) · 3 Em risco (Fiscal, Trabalhista, Contábil). **Validação:** os 2 `<script>` de cada painel passaram em `node --check` + smoke test (DOM stub, render dos 6 views sem exceção, reporte fiscal e subtítulo conferidos) antes de salvar.
+
+---
+
 ## 2026-06-26 · 15h UTC — snapshot · ⏱ 10m 52s
 
 **Sync de complemento da semana de 26/06 — Project Updates publicados após a execução das 12h.** A run das 12h rodou com o relógio do ambiente em 22/06 e capturou apenas parte dos reportes; entre ~11h48 e ~14h50 UTC entraram (ou foram lidos agora) updates de 4 projetos do portfólio que ainda não estavam nos painéis. Esta run incorpora esses reportes nos dois painéis e mantém todo o histórico anterior.
