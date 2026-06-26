@@ -9,6 +9,48 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-26 · 12h UTC — snapshot · ⏱ ~8m *(relógio do ambiente avançou 22→26/06 durante a execução; duração real ~8 min)*
+
+**Semana de 26/06 — novos Project Updates capturados.** Esta sync incorpora os reportes da semana de 26/06 publicados no Linear (o ciclo anterior eram refreshes de milestone em 25/06). 10 Project Updates novos lidos via `get_status_updates` — 8 dentro do portfólio + os motores RPA Fiscal e Contábil. **Motor Fiscal SN e Motor Trabalhista sem novo reporte** (último 19/06): `pctLinear` mantido pelo milestone real do Linear (live).
+
+**Mudanças aplicadas:**
+- **Motor Contábil** (ambos painéis): `pctLinear` **30% → 38%** · Jorge iniciou o ciclo de construção (14+ sub-issues em andamento; discovery CTB-1 e spike Midaz CTB-3 concluídos; Git desbloqueado) · target **31/07 → 31/08** · 🟡 Em risco.
+- **RPA Fiscal** (ambos): **88%** · Painel de controle interno **FIS-188 concluído (23/06)** · `marcoLinear` "(88%)" · 🟢 No prazo.
+- **Solicitações DP** (portfólio): `pctLinear` **85% → 97%** (DP1.M1) · validação dos forms do HUB encerrada, validações inteligentes em construção · marcos atualizados (M1 97% · M2 19% · M3 15% · +M4) · 🟡 Em risco.
+- **GDocs multi-CNPJ** e **GDocs acompanhamento**: **encerrados (100%)** · status → "Encerrado" · 🟢 No prazo.
+- **Copiloto Samurai**: → **Geladeira** · 🟡 → 🔴 Off track · `pctLinear` 10% → 0% (milestones zerados; retomada Q4 FY26).
+- **PMI Digital**: confirmado **Geladeira** · 🔴 Off track · retomada Q4 FY26.
+- **Hubcount**: aguardando apresentação dos MVPs · Spec → 31/08 · 0% · 🟢 No prazo.
+- **Offboarding**: já em Geladeira desde 23/06 — mantido · 🔴 Off track.
+- **REPORTS**: +8 no Portfólio (rpa, contábil, soldp, gdocs ×2, samurai, pmi, hubcount) · +2 no Autopilot (rpa, contábil). **CONSOLIDADO** → semana **2026-06-26** (9 itens). Subtítulo do Dashboard: data dinâmica (auto-hoje).
+- **Sem reporte na semana** (sem alteração de dados): Motor Fiscal SN, Motor Trabalhista, Triagem OCR, BPO Financeiro, Cockpit 100%, Cadastro Único.
+
+**Milestones lidos do Linear (% real):** Classificação SN **44,52%** · Motor de Cálculo SN **28,68%** · RPA Construção **87,63%** · Pró-Labore SN **65,94%** · Folha s/ apont. **17,86%** · Motor Contábil Entregue **38%** (report 26/06).
+
+**Dashboard após sync:** Autopilot (4 motores) média **~55%** · 1 No prazo · 3 Em risco. Portfólio (15 projetos) média **~44%** · 6 No prazo · 6 Em risco · 3 Off track.
+
+| Projeto | Squad | Saúde | % (milestone) | Δ desde 25/06 22h |
+| -- | -- | -- | -- | -- |
+| Motor Fiscal SN | Fiscal | 🟡 Em risco | 29% (Cálculo SN) | — (sem reporte · Classif. 45%) |
+| RPA Fiscal | Fiscal | 🟢 No prazo | 88% (Construção RPAs) | — · FIS-188 concluído |
+| Motor Trabalhista (DP) | DP | 🟡 Em risco | 66% (Pró-Labore SN) | — (sem reporte · Folha 18%) |
+| Motor Contábil | Contábil | 🟡 Em risco | 38% (Motor Entregue) | +8 · construção iniciada |
+| Solicitações DP | Hub | 🟡 Em risco | 97% (DP1.M1) | +12 · forms validados |
+| Triagem OCR | Cockpit | 🟢 No prazo | 75% | — (sem reporte) |
+| Copiloto Samurai | Cockpit | 🔴 Off track | 0% (geladeira) | health 🟡→🔴 · −10 |
+| BPO Financeiro | Cockpit | 🟡 Em risco | 10% (bloqueado) | — (sem reporte) |
+| GDocs multi-CNPJ | Hub | 🟢 No prazo | 100% (encerrado) | — · projeto encerrado |
+| GDocs acompanhamento | Hub | 🟢 No prazo | 100% (encerrado) | — · projeto encerrado |
+| PMI Digital | Cockpit | 🔴 Off track | 0% (geladeira) | — |
+| Cockpit 100% | Cockpit | 🟢 No prazo | 30% | — (sem reporte) |
+| Cadastro Único | Cockpit | 🟡 Em risco | 25% | — (sem reporte) |
+| Hubcount | Contábil | 🟢 No prazo | 0% (pré-spec) | — · aguardando MVPs |
+| Offboarding | Cockpit | 🔴 Off track | 0% (geladeira) | — |
+
+**Validação:** os 2 `<script>` de cada painel passaram em `node --check` + smoke test (jsdom renderizando dashboard/exec/projetos/raid/reports). `REPORTS`/`CONSOLIDADO` reparsáveis (`;` final preservado). Painéis salvos só após validação OK.
+
+---
+
 ## 2026-06-25 · 22h UTC — snapshot · ⏱ 5m 47s
 
 **Refresh de milestones dos motores — recomputação do `progress` real no Linear desde a sync das 15h.** Nenhum Project Update novo dos 15 projetos do portfólio na semana: os mais recentes na fila do Linear são **Procurações no Cockpit** (26/06) e **Design System v1.4.1** (24/06) — ambos fora dos painéis — e Offboarding/Geladeira (23/06), já refletido. Hub (solicitacoes-dp, gdocs-multicnpj, gdocs-acompanhamento) reconferido — sem reporte novo. O `progress` real dos milestones de **Cálculo SN** e **Pró-Labore SN** recomputou para baixo (escopo expandido com novas issues nas milestones), então `pctLinear` foi atualizado nos **dois painéis** para refletir o valor real.
