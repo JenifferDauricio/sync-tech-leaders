@@ -9,6 +9,39 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-06-29 · 10h UTC — snapshot · ⏱ 5m 2s
+
+**Run de início de semana (segunda-feira).** Varredura completa do Linear: `get_status_updates` (type:project, orderBy createdAt) e `list_issues` dos 4 motores. **Nenhum Project Update novo foi publicado desde a run de fechamento de 26/06** — o reporte mais recente em qualquer projeto é de 26/06 22:18 UTC (Open Finance, fora dos 15 do portfólio), já posterior aos reportes dos motores. Os 6 updates mais recentes (Open Finance, Certificado Digital, Motor Fiscal SN, Central de Ajuda, Pesquisa de Satisfação, Motor Trabalhista) são todos de 26/06 e já estavam refletidos nos painéis. As issues dos motores aparecem com `updatedAt` de 29/06 ~02:43 UTC, mas trata-se de re-indexação em lote (status, `dueDate` e `completedAt` idênticos ao snapshot de 26/06) — sem mudança real de estado.
+
+**Mudanças aplicadas:**
+- **Subtítulo dos dashboards**: "Linear · 26/06" → "Linear · 29/06" nos dois painéis (reflete a data da sincronização de hoje).
+- **REPORTS / CONSOLIDADO / MATRIZ / dependências**: sem alteração — não houve reporte novo na semana nem mudança de milestone/status no Linear. Entradas antigas preservadas (append-only).
+- **pctLinear e saúde dos 15 projetos**: reafirmados, sem alteração em relação a 26/06.
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | % | Saúde |
+| -- | -- | -- |
+| Motor Fiscal SN | 29 | Em risco |
+| RPA Fiscal | 88 | No prazo |
+| Motor Trabalhista | 66 | Em risco |
+| Motor Contábil | 38 | Em risco |
+| Solicitações DP | 97 | Em risco |
+| Triagem OCR | 65 | No prazo |
+| Copiloto Samurai | 0 | Off track |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo |
+| GDocs acompanhamento | 100 | No prazo |
+| PMI Digital | 0 | Off track |
+| Cockpit 100% | 85 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track |
+
+**Dashboard após sync:** Portfólio (15 projetos) — 7 No prazo · 5 Em risco · 3 Off track · média pctLinear ~46%. Autopilot (4 motores) — 1 No prazo (RPA) · 3 Em risco (Fiscal, Trabalhista, Contábil). **Validação:** os 2 `<script>` de cada painel passaram em `node --check` + smoke test (DOM stub, render de dashboard/OKR/exec/projetos/raid/reports/deps sem exceção) antes de salvar.
+
+---
+
 ## 2026-06-26 · 22h UTC — snapshot · ⏱ 7m 5s
 
 **Sync de fechamento do dia — incorpora o Project Update do Motor Fiscal SN publicado às 18h23 UTC**, depois da run das 15h. Esse era o único reporte da semana ainda ausente dos painéis (o último capturado era de 19/06). Demais projetos sem alteração desde a run das 15h.
