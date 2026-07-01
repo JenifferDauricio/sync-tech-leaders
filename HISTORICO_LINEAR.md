@@ -9,6 +9,39 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-07-01 · 16h UTC — snapshot · ⏱ 73m 43s
+
+**Run de meio de semana (quarta-feira).** Varredura completa do Linear: `get_status_updates` (type:project, orderBy createdAt, limit 6) e `list_issues` dos 4 motores (updatedAt −P5D). **Nenhum Project Update novo foi publicado desde 26/06** — os 6 updates mais recentes (Open Finance 26/06 22:18, Certificado Digital, Motor Fiscal SN, Central de Ajuda, Pesquisa de Satisfação, Motor Trabalhista) são todos de 26/06 e já estavam refletidos nos painéis. Portanto REPORTS, CONSOLIDADO, pctLinear e saúde dos 15 projetos permanecem inalterados (append-only preservado).
+
+**Mudanças reais no nível de issue (via list_issues, régua de status)** — houve execução entre 29/06 e 01/07, refletida no board dos dois painéis:
+- **Motor Trabalhista (DP):** `DP-101` [Envio da folha ao eSocial] **concluída em 01/07** (fechou após a migração Terraform→Restate, exatamente como o report de 26/06 antecipava). `DP-134` [Anomalia 2 — validação pós-cálculo] **concluída em 01/07** (era due 03/07 — entregue antes do prazo). `DP-109` [Distribuição pós-gate] e `DP-67` [Admissão — migração Azure→AWS] passaram a **Em andamento**.
+- **Motor Fiscal SN:** `FIS-329` [Motor de Cálculo Fiscal — API de apuração do DAS] passou a **Em andamento** (a "API de cálculo em andamento" citada no report de 26/06 agora refletida no board). Sem entregas-mãe concluídas na janela.
+- `progresso` do Motor Trabalhista atualizado para citar DP-101/DP-134 concluídas.
+- **Subtítulo dos dashboards**: "Linear · 29/06" → "Linear · 01/07" nos dois painéis.
+- pctLinear/health/marcoLinear e a MATRIZ (Cockpit/Hub/backlog) sem alteração — dependem de Project Update/milestone, e não houve reporte novo.
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | % | Saúde |
+| -- | -- | -- |
+| Motor Fiscal SN | 29 | Em risco |
+| RPA Fiscal | 88 | No prazo |
+| Motor Trabalhista | 66 | Em risco |
+| Motor Contábil | 38 | Em risco |
+| Solicitações DP | 97 | Em risco |
+| Triagem OCR | 65 | No prazo |
+| Copiloto Samurai | 0 | Off track |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo |
+| GDocs acompanhamento | 100 | No prazo |
+| PMI Digital | 0 | Off track |
+| Cockpit 100% | 85 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track |
+
+Validação: extraídos os 2 `<script>` de cada painel · `node --check` OK nos 4 · smoke test com DOM stub renderizou dashboard/exec/projetos/raid/reports sem erro (Autopilot avg 55% · 28 reports; Portfólio avg 46% · 68 reports). Só então salvos.
+
 ## 2026-06-29 · 10h UTC — snapshot · ⏱ 5m 2s
 
 **Run de início de semana (segunda-feira).** Varredura completa do Linear: `get_status_updates` (type:project, orderBy createdAt) e `list_issues` dos 4 motores. **Nenhum Project Update novo foi publicado desde a run de fechamento de 26/06** — o reporte mais recente em qualquer projeto é de 26/06 22:18 UTC (Open Finance, fora dos 15 do portfólio), já posterior aos reportes dos motores. Os 6 updates mais recentes (Open Finance, Certificado Digital, Motor Fiscal SN, Central de Ajuda, Pesquisa de Satisfação, Motor Trabalhista) são todos de 26/06 e já estavam refletidos nos painéis. As issues dos motores aparecem com `updatedAt` de 29/06 ~02:43 UTC, mas trata-se de re-indexação em lote (status, `dueDate` e `completedAt` idênticos ao snapshot de 26/06) — sem mudança real de estado.

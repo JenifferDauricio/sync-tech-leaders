@@ -55,7 +55,7 @@ const DADOS = {
         {ref:"FIS-279", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Anomalia 2 — gate de validação da apuração", owner:"—", status:"Pendente", venc:"2026-07-03"},
         {ref:"FIS-300", entrega:true, area:"Fiscal", nome:"E2 · Cálculo & emissão do DAS", owner:"Glauco Junior", status:"Em andamento", inicio:"2026-06-05", venc:"2026-07-17"},
         {ref:"FIS-259", parent:"FIS-300", area:"Fiscal", nome:"[Validação] Cálculos do DAS com empresas de teste", owner:"Glauco Junior", status:"Refinado", venc:"2026-07-17"},
-        {ref:"FIS-329", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Motor de Cálculo Fiscal — API de apuração do DAS", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"FIS-329", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Motor de Cálculo Fiscal — API de apuração do DAS", owner:"—", status:"Em andamento", venc:"2026-07-03"},
         {ref:"FIS-330", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Adapter — histórico SERPRO (e-CAC)", owner:"—", status:"Pendente", venc:"2026-07-03"},
         {ref:"FIS-331", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Transmissão PGDAS-D e geração do DAS (SERPRO)", owner:"—", status:"Pendente", venc:"2026-07-17"},
         {ref:"FIS-301", entrega:true, area:"Fiscal", nome:"E3 · Provisão & integração contábil", owner:"—", status:"Pendente", inicio:"2026-05-01"},
@@ -130,7 +130,7 @@ const DADOS = {
       lead:"Jeni Dauricio", iniciativa:"Motor DP (Trabalhista)", statusProjeto:"Construção",
       inicio:"2026-05-01", alvo:"2026-08-31",
       marco:"Pró-Labore SN 66% · Folha s/ apont. 18% · 4 issues due 03/07 · target 31/08",
-      progresso:"Ciclo de construção em andamento: Readiness Check Anomalia 1 (DP-103), Anomalia 2 (DP-134) e disparo automático do fechamento via EventBridge (DP-107) iniciados — todos due 03/07. eSocial (DP-101) atrasou por migração de infra (Terraform→Restate); fecha na próxima semana. Pró-Labore SN em 66%, Folha s/ apont. em 18%. Target do projeto estendido p/ 31/08.",
+      progresso:"Ciclo de construção avançando: eSocial (DP-101) concluído em 01/07 (após migração Terraform→Restate) e Anomalia 2 — validação pós-cálculo (DP-134) concluída em 01/07. Readiness Check Anomalia 1 (DP-103) e disparo automático do fechamento via EventBridge (DP-107) em andamento (due 03/07); distribuição pós-gate (DP-109) iniciada. Pró-Labore SN em 66%, Folha s/ apont. em 18%. Target do projeto estendido p/ 31/08.",
       tarefas:[
         {ref:"DP-113", entrega:true, area:"DP", nome:"E1 · Folha + pró-labore SN calculável", owner:"Sávio Lopes", status:"Em andamento", inicio:"2026-05-13", venc:"2026-07-31"},
         {ref:"DP-3", parent:"DP-113", area:"DP", nome:"[Feature] Cálculo de folha e pró-labore", owner:"Sávio Lopes", status:"Em revisão", venc:"2026-06-19"},
@@ -139,7 +139,7 @@ const DADOS = {
         {ref:"DP-9", parent:"DP-113", area:"DP", nome:"[Discovery] Jornada DP", owner:"Andressa Rodrigues", status:"Concluído"},
         {ref:"DP-114", entrega:true, area:"DP", nome:"E2 · eSocial e DCTFWeb entregue", owner:"Matheus Mota", status:"Em andamento", inicio:"2026-06-05", venc:"2026-07-31"},
         {ref:"DP-55", parent:"DP-114", area:"DP", nome:"[Feature] Tabelas do eSocial no motor", owner:"—", status:"Concluído"},
-        {ref:"DP-101", parent:"DP-114", area:"DP", nome:"[Feature] Envio da folha ao eSocial", owner:"Matheus Mota", status:"Em andamento", venc:"2026-06-19"},
+        {ref:"DP-101", parent:"DP-114", area:"DP", nome:"[Feature] Envio da folha ao eSocial", owner:"Matheus Mota", status:"Concluído", venc:"2026-06-19"},
         {ref:"DP-132", parent:"DP-114", area:"DP", nome:"[Feature] Convergência DCTFWeb — eSocial (folha) + EFD-Reinf (fiscal)", owner:"—", status:"Pendente", venc:"2026-07-31"},
         {ref:"DP-115", entrega:true, area:"DP", nome:"E3 · eConsignado entregue", owner:"Matheus Mota", status:"Em andamento", inicio:"2026-05-21", venc:"2026-07-31"},
         {ref:"DP-58", parent:"DP-115", area:"DP", nome:"[Feature] Empréstimo consignado em folha", owner:"Matheus / Sávio", status:"Concluído", venc:"2026-06-19"},
@@ -149,7 +149,7 @@ const DADOS = {
         {ref:"DP-57", parent:"DP-116", area:"DP", nome:"[Feature] Emissão da guia FGTS Digital em produção", owner:"—", status:"Concluído"},
         {ref:"DP-110", parent:"DP-116", area:"DP", nome:"[Feature] FGTS integrado ao workflow e entrega da guia", owner:"—", status:"Pendente", venc:"2026-07-31"},
         {ref:"DP-117", entrega:true, area:"DP", nome:"E5 · Experiência DP no Hub", owner:"—", status:"Pendente", inicio:"2026-05-21", venc:"2026-07-31"},
-        {ref:"DP-67", parent:"DP-117", area:"DP", nome:"[Feature] Admissão — migração Azure→AWS e integração Zendesk", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"DP-67", parent:"DP-117", area:"DP", nome:"[Feature] Admissão — migração Azure→AWS e integração Zendesk", owner:"—", status:"Em andamento", venc:"2026-07-03"},
         {ref:"DP-104", parent:"DP-117", area:"DP", nome:"[Feature] Motor de Regras DP — endpoints síncronos para o Hub", owner:"—", status:"Pendente", venc:"2026-07-17"},
         {ref:"DP-105", parent:"DP-117", area:"DP", nome:"[Feature] Integração Hub → Motor DP (documentos por jornada)", owner:"—", status:"Pendente", venc:"2026-07-17"},
         {ref:"DP-118", entrega:true, area:"DP", nome:"E6 · Relatórios de folha gerados", owner:"Reginaldo Evaristo", status:"Em andamento", inicio:"2026-06-05", venc:"2026-07-31"},
@@ -158,10 +158,10 @@ const DADOS = {
         {ref:"DP-100", parent:"DP-118", area:"DP", nome:"[Validação] Resumo de Folha e Holerites com dados reais — 10 empresas", owner:"Reginaldo Evaristo", status:"Em andamento", venc:"2026-06-19"},
         {ref:"DP-135", entrega:true, area:"DP", nome:"E7 · Orquestração + Guias e relatórios no Hub (entrega final)", owner:"—", status:"Pendente", inicio:"2026-06-09", venc:"2026-07-31"},
         {ref:"DP-103", parent:"DP-135", area:"DP", nome:"[Feature] Readiness check — Anomalia 1 (completude de insumos)", owner:"Paulo Dias", status:"Em andamento", venc:"2026-07-03"},
-        {ref:"DP-134", parent:"DP-135", area:"DP", nome:"[Feature] Anomalia 2 — validação pós-cálculo (folha vs histórico)", owner:"Reginaldo Evaristo", status:"Em andamento", venc:"2026-07-03"},
+        {ref:"DP-134", parent:"DP-135", area:"DP", nome:"[Feature] Anomalia 2 — validação pós-cálculo (folha vs histórico)", owner:"Reginaldo Evaristo", status:"Concluído", venc:"2026-07-03"},
         {ref:"DP-106", parent:"DP-135", area:"DP", nome:"[Feature] Workflow de fechamento de folha mensal (Restate)", owner:"—", status:"Refinado", venc:"2026-07-17"},
         {ref:"DP-107", parent:"DP-135", area:"DP", nome:"[Infra] Disparo automático do fechamento (EventBridge)", owner:"Sávio Lopes", status:"Em andamento", venc:"2026-07-03"},
-        {ref:"DP-109", parent:"DP-135", area:"DP", nome:"[Feature] Distribuição pós-gate e transmissão eSocial da folha", owner:"—", status:"Refinado", venc:"2026-07-03"},
+        {ref:"DP-109", parent:"DP-135", area:"DP", nome:"[Feature] Distribuição pós-gate e transmissão eSocial da folha", owner:"—", status:"Em andamento", venc:"2026-07-03"},
         {ref:"DP-111", parent:"DP-135", area:"DP", nome:"[Feature] Lançamentos contábeis da folha → Motor Contábil", owner:"—", status:"Pendente"}
       
       ],
@@ -553,7 +553,7 @@ function barLine(label,pc,extra){return `<div style="margin-bottom:.8rem"><div s
 function renderDashboard(){
   const m=portfolio();
   document.getElementById('view-dashboard').innerHTML = `
-    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo do portfólio • ${m.nProj} projetos (Autopilot + Cockpit + Hub) • dados e reportes do Linear · 29/06</div></div></div>
+    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo do portfólio • ${m.nProj} projetos (Autopilot + Cockpit + Hub) • dados e reportes do Linear · 01/07</div></div></div>
     <div class="kpi-hero-sec">
       <div class="hero"><div class="lab">% Conclusão<br>média do portfólio</div>
         <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">média do % de avanço (milestone) dos ${m.nProj} projetos — reporte semanal</div></div>
