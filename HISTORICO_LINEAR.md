@@ -9,6 +9,43 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-07-01 · 22h UTC — snapshot · ⏱ 5m 40s
+
+**Segunda run da quarta-feira (re-sync noturno).** Varredura do Linear: `get_status_updates` (type:project, orderBy createdAt, limit 6 × 2 páginas) e `list_issues` dos 4 motores (updatedAt −PT7H). **Nenhum Project Update novo desde 26/06** — os updates mais recentes em qualquer projeto continuam sendo os de 26/06 (Open Finance 22:18, Certificado Digital, Motor Fiscal SN, Central de Ajuda, Pesquisa de Satisfação, Motor Trabalhista, Cockpit GTO/Triagem/Sincronização etc.), todos já refletidos nos painéis. Portanto REPORTS, CONSOLIDADO, MATRIZ, pctLinear, saúde e marcoLinear dos 15 projetos permanecem inalterados (append-only preservado).
+
+**Atividade de issue observada desde a run das 16h (mesma competência, nível neto — não altera as entregas-mãe nem as tarefas diretas exibidas nos painéis):**
+- **Motor Fiscal SN:** sob `FIS-329` (API do DAS, já *Em andamento* no painel) — `FIS-398` [código básico da API baseado no General Ledger] **concluída 01/07**, `FIS-399` [integração com o BHules] **concluída 01/07**, `FIS-400` [infra AWS Terraform] passou a **Em andamento**. Sem entrega-mãe (E1–E5) concluída.
+- **Motor Trabalhista (DP):** sob `DP-101` (eSocial, já concluída na run das 16h) — `DP-167` [migrar services do eSocial p/ Restate] e `DP-168` [ajustar nomenclatura adapter] **concluídas**.
+- **RPA Fiscal:** lote de sub-issues de refinamento criado hoje sob `FIS-260` (Motor de Trigger de escrituração) — `FIS-430`…`FIS-438` (polling BHules, orquestração DMN, contrato de resposta, observabilidade, anti-perda), todas em **Refinado** (planejamento, não iniciadas). `FIS-260` segue *Refinado*.
+- **Motor Contábil:** sem atividade na janela.
+
+**Drift de milestone (informativo — pctLinear segue o reporte semanal, precedente das runs anteriores; sem reporte novo, sem alteração no painel):** Construção Motor de Cálculo SN 29% → 34,56% · Construção Pró-Labore SN 66% → 71,56% · Folha s/ apontamento 18% → 17,86%. RPA e Contábil sem milestone novo relevante.
+
+- **Subtítulo dos dashboards**: já em "Linear · 01/07" (definido na run das 16h de hoje) — sem alteração nesta run.
+- **Nenhuma edição de dados nos HTML nesta run** — não houve reporte novo nem mudança no nível de entrega-mãe/tarefa exibido. Único arquivo alterado: este `HISTORICO_LINEAR.md` (append-only).
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | % | Saúde |
+| -- | -- | -- |
+| Motor Fiscal SN | 29 | Em risco |
+| RPA Fiscal | 88 | No prazo |
+| Motor Trabalhista | 66 | Em risco |
+| Motor Contábil | 38 | Em risco |
+| Solicitações DP | 97 | Em risco |
+| Triagem OCR | 65 | No prazo |
+| Copiloto Samurai | 0 | Off track |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo |
+| GDocs acompanhamento | 100 | No prazo |
+| PMI Digital | 0 | Off track |
+| Cockpit 100% | 85 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track |
+
+Validação: extraídos os 2 `<script>` de cada painel · `node --check` OK nos 4 blocos (Autopilot 74291+45110 chars · Portfólio 127834+55578 chars) · smoke test com DOM stub chamou dashboard/exec/projetos/raid/reports sem erro nos dois painéis. Só então publicado.
+
 ## 2026-07-01 · 16h UTC — snapshot · ⏱ 73m 43s
 
 **Run de meio de semana (quarta-feira).** Varredura completa do Linear: `get_status_updates` (type:project, orderBy createdAt, limit 6) e `list_issues` dos 4 motores (updatedAt −P5D). **Nenhum Project Update novo foi publicado desde 26/06** — os 6 updates mais recentes (Open Finance 26/06 22:18, Certificado Digital, Motor Fiscal SN, Central de Ajuda, Pesquisa de Satisfação, Motor Trabalhista) são todos de 26/06 e já estavam refletidos nos painéis. Portanto REPORTS, CONSOLIDADO, pctLinear e saúde dos 15 projetos permanecem inalterados (append-only preservado).
