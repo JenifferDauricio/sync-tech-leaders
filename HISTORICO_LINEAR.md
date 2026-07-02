@@ -9,6 +9,46 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-07-02 · 15h UTC — snapshot · ⏱ 4m 30s
+
+**Run de quinta-feira (meio de semana).** Varredura do Linear: `get_status_updates` (type:project, orderBy createdAt, limit 6) e `list_issues` dos 4 motores (updatedAt −P1D). **Nenhum Project Update novo desde 26/06** — o update mais recente em qualquer projeto continua sendo Open Finance (26/06 22:18); todos os demais (Certificado Digital, Motor Fiscal SN, Central de Ajuda, Pesquisa de Satisfação, Motor Trabalhista) também são de 26/06 e já refletidos nos painéis. Portanto REPORTS, CONSOLIDADO, MATRIZ, pctLinear, saúde e marcoLinear dos 15 projetos permanecem inalterados (append-only preservado).
+
+**Mudanças reais no nível de tarefa exibida (via list_issues, régua de status) — atualizadas nos DOIS painéis:**
+- **Motor Fiscal SN:** `FIS-279` [Anomalia 2 — gate de validação da apuração, sub de FIS-299/E1] passou de **Pendente → Em andamento** em 02/07 13:36 (due 03/07; assignee Paulo Dias). Reflete o gate de validação da apuração entrando em construção.
+- **Motor Trabalhista (DP):** `DP-103` [Readiness check — Anomalia 1, sub de DP-135] **concluída em 02/07 14:39** (due 03/07 — entregue antes do prazo; Paulo Dias). Primeiro dos 4 itens due 03/07 do ciclo a fechar.
+
+**Atividade de issue observada na janela (nível neto / planejamento — não altera entregas-mãe nem as tarefas diretas exibidas):**
+- **Motor Fiscal SN:** sob `FIS-329` (API do DAS, já *Em andamento* no painel) — `FIS-398` [código básico da API] e `FIS-399` [integração BHules] **concluídas 01/07**, `FIS-400` [infra AWS Terraform] *Em andamento* (due 06/07). `HUB-499` [Cockpit — suporte ao workflow ApuracaoFiscal] segue *Pendente*.
+- **Motor Trabalhista (DP):** `DP-162` e `DP-154` (refator do disparador de fechamento) passaram a *Em andamento* em 02/07; `DP-161` [Restate service dp-reports-engine] *Em revisão*; `DP-167`/`DP-168` (eSocial→Restate) concluídas em 01/07. Novas issues criadas: `DP-183` [provisão férias/13º — folha sem apontamento] e `DP-179` [validar BRD FGTS consignado], ambas *Pendente* (backlog).
+- **RPA Fiscal · Motor Contábil:** sem atividade relevante na janela.
+
+**Drift de milestone (informativo — pctLinear segue o reporte semanal; sem reporte novo, sem alteração no painel):** sem variação material desde a run anterior.
+
+- **Subtítulo dos dashboards:** "Linear · 01/07" → **"Linear · 02/07"** nos dois painéis.
+- pctLinear/health/marcoLinear e a MATRIZ (Cockpit/Hub/backlog) sem alteração — dependem de Project Update/milestone, e não houve reporte novo.
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | % | Saúde |
+| -- | -- | -- |
+| Motor Fiscal SN | 29 | Em risco |
+| RPA Fiscal | 88 | No prazo |
+| Motor Trabalhista | 66 | Em risco |
+| Motor Contábil | 38 | Em risco |
+| Solicitações DP | 97 | Em risco |
+| Triagem OCR | 65 | No prazo |
+| Copiloto Samurai | 0 | Off track |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo |
+| GDocs acompanhamento | 100 | No prazo |
+| PMI Digital | 0 | Off track |
+| Cockpit 100% | 85 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track |
+
+Validação: extraídos os 2 `<script>` de cada painel · `node --check` OK nos 4 blocos (Autopilot 74301+45110 chars · Portfólio 127844+55578 chars) · smoke test com DOM stub executou data+logic chamando dashboard/exec/projetos/raid/reports sem erro nos dois painéis. Só então publicado.
+
 ## 2026-07-01 · 22h UTC — snapshot · ⏱ 5m 40s
 
 **Segunda run da quarta-feira (re-sync noturno).** Varredura do Linear: `get_status_updates` (type:project, orderBy createdAt, limit 6 × 2 páginas) e `list_issues` dos 4 motores (updatedAt −PT7H). **Nenhum Project Update novo desde 26/06** — os updates mais recentes em qualquer projeto continuam sendo os de 26/06 (Open Finance 22:18, Certificado Digital, Motor Fiscal SN, Central de Ajuda, Pesquisa de Satisfação, Motor Trabalhista, Cockpit GTO/Triagem/Sincronização etc.), todos já refletidos nos painéis. Portanto REPORTS, CONSOLIDADO, MATRIZ, pctLinear, saúde e marcoLinear dos 15 projetos permanecem inalterados (append-only preservado).

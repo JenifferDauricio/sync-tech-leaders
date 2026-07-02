@@ -52,7 +52,7 @@ const DADOS = {
         {ref:"FIS-276", parent:"FIS-299", area:"Fiscal", nome:"[Infra] Scheduler e Router do workflow ApuracaoFiscal", owner:"—", status:"Pendente", venc:"2026-07-03"},
         {ref:"FIS-277", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Anomalia 1 — completude dos insumos fiscais", owner:"—", status:"Pendente"},
         {ref:"FIS-278", parent:"FIS-299", area:"Fiscal", nome:"[Feature] HITL fiscal — awakeables para exceções", owner:"—", status:"Pendente"},
-        {ref:"FIS-279", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Anomalia 2 — gate de validação da apuração", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"FIS-279", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Anomalia 2 — gate de validação da apuração", owner:"Paulo Dias", status:"Em andamento", venc:"2026-07-03"},
         {ref:"FIS-300", entrega:true, area:"Fiscal", nome:"E2 · Cálculo & emissão do DAS", owner:"Glauco Junior", status:"Em andamento", inicio:"2026-06-05", venc:"2026-07-17"},
         {ref:"FIS-259", parent:"FIS-300", area:"Fiscal", nome:"[Validação] Cálculos do DAS com empresas de teste", owner:"Glauco Junior", status:"Refinado", venc:"2026-07-17"},
         {ref:"FIS-329", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Motor de Cálculo Fiscal — API de apuração do DAS", owner:"—", status:"Em andamento", venc:"2026-07-03"},
@@ -157,7 +157,7 @@ const DADOS = {
         {ref:"DP-133", parent:"DP-118", area:"DP", nome:"[Feature] Extrato Mensal — desenvolvimento e validação com dados reais", owner:"Reginaldo Evaristo", status:"Em andamento", venc:"2026-06-19"},
         {ref:"DP-100", parent:"DP-118", area:"DP", nome:"[Validação] Resumo de Folha e Holerites com dados reais — 10 empresas", owner:"Reginaldo Evaristo", status:"Em andamento", venc:"2026-06-19"},
         {ref:"DP-135", entrega:true, area:"DP", nome:"E7 · Orquestração + Guias e relatórios no Hub (entrega final)", owner:"—", status:"Pendente", inicio:"2026-06-09", venc:"2026-07-31"},
-        {ref:"DP-103", parent:"DP-135", area:"DP", nome:"[Feature] Readiness check — Anomalia 1 (completude de insumos)", owner:"Paulo Dias", status:"Em andamento", venc:"2026-07-03"},
+        {ref:"DP-103", parent:"DP-135", area:"DP", nome:"[Feature] Readiness check — Anomalia 1 (completude de insumos)", owner:"Paulo Dias", status:"Concluído", venc:"2026-07-03"},
         {ref:"DP-134", parent:"DP-135", area:"DP", nome:"[Feature] Anomalia 2 — validação pós-cálculo (folha vs histórico)", owner:"Reginaldo Evaristo", status:"Concluído", venc:"2026-07-03"},
         {ref:"DP-106", parent:"DP-135", area:"DP", nome:"[Feature] Workflow de fechamento de folha mensal (Restate)", owner:"—", status:"Refinado", venc:"2026-07-17"},
         {ref:"DP-107", parent:"DP-135", area:"DP", nome:"[Infra] Disparo automático do fechamento (EventBridge)", owner:"Sávio Lopes", status:"Em andamento", venc:"2026-07-03"},
@@ -553,7 +553,7 @@ function barLine(label,pc,extra){return `<div style="margin-bottom:.8rem"><div s
 function renderDashboard(){
   const m=portfolio();
   document.getElementById('view-dashboard').innerHTML = `
-    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo do portfólio • ${m.nProj} projetos (Autopilot + Cockpit + Hub) • dados e reportes do Linear · 01/07</div></div></div>
+    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo do portfólio • ${m.nProj} projetos (Autopilot + Cockpit + Hub) • dados e reportes do Linear · 02/07</div></div></div>
     <div class="kpi-hero-sec">
       <div class="hero"><div class="lab">% Conclusão<br>média do portfólio</div>
         <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">média do % de avanço (milestone) dos ${m.nProj} projetos — reporte semanal</div></div>
