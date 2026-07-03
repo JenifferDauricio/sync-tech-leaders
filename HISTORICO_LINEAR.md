@@ -9,6 +9,14 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-07-03 · 15h07 UTC — run sem sync · ⏱ 2m 30s (conector Linear invalidado)
+
+**⚠️ Execução não conseguiu sincronizar — conector do Linear desconectado.** Todas as chamadas ao MCP do Linear (`list_projects`, `get_status_updates`, `list_issues`) retornaram *"The user's connection to this connector was invalidated. The user needs to reconnect it."*. Como esta é uma run agendada (sem usuário presente), não foi possível reconectar.
+
+**Ação tomada:** nenhum dado dos painéis foi alterado — não havia dados novos do Linear para aplicar. Os painéis permanecem no estado do último sync bem-sucedido (12h37 UTC de hoje, que já fez o re-sync completo da semana 29/06–03/07). Entrada registrada apenas para trilha de auditoria (append-only). **Ação necessária: reconectar o conector do Linear** para que a próxima execução volte a sincronizar normalmente.
+
+---
+
 ## 2026-07-03 · 12h37 UTC — snapshot · ⏱ ~11m (relógio do sandbox instável; o ambiente avançou de 30/06 para 03/07 durante a run)
 
 **Re-sync completo da semana de 29/06–03/07** (complementa o snapshot parcial das 12h, que só pegou task-status + subtítulo). Varredura: `get_status_updates` (type:project, orderBy createdAt, −P6D, limit 30) + `list_milestones` dos 4 motores + `list_issues` (updatedAt) de Fiscal/DP/RPA. **5 Project Updates novos da semana** foram absorvidos nos painéis (antes só havia reportes de 26/06).
