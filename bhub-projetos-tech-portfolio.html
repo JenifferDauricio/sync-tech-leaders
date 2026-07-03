@@ -56,7 +56,7 @@ const DADOS = {
         {ref:"FIS-300", entrega:true, area:"Fiscal", nome:"E2 · Cálculo & emissão do DAS", owner:"Glauco Junior", status:"Em andamento", inicio:"2026-06-05", venc:"2026-07-17"},
         {ref:"FIS-259", parent:"FIS-300", area:"Fiscal", nome:"[Validação] Cálculos do DAS com empresas de teste", owner:"Glauco Junior", status:"Refinado", venc:"2026-07-17"},
         {ref:"FIS-329", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Motor de Cálculo Fiscal — API de apuração do DAS", owner:"—", status:"Em andamento", venc:"2026-07-03"},
-        {ref:"FIS-330", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Adapter — histórico SERPRO (e-CAC)", owner:"—", status:"Pendente", venc:"2026-07-03"},
+        {ref:"FIS-330", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Adapter — histórico SERPRO (e-CAC)", owner:"Paulo Contieri", status:"Concluído", venc:"2026-07-03"},
         {ref:"FIS-331", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Transmissão PGDAS-D e geração do DAS (SERPRO)", owner:"—", status:"Pendente", venc:"2026-07-17"},
         {ref:"FIS-301", entrega:true, area:"Fiscal", nome:"E3 · Provisão & integração contábil", owner:"—", status:"Pendente", inicio:"2026-05-01"},
         {ref:"FIS-280", parent:"FIS-301", area:"Fiscal", nome:"[Feature] Emitir provisões de impostos ao Motor Contábil", owner:"—", status:"Pendente"},
@@ -553,7 +553,7 @@ function barLine(label,pc,extra){return `<div style="margin-bottom:.8rem"><div s
 function renderDashboard(){
   const m=portfolio();
   document.getElementById('view-dashboard').innerHTML = `
-    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo do portfólio • ${m.nProj} projetos (Autopilot + Cockpit + Hub) • dados e reportes do Linear · 02/07</div></div></div>
+    <div class="pghead"><div><h1>${DADOS.workspace}</h1><div class="st">Resumo executivo do portfólio • ${m.nProj} projetos (Autopilot + Cockpit + Hub) • dados e reportes do Linear · 03/07</div></div></div>
     <div class="kpi-hero-sec">
       <div class="hero"><div class="lab">% Conclusão<br>média do portfólio</div>
         <div><div class="big">${m.pct}%</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="cap">média do % de avanço (milestone) dos ${m.nProj} projetos — reporte semanal</div></div>

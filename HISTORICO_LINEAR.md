@@ -9,6 +9,46 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-07-03 · 12h UTC — snapshot · ⏱ ~8m (relógio do sandbox instável nesta run)
+
+**Run de quinta-feira (re-sync).** Varredura do Linear: `get_status_updates` (type:project, orderBy createdAt, −P8D, limit 10) e `list_issues` dos 4 motores (updatedAt −PT8H, desde a run anterior). **Nenhum Project Update novo desde 26/06** — o update mais recente em qualquer projeto continua sendo Open Finance (26/06 22:18); Motor Fiscal SN, Motor Trabalhista, Certificado Digital, Central de Ajuda, Pesquisa de Satisfação e os projetos Cockpit também são de 26/06 e já refletidos nos painéis. Portanto REPORTS, CONSOLIDADO, MATRIZ, pctLinear, saúde e marcoLinear dos 15 projetos permanecem inalterados (append-only preservado).
+
+**Mudança real no nível de tarefa exibida (via list_issues, régua de status) — atualizada nos DOIS painéis:**
+- **Motor Fiscal SN:** `FIS-330` [Adapter — histórico SERPRO (e-CAC), sub de FIS-300/E2 · Cálculo & emissão do DAS] passou de **Pendente → Concluído** em 03/07 12:16 (due 03/07; assignee Paulo Contieri). Primeira integração externa do Motor de Cálculo (consulta de histórico via API SERPRO/e-CAC) entregue. A entrega-mãe FIS-300 (E2) segue *Em andamento* (FIS-331 pendente, FIS-259 refinado).
+
+**Atividade de issue observada na janela (não altera entregas-mãe nem as tarefas diretas exibidas):**
+- **Motor Fiscal SN:** `FIS-335` [bug de correlação de CFOP, sub de FIS-371] segue *Concluído* (fechado em 19/06). `HUB-501` [Design — refinar dependências do Motor Fiscal / COCKPIT-521] segue *Pendente* (Hub/Design, não exibida).
+- **Motor Contábil:** `HUB-496`/`HUB-497`/`HUB-498` [Design da experiência do operador no workflow do Motor Contábil / COCKPIT-537] seguem *Pendente* (Hub/Design, não exibidas). Nenhuma sub-issue de construção CTB alterada na janela.
+- **RPA Fiscal · Motor Trabalhista:** sem atividade de issue na janela.
+
+**Drift de milestone (informativo — pctLinear segue o reporte semanal; sem reporte novo, sem alteração no painel):** sem variação material reportada desde a run anterior.
+
+- **Subtítulo dos dashboards:** "Linear · 02/07" → **"Linear · 03/07"** nos dois painéis.
+- pctLinear/health/marcoLinear e a MATRIZ (Cockpit/Hub/backlog) sem alteração — dependem de Project Update/milestone, e não houve reporte novo.
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | % | Saúde |
+| -- | -- | -- |
+| Motor Fiscal SN | 29 | Em risco |
+| RPA Fiscal | 88 | No prazo |
+| Motor Trabalhista | 66 | Em risco |
+| Motor Contábil | 38 | Em risco |
+| Solicitações DP | 97 | Em risco |
+| Triagem OCR | 65 | No prazo |
+| Copiloto Samurai | 0 | Off track |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo |
+| GDocs acompanhamento | 100 | No prazo |
+| PMI Digital | 0 | Off track |
+| Cockpit 100% | 85 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track |
+
+Validação: extraídos os 2 `<script>` de cada painel · `node --check` OK nos 4 blocos (Autopilot 2 scripts · Portfólio 2 scripts) · smoke test com DOM stub (Proxy) executou data+logic chamando renderDashboard/renderExec/renderProjetos/renderRaid/renderReports/renderOKR/renderDeps sem erro nos dois painéis (SMOKE PASS). Só então salvo e publicado.
+
+
 ## 2026-07-02 · 15h UTC — snapshot · ⏱ 4m 30s
 
 **Run de quinta-feira (meio de semana).** Varredura do Linear: `get_status_updates` (type:project, orderBy createdAt, limit 6) e `list_issues` dos 4 motores (updatedAt −P1D). **Nenhum Project Update novo desde 26/06** — o update mais recente em qualquer projeto continua sendo Open Finance (26/06 22:18); todos os demais (Certificado Digital, Motor Fiscal SN, Central de Ajuda, Pesquisa de Satisfação, Motor Trabalhista) também são de 26/06 e já refletidos nos painéis. Portanto REPORTS, CONSOLIDADO, MATRIZ, pctLinear, saúde e marcoLinear dos 15 projetos permanecem inalterados (append-only preservado).
