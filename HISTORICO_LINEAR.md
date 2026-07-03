@@ -9,6 +9,47 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-07-03 · 22h14 UTC — snapshot · ⏱ 11m 11s (Linear reconectado)
+
+**Conector do Linear voltou a funcionar** (a run das 15h07 havia falhado por conexão invalidada). Esta execução absorveu **3 Project Updates novos** que foram postados à tarde, **depois** do sync completo das 12h37 — exatamente os updates semanais dos motores que, no sync da manhã, ainda não existiam (a manhã usara milestone/issues como proxy). Varredura: `get_status_updates` (type:project, orderBy createdAt, −P3D, limit 8) + `list_projects`/`list_milestones` (por ID) do Motor Contábil.
+
+**Novos Project Updates da semana (29/06–03/07) — adicionados a REPORTS do portfólio (append-only):**
+- **Motor Fiscal SN** 🟡 At risk (Jeisy Sousa, 03/07 14h28): Motor de Cálculo (DAS) saiu do zero — repo (FIS-397), API base do General Ledger (FIS-398), integração com o BHules (FIS-399); Terraform em revisão (FIS-400), observabilidade em andamento (FIS-439). Gate de validação pelo operador (FIS-279) e Adapter SERPRO/e-CAC (FIS-330) concluídos; doc de pré-requisitos por obrigação (FIS-248) concluído. **Milestone Construção | Motor de Cálculo SN 29% → 39%** (v2 Oct/31 criado, 0%). FIS-279 marcada Concluída nos painéis.
+- **Motor Trabalhista** 🟡 At risk (Andressa, 03/07 13h06): 3 das 4 entregas críticas de 03/07 concluídas — eSocial (DP-101), Readiness Anomalia 1 (DP-103), Anomalia 2 pós-cálculo (DP-134). DP-107 (disparo automático) em andamento; DP-109 iniciada. 3 itens due hoje não iniciados (DP-165 tabelas fiscais/IR Lei 15.270, DP-139 validação, DP-143 lista piloto consignado). **Milestone Pró-Labore SN 66% → 72%.**
+- **RPA Fiscal** 🟡 At risk (Jeisy Sousa, 03/07 13h03): épico **E4 · Painel & observabilidade fechado** (FIS-287; infra dashboard FIS-232 concluída 01/07); Motor de Trigger BHules→RPA (FIS-260) detalhado em 9 sub-issues (FIS-430–438, due 06/07); bug FIS-257 corrigido. Testes por município (FIS-351) sem execução pela 3ª semana → Cobertura 100% em 0%, meta 31/07 inatingível. **Milestone Construção de RPAs 88% → 82%; target 31/07 → 31/08; saúde No prazo → Em risco.** FIS-287 marcada Concluída nos painéis.
+
+**Também postados em 03/07 mas fora dos 15 do portfólio (não aplicados):** BHules — Motor de Classificação (projeto próprio, apartado do Motor Fiscal SN em 01/07; cobertura 100% da base SN); Open Finance opt-in; SSOT; Projeto Contexto; Gestor de Tarefas e Documentos.
+
+**Motor Contábil:** sem update novo nesta janela (o de 03/07 já entrara na manhã). Milestone confirmado em **36%** via `list_projects`/milestones — mantido.
+
+**CONSOLIDADO** da semana 2026-07-03 regravado (itens dos 3 motores atualizados do 26/06 para o report real de 03/07; nota da semana reescrita). **Subtítulos** dos dois dashboards já em 03/07 — mantidos. **Não** mexido: aba Sinergias, legenda "X de Y issues", teto de 90% (segue removido), Matriz compacta, Contábil em violeta, texto/click do Reporte Semanal.
+
+**Validação:** os 2 `<script>` de cada painel extraídos → `node --check` (OK) + smoke test (DOM stub rodando o boot renderDashboard/OKR/Exec/Projetos/Raid/Reports) → **PASS** nos dois. Arquivos gravados só após passar (edição em `.tmp` + validação + `mv`).
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | % | Saúde |
+| --- | --- | --- |
+| Motor Fiscal SN | 39 | Em risco |
+| RPA Fiscal | 82 | Em risco |
+| Motor Trabalhista | 72 | Em risco |
+| Motor Contábil | 36 | Em risco |
+| Solicitações DP | 99 | Em risco |
+| Triagem/OCR | 72 | No prazo |
+| Copiloto Samurai | 0 | Off track (Geladeira) |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo (Encerrado) |
+| GDocs acompanhamento | 100 | No prazo (Encerrado) |
+| PMI Digital | 0 | Off track (Geladeira) |
+| Cockpit 100% | 90 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track (Geladeira) |
+
+> Nota: o `pctLinear` exibido é o milestone-cabeçalho de cada projeto. Solicitações DP (99 = milestone V1) e Triagem/OCR (72) têm sub-milestones críticos citados nos reports em patamar menor (DP: V3 51%; OCR: regras auditáveis 57%) — valores narrados no corpo do update, não no headline. Sem alteração nesses dois nesta run (sem update novo).
+
+---
+
 ## 2026-07-03 · 15h07 UTC — run sem sync · ⏱ 2m 30s (conector Linear invalidado)
 
 **⚠️ Execução não conseguiu sincronizar — conector do Linear desconectado.** Todas as chamadas ao MCP do Linear (`list_projects`, `get_status_updates`, `list_issues`) retornaram *"The user's connection to this connector was invalidated. The user needs to reconnect it."*. Como esta é uma run agendada (sem usuário presente), não foi possível reconectar.

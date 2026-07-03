@@ -35,12 +35,12 @@ const DADOS = {
   projetos: [
     /* ===================== AUTOPILOT (os 3 motores + fornecedores) ===================== */
     {
-      id:"motor-fiscal-sn", pctLinear:29, marcoLinear:"Construção Motor de Cálculo SN (Classificação SN em 45%)", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"Em risco",
+      id:"motor-fiscal-sn", pctLinear:39, marcoLinear:"Construção Motor de Cálculo SN (DAS) 39% · classificação BHules 100% da base", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"Em risco",
       nome:"Motor Fiscal SN — escala 100% da base",
       lead:"Jeni Dauricio", iniciativa:"Motor Fiscal", statusProjeto:"Construção",
       inicio:"2026-05-01", alvo:"2026-08-31",
-      marco:"M1 Classificação 45% · M2 Cálculo 29%",
-      progresso:"BHules (classificação) deu o maior salto de confiabilidade desde maio: causa-raiz dos erros resolvida (trava de crédito 5/5, revogação rastreável, 747 decisões antigas removidas), tudo em produção. 14.861 notas reprocessadas com segurança (77,8% conformes; nada enviado). BHules confirmado como fonte única (26/06). Motor de Cálculo (API DAS) em andamento. Decisão Jettax × Unecont travada. Target movido p/ 31/08.",
+      marco:"M1 Classificação (BHules) 100% · M2 Cálculo DAS 39% · target 31/08",
+      progresso:"Semana de 29/06–03/07 (At risk): Motor de Cálculo (DAS) saiu do zero — repositório criado (FIS-397), API base do General Ledger (FIS-398) e integração com o BHules concluída (FIS-399); infra AWS Terraform em revisão (FIS-400) e observabilidade em andamento (FIS-439). Gate de validação da apuração pelo operador entregue (FIS-279) e Adapter SERPRO/e-CAC concluído (FIS-330). Doc de pré-requisitos por obrigação SN concluído (FIS-248). API do DAS (FIS-329) segue em construção; validação E2E só a partir de 17/07 e prazo de 31/07 apertado. Milestone Cálculo SN 29%→39%.",
       tarefas:[
         {ref:"FIS-299", entrega:true, area:"Fiscal", nome:"E1 · Discovery e Workflow de Apuração Fiscal", owner:"Fernando Hlibka", status:"Em andamento", inicio:"2026-05-18", venc:"2026-07-03"},
         {ref:"FIS-121", parent:"FIS-299", area:"Fiscal", nome:"[Discovery] Macrofluxo fiscal (entrada/processamento/saída)", owner:"—", status:"Concluído", venc:"2026-05-22"},
@@ -52,7 +52,7 @@ const DADOS = {
         {ref:"FIS-276", parent:"FIS-299", area:"Fiscal", nome:"[Infra] Scheduler e Router do workflow ApuracaoFiscal", owner:"—", status:"Pendente", venc:"2026-07-03"},
         {ref:"FIS-277", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Anomalia 1 — completude dos insumos fiscais", owner:"—", status:"Pendente"},
         {ref:"FIS-278", parent:"FIS-299", area:"Fiscal", nome:"[Feature] HITL fiscal — awakeables para exceções", owner:"—", status:"Pendente"},
-        {ref:"FIS-279", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Anomalia 2 — gate de validação da apuração", owner:"Paulo Dias", status:"Em andamento", venc:"2026-07-03"},
+        {ref:"FIS-279", parent:"FIS-299", area:"Fiscal", nome:"[Feature] Anomalia 2 — gate de validação da apuração", owner:"Paulo Dias", status:"Concluído", venc:"2026-07-03"},
         {ref:"FIS-300", entrega:true, area:"Fiscal", nome:"E2 · Cálculo & emissão do DAS", owner:"Glauco Junior", status:"Em andamento", inicio:"2026-06-05", venc:"2026-07-17"},
         {ref:"FIS-259", parent:"FIS-300", area:"Fiscal", nome:"[Validação] Cálculos do DAS com empresas de teste", owner:"Glauco Junior", status:"Refinado", venc:"2026-07-17"},
         {ref:"FIS-329", parent:"FIS-300", area:"Fiscal", nome:"[Feature] Motor de Cálculo Fiscal — API de apuração do DAS", owner:"—", status:"Em andamento", venc:"2026-07-03"},
@@ -77,12 +77,12 @@ const DADOS = {
       ], sinergias:[]
     },
     {
-      id:"rpa-fiscal", pctLinear:88, marcoLinear:"Construção de RPAs — Escrituração e guias (88%)", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"No prazo",
+      id:"rpa-fiscal", pctLinear:82, marcoLinear:"Construção de RPAs — Escrituração e guias (82%) · Cobertura 100% em 0%", grupo:"Fiscal", tema:"Autopilot", okr:"O4", health:"Em risco",
       nome:"RPA Fiscal — ponte de automação via bots",
       lead:"Jeni Dauricio", iniciativa:"Motor Fiscal", statusProjeto:"Construção",
-      inicio:"2026-05-01", alvo:"2026-07-31",
-      marco:"Cobertura 100% — rollout por município (E1 testes · E2 rollout)",
-      progresso:"Painel RPA de controle interno concluído (FIS-188, 23/06); infra do dashboard (FIS-232) em andamento. Testes por município (FIS-351) pendentes de início (dependem da Jeisy). Sem bloqueios externos.",
+      inicio:"2026-05-01", alvo:"2026-08-31",
+      marco:"E4 Painel concluído · Motor de Trigger BHules→RPA (9 issues, due 06/07) · Cobertura 100% (E1 testes) 0% · target 31/08",
+      progresso:"Semana de 29/06–03/07 (At risk): épico E4 · Painel & observabilidade RPA fechado — infra do dashboard (FIS-232) concluída em 01/07. Bug de payload nos bot-workflows corrigido (FIS-257, 29/06). Motor de Trigger BHules→RPA (FIS-260) detalhado: 9 sub-issues criadas (FIS-430 a FIS-438, due 06/07); POC/BRD Campinas via webservice (FIS-427/428) em revisão. Risco: testes por município (FIS-351) sem execução pela 3ª semana — milestone Cobertura 100% em 0%, meta 31/07 inatingível; VM SPED (FIS-380) vence hoje dependente de VPN do IT. Milestone Construção de RPAs 88%→82% (reconciliação); target movido p/ 31/08.",
       tarefas:[
         {ref:"FIS-284", entrega:true, area:"Fiscal", nome:"E1 · Escrituração NFS-e tomados (municipal)", owner:"Marcelo Santos", status:"Em andamento", inicio:"2026-05-12", venc:"2026-07-03"},
         {ref:"FIS-2", parent:"FIS-284", area:"Fiscal", nome:"[Discovery] Escrituração de NFS-e tomados (RPA)", owner:"—", status:"Concluído", venc:"2026-05-22"},
@@ -103,7 +103,7 @@ const DADOS = {
         {ref:"FIS-71", parent:"FIS-286", area:"Fiscal", nome:"[Feature] Monitoramento e relatórios dos bots SPED", owner:"Guilherme Porto", status:"Concluído"},
         {ref:"FIS-197", parent:"FIS-286", area:"Fiscal", nome:"[Feature] Refatoração dos bots SPED (Parte 2)", owner:"Guilherme Porto", status:"Concluído"},
         {ref:"FIS-198", parent:"FIS-286", area:"Fiscal", nome:"Implantar gradualmente os bots (continuação)", owner:"Guilherme Porto", status:"Concluído"},
-        {ref:"FIS-287", entrega:true, area:"Fiscal", nome:"E4 · Painel & observabilidade RPA", owner:"Guilherme Porto", status:"Em andamento", inicio:"2026-05-20", venc:"2026-06-19"},
+        {ref:"FIS-287", entrega:true, area:"Fiscal", nome:"E4 · Painel & observabilidade RPA", owner:"Guilherme Porto", status:"Concluído", inicio:"2026-05-20", venc:"2026-06-19"},
         {ref:"FIS-188", parent:"FIS-287", area:"Fiscal", nome:"[Feature] Painel RPA de controle interno (Fiscal + Tech)", owner:"Guilherme Porto", status:"Concluído", venc:"2026-06-19"},
         {ref:"FIS-351", entrega:true, area:"Fiscal", nome:"E1 · Testes e validação final do RPA por município (Cobertura 100%)", owner:"Jeisy Sousa", status:"Pendente", inicio:"2026-05-01"},
         {ref:"FIS-356", parent:"FIS-351", area:"Fiscal", nome:"[E1] Testes — São Paulo", owner:"—", status:"Pendente"},
@@ -125,12 +125,12 @@ const DADOS = {
       raid:[], sinergias:[]
     },
     {
-      id:"motor-trabalhista", pctLinear:66, marcoLinear:"Construção Pró-Labore SN (Folha s/ apont. em 18%)", grupo:"DP", tema:"Autopilot", okr:"O4", health:"Em risco",
+      id:"motor-trabalhista", pctLinear:72, marcoLinear:"Construção Pró-Labore SN 72% (Folha s/ apont. 18%)", grupo:"DP", tema:"Autopilot", okr:"O4", health:"Em risco",
       nome:"Motor Trabalhista — folha + obrigações DP",
       lead:"Jeni Dauricio", iniciativa:"Motor DP (Trabalhista)", statusProjeto:"Construção",
       inicio:"2026-05-01", alvo:"2026-08-31",
-      marco:"Pró-Labore SN 66% · Folha s/ apont. 18% · 4 issues due 03/07 · target 31/08",
-      progresso:"Ciclo de construção avançando: eSocial (DP-101) concluído em 01/07 (após migração Terraform→Restate) e Anomalia 2 — validação pós-cálculo (DP-134) concluída em 01/07. Readiness Check Anomalia 1 (DP-103) e disparo automático do fechamento via EventBridge (DP-107) em andamento (due 03/07); distribuição pós-gate (DP-109) iniciada. Pró-Labore SN em 66%, Folha s/ apont. em 18%. Target do projeto estendido p/ 31/08.",
+      marco:"Pró-Labore SN 72% · Folha s/ apont. 18% · target 31/08",
+      progresso:"Semana de 29/06–03/07 (At risk): 3 das 4 entregas críticas de 03/07 concluídas — eSocial (DP-101), Readiness Check Anomalia 1 (DP-103) e Anomalia 2 pós-cálculo (DP-134). Disparo automático do fechamento (DP-107) em andamento (services dp-calculator-engine e dp-reports-engine criados no Restate); Distribuição pós-gate (DP-109) iniciada. Riscos: 3 itens due hoje não iniciados — tabelas fiscais IR/INSS/FGTS p/ dp-rules (DP-165, nova faixa de isenção IR da Lei 15.270), validação de relatórios com dados reais (DP-139) e lista de clientes piloto de consignado (DP-143). KPI melhorou. Milestone Pró-Labore SN 66%→72%.",
       tarefas:[
         {ref:"DP-113", entrega:true, area:"DP", nome:"E1 · Folha + pró-labore SN calculável", owner:"Sávio Lopes", status:"Em andamento", inicio:"2026-05-13", venc:"2026-07-31"},
         {ref:"DP-3", parent:"DP-113", area:"DP", nome:"[Feature] Cálculo de folha e pró-labore", owner:"Sávio Lopes", status:"Em revisão", venc:"2026-06-19"},
