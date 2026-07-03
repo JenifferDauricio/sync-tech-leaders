@@ -9,6 +9,87 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-07-03 · 12h37 UTC — snapshot · ⏱ ~11m (relógio do sandbox instável; o ambiente avançou de 30/06 para 03/07 durante a run)
+
+**Re-sync completo da semana de 29/06–03/07** (complementa o snapshot parcial das 12h, que só pegou task-status + subtítulo). Varredura: `get_status_updates` (type:project, orderBy createdAt, −P6D, limit 30) + `list_milestones` dos 4 motores + `list_issues` (updatedAt) de Fiscal/DP/RPA. **5 Project Updates novos da semana** foram absorvidos nos painéis (antes só havia reportes de 26/06).
+
+**Novos Project Updates da semana (adicionados a REPORTS — append-only, nada apagado):**
+- **Motor Contábil** 🟡 At risk (Andressa, 03/07): experiência contábil no Cockpit (pendências ao operador + telas do Gestor de Tarefas) finalizada pela Elaine, seguirá ao Jorge; dev de todas as frentes em andamento. Milestone construção **38% → 36%**.
+- **Triagem/OCR** 🟢 On track (Ana Caroline, 03/07): Universo de documentos **65% → 100%** (02/07); Regras auditáveis **43% → 56,5%**; Fundação de confiança da classificação iniciada (proxy na API, 33%). pctLinear 65 → 57 (milestone ativo).
+- **Cockpit 100%** 🟢 On track (Ana Caroline, 03/07): cobertura **100% PJ+PF+Estrangeiros** entregue 30/06; em estabilização (25%, janela 30d, 17/07). pctLinear 85 → 90.
+- **Solicitações DP** 🟡 At risk (Gabriel Bicalho, 02/07): gestor de tarefas no Cockpit (fila geral, devolver à fila sem cancelar, filtros); validações inteligentes (Férias ok + Admissão); design reformulações forms HUB. **V3 15% → 51%**, V2.2 19% → 33%, V2.1 52% (novo). pctLinear 97 → 51 (milestone V3, crítico do gate Autopilot).
+- **Hubcount** 🟢 On track (Andressa, 03/07): sem avanços; início previsto 01/08.
+
+**Motores sem Project Update novo (último 26/06) — atualizados por milestone/issues:**
+- **Motor Fiscal SN:** milestone Construção | Motor de Cálculo SN **29% → 38%** (38,46%). Tarefas: FIS-330 (Adapter SERPRO) Concluída; FIS-329 (API DAS) e FIS-279 (Anomalia 2) Em andamento; FIS-276 Refinado. Saúde Em risco mantida.
+- **Motor Trabalhista:** Pró-Labore SN **66% → 72%** (72,39%); Folha s/ apontamento 17,86%. Tarefas concluídas: DP-101 (eSocial), DP-103 (Readiness Anomalia 1), DP-134 (Anomalia 2). Saúde Em risco mantida.
+- **RPA Fiscal:** milestone Construção de RPAs **88% → 82%** (reconciliação com o valor real do Linear). Saúde No prazo mantida.
+
+**CONSOLIDADO** regravado para a semana 2026-07-03 (deriva dos REPORTS; projeto sem reporte na semana = pausado). **Subtítulo** dos dois dashboards em 03/07. **Não** mexido: aba Sinergias, legenda "X de Y issues", teto de 90% (permanece removido), Matriz compacta, Contábil em violeta, texto/click do Reporte Semanal.
+
+**Validação:** os 2 `<script>` de cada painel extraídos → `node --check` OK + smoke test (DOM stub renderizando dashboard/exec/projetos/raid/reports/okr/deps) → **PASS** nos dois. Salvo somente após passar.
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | % | Saúde |
+| --- | --- | --- |
+| Motor Fiscal SN | 38 | Em risco |
+| RPA Fiscal | 82 | No prazo |
+| Motor Trabalhista | 72 | Em risco |
+| Motor Contábil | 36 | Em risco |
+| Solicitações DP | 51 | Em risco |
+| Triagem/OCR | 57 | No prazo |
+| Copiloto Samurai | 0 | Off track (Geladeira) |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo (Encerrado) |
+| GDocs acompanhamento | 100 | No prazo (Encerrado) |
+| PMI Digital | 0 | Off track (Geladeira) |
+| Cockpit 100% | 90 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track (Geladeira) |
+
+---
+
+## 2026-07-03 · 12h UTC (run 2 — completa os Project Updates da semana) — snapshot · ⏱ relógio do ambiente saltou 30/06→03/07 durante a run (tempo efetivo não mensurável)
+
+**Run de sexta-feira (03/07) — 2ª execução do dia, completa os Project Updates da semana 29/06–03/07.** A run anterior (07-03 · 12h) rodou antes de os updates semanais serem postados e concluiu "sem novidades desde 26/06"; esta varredura (`get_status_updates` type:project, orderBy createdAt, createdAt≥2026-06-27) encontrou **5 Project Updates novos** in-scope, agora refletidos.
+
+**Novos Project Updates capturados (portfólio):**
+- **Solicitações DP** (02/07 · Gabriel · 🟡 Em risco): gestor de tarefas do operador no Cockpit (fila geral, devolver-à-fila sem cancelar, navegação, filtros unificados); validações inteligentes (Férias concluído + Admissão); design das reformulações dos forms do HUB (pós-V1) concluído. Milestones: **V1 97→99% · V2.1 forms 52% · V2.2 gestor Cockpit 19→33% · V3 form inteligente+motor 15→51%**. pctLinear 97→99. Target 31/07→31/10.
+- **Cockpit 100%** (03/07 · Ana Caroline · 🟢 No prazo): **cobertura 100% da base (PJ+PF+Estrangeiros) entregue (30/06)**; entra em estabilização (30 dias, 25%, prev. 17/07). pctLinear 85→90. Marcos: 5 concluídos + estável (25%) + resultado medido (pendente).
+- **Triagem / OCR** (03/07 · Ana Caroline · 🟢 No prazo): **Universo de documentos mapeado 65→100%** (02/07); **Regras de triagem auditáveis 43→57%**; nova **Fundação de confiança da classificação 33%** (proxy exposto na API); nova frente "Conta bancária obrigatória em pontos de entrada de extrato" 25%. pctLinear 65→72.
+- **Motor Contábil** (03/07 · Andressa · 🟡 Em risco): experiência contábil no Cockpit (pendências p/ operador + telas do Gestor de Tarefas) finalizada pela Elaine, vai ao Jorge validar/encaixar no dev; todas as frentes em andamento. Milestone Construção **38→36%**. Atualizado nos DOIS painéis.
+- **Hubcount** (03/07 · Andressa · 🟢 No prazo): sem avanço — Descoberta, início previsto **01/08** (statusProjeto Ideia→Descoberta; início 01/07→01/08). pctLinear 0.
+
+**Motores sem Project Update novo no momento do sync (últimos = 26/06):** Motor Fiscal SN, Motor Trabalhista, RPA Fiscal — pctLinear/marcoLinear/health preservados do reporte de 26/06; tarefas seguem no estado das issues (ex.: FIS-330 e-CAC Concluído; DP-103/DP-107/DP-134 due 03/07). Cadastro Único e BPO Financeiro sem report na semana; Copiloto Samurai, PMI Digital e Offboarding na Geladeira; GDocs multi-CNPJ e GDocs acompanhamento encerrados (100%).
+
+**Também nesta run:** subtítulo dos dashboards mantido em **· 03/07**; **CONSOLIDADO → semana 2026-07-03** (nota + 8 itens: 3 motores carregados de 26/06 + Motor Contábil, Triagem/OCR, Cockpit 100%, Solicitações DP, Hubcount); **REPORTS**: +1 no Autopilot (Motor Contábil) e +5 no Portfólio (append-only, nada apagado).
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde) — média 46% · No prazo 7 · Em risco 5 · Off track 3:**
+
+| Projeto | % | Saúde |
+| -- | -- | -- |
+| Motor Fiscal SN | 29 | Em risco |
+| RPA Fiscal | 88 | No prazo |
+| Motor Trabalhista | 66 | Em risco |
+| Motor Contábil | 36 | Em risco |
+| Solicitações DP | 99 | Em risco |
+| Triagem OCR | 72 | No prazo |
+| Copiloto Samurai | 0 | Off track |
+| BPO Financeiro | 10 | Em risco |
+| GDocs multi-CNPJ | 100 | No prazo |
+| GDocs acompanhamento | 100 | No prazo |
+| PMI Digital | 0 | Off track |
+| Cockpit 100% | 90 | No prazo |
+| Cadastro Único | 6 | No prazo |
+| Hubcount | 0 | No prazo |
+| Offboarding | 0 | Off track |
+
+Validação: extraídos os 2 `<script>` de cada painel · `node --check` OK nos 4 blocos · smoke test com DOM stub (Proxy) executou renderDashboard/OKR/Exec/Projetos/Raid/Reports/Deps sem erro nos dois painéis (SMOKE PASS) · REPORTS (29 Autopilot · 73 Portfólio) e CONSOLIDADO válidos como JSON. Só então salvo e publicado.
+
+---
+
 ## 2026-07-03 · 12h UTC — snapshot · ⏱ ~8m (relógio do sandbox instável nesta run)
 
 **Run de quinta-feira (re-sync).** Varredura do Linear: `get_status_updates` (type:project, orderBy createdAt, −P8D, limit 10) e `list_issues` dos 4 motores (updatedAt −PT8H, desde a run anterior). **Nenhum Project Update novo desde 26/06** — o update mais recente em qualquer projeto continua sendo Open Finance (26/06 22:18); Motor Fiscal SN, Motor Trabalhista, Certificado Digital, Central de Ajuda, Pesquisa de Satisfação e os projetos Cockpit também são de 26/06 e já refletidos nos painéis. Portanto REPORTS, CONSOLIDADO, MATRIZ, pctLinear, saúde e marcoLinear dos 15 projetos permanecem inalterados (append-only preservado).
