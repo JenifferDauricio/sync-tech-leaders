@@ -9,6 +9,42 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-07-06 · 22h11 UTC — snapshot · ⏱ 5m 49s (run de segunda-feira)
+
+**Run de segunda (06/07, tarde UTC).** Varredura `get_status_updates` (type:project, orderBy createdAt, limit 6): **nenhum Project Update novo para os 15 projetos do portfólio** desde o sync anterior (06/07 01h34 UTC). O único update criado depois da última run é o **Espelhamento de docs (Gestta → Hub)** (06/07 01h59 UTC, 🟡 At risk) — projeto de sustentação Tech, **fora dos 15 do portfólio**, não aplicado aos painéis. Os demais updates recentes (Hidra · Manutenção, BHules — Motor de Classificação, Open Finance opt-in, SSOT) são de 03/07 e/ou fora do portfólio — já tratados em runs anteriores. Semana de reporte vigente segue 29/06–03/07.
+
+**Deriva de milestone observada (NÃO aplicada — convenção: pctLinear acompanha o Project Update semanal, não a variação intra-semana):** via `list_projects` (includeMilestones) os milestones-alvo evoluíram desde o report de 03/07 — Motor Fiscal SN "Construção | Motor de Cálculo SN" **39% → 41%**; Motor Trabalhista "Pró-Labore SN" **72% → 74%**; Motor Contábil 36% (estável). Sem novo report semanal, os painéis mantêm os valores reportados em 03/07. Deriva registrada aqui para auditoria; será incorporada quando o próximo Project Update (semana 06/07–10/07) for postado.
+
+**Aplicado nesta run:** apenas os **subtítulos** dos dois dashboards → **06/07** (data de hoje). Nenhuma alteração de dados/REPORTS/CONSOLIDADO/marcos — os 15 projetos permanecem idênticos ao snapshot anterior.
+
+**Não** alterado: aba Sinergias, legenda "X de Y issues dos motores", teto de 90% (segue removido), Matriz compacta (.mtx), Contábil em violeta (#7c3aed), textos/click do Reporte Semanal (openDealById). Lógica/JS intactos.
+
+**Validação:** os 2 `<script>` de cada painel extraídos → `node --check` (OK nos 4) + smoke test com DOM stub rodando o boot (renderDashboard/OKR/Exec/Projetos/Raid/Reports → 6 render fns por painel) → **PASS** nos dois. Edição em `.tmp` + validação + `mv` (arquivos só gravados após passar).
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | pctLinear | Saúde |
+| -- | -- | -- |
+| motor-fiscal-sn | 39% | 🟡 Em risco |
+| rpa-fiscal | 82% | 🟡 Em risco |
+| motor-trabalhista | 72% | 🟡 Em risco |
+| motor-contabil | 36% | 🟡 Em risco |
+| solicitacoes-dp | 99% | 🟡 Em risco |
+| triagem-ocr | 72% | 🟢 No prazo |
+| copiloto-samurai | 0% | 🔴 Off track (Geladeira) |
+| bpo-financeiro | 10% | 🟡 Em risco |
+| gdocs-multicnpj | 100% | 🟢 No prazo (Encerrado) |
+| gdocs-acompanhamento | 100% | 🟢 No prazo (Encerrado) |
+| pmi-digital | 0% | 🔴 Off track (Geladeira) |
+| cockpit-100 | 90% | 🟢 No prazo |
+| cadastro-unico | 6% | 🟡 Em risco |
+| hubcount | 0% | 🟢 No prazo (Descoberta) |
+| offboarding | 0% | 🔴 Off track (Geladeira) |
+
+**Mudança vs. run anterior:** nenhuma nos dados dos 15 projetos (só subtítulo → 06/07). Deriva de milestone dos motores registrada mas não aplicada (aguarda próximo report semanal).
+
+---
+
 ## 2026-07-06 · 01h34 UTC — snapshot · ⏱ 206m 9s (run de fim de semana)
 
 **Run de domingo (05/07, madrugada UTC de 06/07).** Varredura `get_status_updates` (type:project, orderBy createdAt, −P4D e −P2D): **nenhum Project Update novo no fim de semana** (04–05/07). A postagem mais recente do Linear é o **Hidra · Manutenção** (03/07 23:10 UTC) — projeto de sustentação Contábil, **fora dos 15 do portfólio**, não aplicado aos painéis. Motores sem update novo → dados mantidos do sync de 03/07.
