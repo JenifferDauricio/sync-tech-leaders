@@ -9,6 +9,44 @@ Convenções: saúde = farol do Project Update (No prazo / Em risco / Off track)
 
 ---
 
+## 2026-07-06 · 01h34 UTC — snapshot · ⏱ 206m 9s (run de fim de semana)
+
+**Run de domingo (05/07, madrugada UTC de 06/07).** Varredura `get_status_updates` (type:project, orderBy createdAt, −P4D e −P2D): **nenhum Project Update novo no fim de semana** (04–05/07). A postagem mais recente do Linear é o **Hidra · Manutenção** (03/07 23:10 UTC) — projeto de sustentação Contábil, **fora dos 15 do portfólio**, não aplicado aos painéis. Motores sem update novo → dados mantidos do sync de 03/07.
+
+**Catch-up aplicado (1 report que a run de 03/07 22h14 não capturou):** o Project Update de **Cadastro Único / SSOT** ("Sincronização de informações de sistemas satélites e o cockpit (SSOT)") de **03/07 16:07 (Marina Alves, 🟡 Em risco)** estava dentro da semana reportada mas não fora incorporado. Aplicado agora:
+- **cadastro-unico**: saúde **No prazo → Em risco** (corpo do update: "Em atenção"; health Linear = atRisk). Novo ownership (liderança → **Dan Jesus**, time **ACDA**); COCKPIT-268 concluída; semana concentrada em reorg de backlog (COCKPIT-391/392/393) sem avanço visível de execução. `pctLinear` mantido em **6%** (milestone M1 "Diagnóstico e regras de reconciliação" 6,25%; M2–M3 e demais 0% — confirmado via `list_milestones`). marcos mantidos.
+- **REPORTS** do portfólio: **76 → 77** (entrada cadastro-unico 03/07 adicionada; nada apagado).
+- **CONSOLIDADO** (semana 2026-07-03): adicionado item de cadastro-unico; **nota corrigida** — antes dizia "Cadastro Único ... sem report na semana", agora reflete que reportou (🟡 Em risco, novo ownership/reorg). BPO Financeiro segue sem report.
+- **Subtítulos** dos dois dashboards → **05/07**.
+
+**Não** alterado: aba Sinergias, legenda "X de Y issues dos motores", teto de 90% (segue removido), Matriz compacta (.mtx), Contábil em violeta (#7c3aed), textos/click do Reporte Semanal (openDealById). Lógica/JS intactos — só dados/REPORTS/CONSOLIDADO editados via script.
+
+**Validação:** os 2 `<script>` de cada painel extraídos → `node --check` (OK nos 4) + smoke test com DOM stub rodando o boot (renderDashboard/OKR/Exec/Projetos/Raid/Reports) → **PASS** nos dois. Edição em `.tmp` + validação + `mv` (arquivos só gravados após passar).
+
+**Snapshot dos 15 projetos do portfólio (pctLinear · saúde):**
+
+| Projeto | pctLinear | Saúde |
+| -- | -- | -- |
+| motor-fiscal-sn | 39% | 🟡 Em risco |
+| rpa-fiscal | 82% | 🟡 Em risco |
+| motor-trabalhista | 72% | 🟡 Em risco |
+| motor-contabil | 36% | 🟡 Em risco |
+| solicitacoes-dp | 99% | 🟡 Em risco |
+| triagem-ocr | 72% | 🟢 No prazo |
+| copiloto-samurai | 0% | 🔴 Off track (Geladeira) |
+| bpo-financeiro | 10% | 🟡 Em risco |
+| gdocs-multicnpj | 100% | 🟢 No prazo (Encerrado) |
+| gdocs-acompanhamento | 100% | 🟢 No prazo (Encerrado) |
+| pmi-digital | 0% | 🔴 Off track (Geladeira) |
+| cockpit-100 | 90% | 🟢 No prazo |
+| cadastro-unico | 6% | 🟡 Em risco *(mudou de No prazo)* |
+| hubcount | 0% | 🟢 No prazo (Descoberta) |
+| offboarding | 0% | 🔴 Off track (Geladeira) |
+
+**Mudança vs. run anterior:** apenas **cadastro-unico** (No prazo → Em risco, +1 report, item no CONSOLIDADO). Demais 14 projetos inalterados.
+
+---
+
 ## 2026-07-03 · 22h14 UTC — snapshot · ⏱ 11m 11s (Linear reconectado)
 
 **Conector do Linear voltou a funcionar** (a run das 15h07 havia falhado por conexão invalidada). Esta execução absorveu **3 Project Updates novos** que foram postados à tarde, **depois** do sync completo das 12h37 — exatamente os updates semanais dos motores que, no sync da manhã, ainda não existiam (a manhã usara milestone/issues como proxy). Varredura: `get_status_updates` (type:project, orderBy createdAt, −P3D, limit 8) + `list_projects`/`list_milestones` (por ID) do Motor Contábil.
